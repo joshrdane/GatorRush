@@ -63,6 +63,7 @@ public class UserEntity {
     }
 
     public void setEmail(String email) throws Exception {
+        email = email.toLowerCase();
         if (EMAIL.matcher(email).matches()) {
             this.email = email;
         } else {
