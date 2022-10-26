@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>edu.ufl</groupId>
-    <artifactId>mathmagic</artifactId>
+    <artifactId>gatorrush</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mathmagic</name>
-    <description>mathmagic</description>
+    <name>Gator Rush</name>
+    <description>Term Project - CEN3031 - Group 14</description>
     <properties>
         <java.version>17</java.version>
     </properties>
