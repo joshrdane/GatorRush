@@ -47,7 +47,7 @@ public class UserEntityTests {
         Assertions.assertThrows(
                 Exception.class,
                 () -> {
-                    user.setUsername("short");
+                    user.setUsername("abc");
                 });
     }
 
