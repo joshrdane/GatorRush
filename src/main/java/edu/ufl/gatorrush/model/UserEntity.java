@@ -50,6 +50,7 @@ public class UserEntity {
     }
 
     public void setUsername(String username) throws Exception {
+        username = username.toLowerCase();
         if (USERNAME.matcher(username).matches()) {
             this.username = username;
         } else {
