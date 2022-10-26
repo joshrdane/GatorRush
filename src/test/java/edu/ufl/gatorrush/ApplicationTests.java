@@ -1,4 +1,4 @@
-package edu.ufl.mathmagic;
+package edu.ufl.gatorrush;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
