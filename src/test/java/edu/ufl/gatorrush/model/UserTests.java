@@ -25,50 +25,40 @@ public class UserTests {
     }
 
     @Test
-    void testUsernameNull() throws Exception {
+    void testUsernameNull() {
         Assertions.assertThrows(
                 Exception.class,
-                () -> {
-                    user.setUsername(null);
-                });
+                () -> user.setUsername(null));
     }
 
     @Test
-    void testUsernameEmpty() throws Exception {
+    void testUsernameEmpty() {
         Assertions.assertThrows(
                 Exception.class,
-                () -> {
-                    user.setUsername("");
-                });
+                () -> user.setUsername(""));
     }
 
     @Test
-    void testUsernameShort() throws Exception {
+    void testUsernameShort() {
         Assertions.assertThrows(
                 Exception.class,
-                () -> {
-                    user.setUsername("abc");
-                });
+                () -> user.setUsername("abc"));
     }
 
     @Test
-    void testUsernameLong() throws Exception {
+    void testUsernameLong() {
         Assertions.assertThrows(
                 Exception.class,
-                () -> {
-                    user.setUsername("ReallyLongUsernameLikeReallyReallyLong");
-                });
+                () -> user.setUsername("ReallyLongUsernameLikeReallyReallyLong"));
     }
 
     @Test
-    void testUsernamesInvalidSymbol() throws Exception {
+    void testUsernamesInvalidSymbol() {
         char[] invalidCharacters = "!@#$%^&*()<>?:\"'{}[]\\/".toCharArray();
         for (char invalidCharacter : invalidCharacters) {
             Assertions.assertThrows(
                     Exception.class,
-                    () -> {
-                        user.setUsername(generateRandomUsername() + invalidCharacter);
-                    });
+                    () -> user.setUsername(generateRandomUsername() + invalidCharacter));
         }
     }
 
@@ -93,21 +83,17 @@ public class UserTests {
     }
 
     @Test
-    void testEmailNull() throws Exception {
+    void testEmailNull() {
         Assertions.assertThrows(
                 Exception.class,
-                () -> {
-                    user.setEmail(null);
-                });
+                () -> user.setEmail(null));
     }
 
     @Test
-    void testEmailEmpty() throws Exception {
+    void testEmailEmpty() {
         Assertions.assertThrows(
                 Exception.class,
-                () -> {
-                    user.setEmail("");
-                });
+                () -> user.setEmail(""));
     }
 
     @Test
@@ -116,8 +102,8 @@ public class UserTests {
                 "example@sub.domain.tld",
                 };
         for (String validEmail : validEmails) {
-                user.setEmail(validEmail);
-                Assertions.assertEquals(validEmail, user.getEmail());
+            user.setEmail(validEmail);
+            Assertions.assertEquals(validEmail, user.getEmail());
         }
     }
 }
