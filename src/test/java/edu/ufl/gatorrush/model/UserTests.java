@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-public class UserEntityTests {
-    UserEntity user;
+public class UserTests {
+    User user;
 
     String generateRandomUsername() {
         int minUsernameLength = 8;
@@ -21,7 +21,7 @@ public class UserEntityTests {
 
     @BeforeEach
     void setup() {
-        user = new UserEntity();
+        user = new User();
     }
 
     @Test
