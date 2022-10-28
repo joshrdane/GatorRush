@@ -1,6 +1,7 @@
 package edu.ufl.gatorrush.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -36,6 +37,12 @@ public class User {
      */
     @Column(nullable = false)
     private String passwordHash;
+
+    /**
+     * List of completed Levels
+     */
+    @ManyToMany
+    private List<Level> completedLevels;
 
     protected User() {}
 
