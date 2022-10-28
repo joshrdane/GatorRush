@@ -38,6 +38,12 @@ public class Problem {
 
     protected Problem() {}
 
+    Problem(int leftOperand, char operator, int rightOperand) {
+        this.leftOperand = leftOperand;
+        this.operator = operator;
+        this.rightOperand = rightOperand;
+    }
+
     public Long getId() {
         return id;
     }
