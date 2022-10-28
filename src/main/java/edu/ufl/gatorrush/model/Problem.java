@@ -5,19 +5,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * Represents a two operand equation
+ */
 @Entity
 public class Problem {
 
+    /**
+     * Unique Identifier
+     */
     @Id
     @GeneratedValue
     private Long id;
 
+    /**
+     * Left Operand
+     */
     @Column(nullable = false)
     private Integer leftOperand;
 
+    /**
+     * Right Operand
+     */
     @Column(nullable = false)
     private Integer rightOperand;
 
+    /**
+     * Operator
+     */
     @Column(nullable = false)
     private Character operator;
 
