@@ -1,6 +1,7 @@
 package edu.ufl.gatorrush.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Level {
      * List of Problems assigned to this Level
      */
     @ManyToMany
-    private List<Problem> problems;
+    private List<Problem> problems = new ArrayList<>();
 
     /**
      * Next Level

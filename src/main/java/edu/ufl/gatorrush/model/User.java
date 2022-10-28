@@ -46,6 +46,18 @@ public class User {
 
     protected User() {}
 
+    /**
+     * Constructor for testing purposes, does not validate
+     * @param username Nonvalidated username
+     * @param email Nonvalidated email
+     * @param passwordHash Nonvalidated password hash
+     */
+    public User(String username, String email, String passwordHash) {
+        this.username = username;
+        this.email = email;
+        this.passwordHash = passwordHash;
+    }
+
     public long getId() {
         return id;
     }
