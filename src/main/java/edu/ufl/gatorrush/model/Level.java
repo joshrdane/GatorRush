@@ -19,6 +19,12 @@ public class Level {
     @ManyToMany
     private List<Problem> problems;
 
+    /**
+     * Next Level
+     */
+    @OneToOne
+    private Level next;
+
     public Long getId() {
         return id;
     }
@@ -29,5 +35,13 @@ public class Level {
 
     public void setProblems(List<Problem> problems) {
         this.problems = problems;
+    }
+
+    public Level getNext() {
+        return next;
+    }
+
+    public void setNext(Level next) {
+        this.next = next;
     }
 }
