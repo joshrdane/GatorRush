@@ -1,5 +1,6 @@
 package edu.ufl.gatorrush.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,35 +10,38 @@ public class Problem {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
-    private int leftOperand;
+    @Column(nullable = false)
+    private Integer leftOperand;
 
-    private int rightOperand;
+    @Column(nullable = false)
+    private Integer rightOperand;
 
-    private char operator;
+    @Column(nullable = false)
+    private Character operator;
 
     protected Problem() {
         operator = '+';
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getLeftOperand() {
+    public Integer getLeftOperand() {
         return leftOperand;
     }
 
-    public void setLeftOperand(int leftOperand) {
+    public void setLeftOperand(Integer leftOperand) {
         this.leftOperand = leftOperand;
     }
 
-    public int getRightOperand() {
+    public Integer getRightOperand() {
         return rightOperand;
     }
 
-    public void setRightOperand(int rightOperand) {
+    public void setRightOperand(Integer rightOperand) {
         this.rightOperand = rightOperand;
     }
 
@@ -45,7 +49,7 @@ public class Problem {
         return operator;
     }
     
-    public int getResult() {
+    public Integer getResult() {
         return switch (operator) {
             case '+' -> leftOperand + rightOperand;
             case '-' -> leftOperand - rightOperand;
@@ -55,8 +59,8 @@ public class Problem {
         };
     }
 
-    public int[] getOperands() {
-        return new int[] {leftOperand, rightOperand};
+    public Integer[] getOperands() {
+        return new Integer[] {leftOperand, rightOperand};
     }
 
     public void setOperator(Character operator) {
