@@ -36,9 +36,7 @@ public class Problem {
     @Column(nullable = false)
     private Character operator;
 
-    protected Problem() {
-        operator = '+';
-    }
+    protected Problem() {}
 
     public Long getId() {
         return id;
