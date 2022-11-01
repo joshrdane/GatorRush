@@ -1,0 +1,113 @@
+#gamepage {
+    position: relative;
+    height: 800px;
+    width: 80%;
+    background-position: center center;
+    background-image: url(/images/46461.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: tomato;
+    
+}
+
+.background-test {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(/images/46461.jpg);
+    background-color: white;
+    height: 800px;
+    
+    
+}
+
+.background img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+.background-test .equation-container {
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    background-image: url(/images/Wood_Paper.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    color: white;
+    
+    background-size: 100%;
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+}
+
+.background-test .equation-content {
+    position: absolute;
+    top: 35%;
+    left: 18%;
+    font-size: 48px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 2px #388EDD;
+    
+}
+
+.background-test .btn-answer{
+    background-color: #388EDD;
+    text-align: center;
+    color: white;
+    font-size: 32px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 150px;
+    font-weight: bolder;
+}
+
+.background-test .btn-answer:hover{
+    color: black;
+}
+
+.background-test .btn-answer-1 {
+    position: absolute;
+    background-image: url(/images/wood.png);
+    background-color: transparent;
+    border-color: transparent;
+    bottom: 12%;
+    left:20%;
+}
+
+.background-test .btn-answer-2 {
+    position: absolute;
+    background-image: url(/images/wood.png);
+    background-color: transparent;
+    border-color: transparent;
+    bottom: 12%;
+    left:40%;
+}
+
+.background-test .btn-answer-3 {
+    position: absolute;
+    background-image: url(/images/wood.png);
+    background-color: transparent;
+    border-color: transparent;
+    bottom: 12%;
+    right: 40%;
+}
+
+.background-test .btn-answer-4 {
+    position: absolute;
+    background-image: url(/images/wood.png);
+    background-color: transparent;
+    border-color: transparent;
+    bottom: 12%;
+    right: 20%;
+
+}
+
