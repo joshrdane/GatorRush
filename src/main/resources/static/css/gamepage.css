@@ -1,52 +1,40 @@
-#gamepage {
-    position: relative;
-    height: 800px;
-    width: 80%;
-    background-position: center center;
-    background-image: url(/images/46461.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-color: tomato;
-    
-}
-
-.background-test {
+.background {
     position: relative;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(/images/46461.jpg);
     background-color: white;
-    height: 800px;
-    
-    
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;  
 }
 
-.background img {
-    width: 100%;
-    height: auto;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 25px;
 }
 
-
-
-
-.background-test .equation-container {
+.background .equation-container {
     position: absolute;
-    top: 30%;
-    left: 40%;
     background-image: url(/images/Wood_Paper.png);
     background-color: transparent;
     background-repeat: no-repeat;
+    background-position: center;
     border: none;
     color: white;
-    
     background-size: 100%;
     width: 300px;
     height: 300px;
-    display: inline-block;
 }
 
-.background-test .equation-content {
+.background .equation-content {
     position: absolute;
     top: 35%;
     left: 18%;
@@ -56,58 +44,35 @@
     align-items: center;
     justify-content: center;
     text-shadow: 2px 2px 2px #388EDD;
-    
 }
 
-.background-test .btn-answer{
-    background-color: #388EDD;
-    text-align: center;
-    color: white;
-    font-size: 32px;
+.background .btn-answer {
+    background-image: url(/images/wood.png);
+    background-color: transparent;
     background-size: 100%;
     background-repeat: no-repeat;
     width: 150px;
+    border-color: transparent;
+    text-align: center;
     font-weight: bolder;
+    font-size: 32px;
+    color: white;
 }
 
-.background-test .btn-answer:hover{
+.background .btn-answer:hover{
     color: black;
 }
 
-.background-test .btn-answer-1 {
+.background .attribution {
+    color: white;
     position: absolute;
-    background-image: url(/images/wood.png);
-    background-color: transparent;
-    border-color: transparent;
-    bottom: 12%;
-    left:20%;
+    bottom: 5%;
+    right: 10%;
 }
 
-.background-test .btn-answer-2 {
+.background .attribution-1 {
+    color: white;
     position: absolute;
-    background-image: url(/images/wood.png);
-    background-color: transparent;
-    border-color: transparent;
-    bottom: 12%;
-    left:40%;
+    bottom: 2%;
+    right: 10%;
 }
-
-.background-test .btn-answer-3 {
-    position: absolute;
-    background-image: url(/images/wood.png);
-    background-color: transparent;
-    border-color: transparent;
-    bottom: 12%;
-    right: 40%;
-}
-
-.background-test .btn-answer-4 {
-    position: absolute;
-    background-image: url(/images/wood.png);
-    background-color: transparent;
-    border-color: transparent;
-    bottom: 12%;
-    right: 20%;
-
-}
-
