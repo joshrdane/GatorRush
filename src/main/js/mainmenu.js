@@ -6,12 +6,25 @@ class MainMenu extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            auth: true
-        }
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    handleLogin(e) {
+        this.props.handleLogin(e);
+    }
+
+    handleLogout(e) {
+        this.props.handleLogout(e);
+    }
+
+    handlePageChange(e, page) {
+        this.props.handlePageChange(e, e.target.dataset.page);
     }
 
     render() {
+        const auth = this.props.auth;
         return (
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
@@ -24,27 +37,27 @@ class MainMenu extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Home</a>
+                                <a className="nav-link" href={"#"} data-page={"home"} onClick={this.handlePageChange}>Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="play">Play</a>
+                                <a className="nav-link" href={"#"} data-page={"play"} onClick={this.handlePageChange}>Play</a>
                             </li>
                             {
-                                this.state.auth &&
+                                auth &&
                                 <li className="nav-item">
-                                    <a className="nav-link" href="profile">Profile</a>
+                                    <a className="nav-link" href={"#"} data-page={"profile"} onClick={this.handlePageChange}>Profile</a>
                                 </li>
                             }
                             {
-                                this.state.auth && // TODO: logout functionality
+                                auth && // TODO: logout functionality
                                 <li className="nav-item">
-                                    <a className="nav-link" href="logout">Logout</a>
+                                    <a className="nav-link" href={"#"} data-page={"logout"} onClick={this.handleLogout}>Logout</a>
                                 </li>
                             }
                             {
-                                !this.state.auth &&
+                                !auth && // TODO: get rid of this, it is just a placeholder to simulate logging in for testing the navigation
                                 <li className="nav-item">
-                                    <a className="nav-link" href="login">Login</a>
+                                    <a className="nav-link" href={"#"} data-page={"login"} onClick={this.handleLogin}>Log In</a>
                                 </li>
                             }
                         </ul>
