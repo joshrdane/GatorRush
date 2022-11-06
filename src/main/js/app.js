@@ -1,12 +1,9 @@
+'use strict';
+
 import MainMenu from './mainmenu';
 import Home from './home';
 import GameModes from './gamemodes';
 import Casual from './casual';
-
-
-'use strict';
-
-import MainMenu from "./mainmenu";
 
 const React = require('react');
 const ReactDOM = require('react-dom');
