@@ -90,10 +90,12 @@ public class Problem {
                 getResult(leftOperand + 1, operator, rightOperand),
                 getResult(leftOperand, operator, rightOperand + 1),
                 getResult(leftOperand, switch (operator) {
+                    default -> operator;
                     case '+', '/' -> '-';
                     case '-', '*' -> '+';
                 }, rightOperand),
                 getResult(leftOperand + (flipFlop ? 1 : 0), switch (operator) {
+                    default -> operator;
                     case '+', '/' -> '-';
                     case '-', '*' -> '+';
                 }, rightOperand + (flipFlop ? 0 : 1))
