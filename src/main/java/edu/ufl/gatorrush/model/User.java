@@ -1,6 +1,7 @@
 package edu.ufl.gatorrush.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -42,7 +43,13 @@ public class User {
      * List of completed Levels
      */
     @ManyToMany
-    private List<Level> completedLevels;
+    private final List<Level> completedLevels = new ArrayList<>();
+
+    /**
+     * List of attempted problems
+     */
+    @OneToMany(mappedBy = "user")
+    private final List<Attempt> attempts = new ArrayList<>();
 
     protected User() {}
 

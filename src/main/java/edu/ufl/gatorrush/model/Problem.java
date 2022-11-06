@@ -1,9 +1,7 @@
 package edu.ufl.gatorrush.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -36,6 +34,9 @@ public class Problem {
      */
     @Column(nullable = false)
     private Character operator;
+
+    @OneToMany(mappedBy = "problem")
+    private List<Attempt> attempts;
 
     protected Problem() {}
 
