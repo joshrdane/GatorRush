@@ -1,5 +1,3 @@
-import MainMenu from './mainmenu';
-
 'use strict';
 
 const React = require('react');
@@ -14,13 +12,14 @@ class Casual extends React.Component {
         return (
             <div>
                 <head>
-                    <link rel="stylesheet" href="/css/gamepage.css"/>
+                    <link rel="stylesheet" href="../css/gamepage.css"/>
                 </head>
-                <div>
-                    <MainMenu />
-                </div>
                 <div class="background">
-                    <div class="container"/>
+                    <div class="container">
+                        <div class="progress">
+                            <div id="levelProgress" class="progress_bar"/>
+                        </div>
+                    </div>
                     <div class="equation-container">
                         <div class="equation-content">5 x 3 = ?</div>
                     </div>
@@ -38,3 +37,5 @@ class Casual extends React.Component {
         );
     }
 }
+
+export default Casual;
