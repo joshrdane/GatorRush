@@ -2,7 +2,6 @@ package edu.ufl.gatorrush.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class Attempt {
@@ -14,49 +13,63 @@ public class Attempt {
     private Long id;
 
     /**
-     * Scores achieved for the time trial run
+     * User associated with attempt
      */
-    @ElementCollection
-    private List<Integer> scores;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private User user;
 
     /**
-     * Problems that the user got wrong
+     * Response for the problem attempt
      */
-    @ManyToMany
-    private List<Problem> attemptedProblems;
+    @Column(nullable = false, updatable = false)
+    private Integer response;
 
     /**
-     * Date/time user got problem wrong
+     * Problem associated with attempt
      */
-    @ElementCollection
-    private List<Date> dates;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Problem problem;
 
+    /**
+     * Timestamp of attempt
+     */
+    @Column(nullable = false, updatable = false)
+    private final Date timestamp;
+
+    protected Attempt() {
+        this.timestamp = new Date();
+    }
+
+    public Attempt(User user, Problem problem, Integer response) {
+        this();
+        this.user = user;
+        this.problem = problem;
+        this.response = response;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public List<Integer> getScores() {
-        return scores;
+    public Boolean getCorrect() {
+        return problem.getResult().equals(response);
     }
 
-    public void setScores(List<Integer> scores) {
-        this.scores = scores;
+    public User getUser() {
+        return user;
     }
 
-    public List<Problem> getAttemptedProblems() {
-        return attemptedProblems;
+    public Integer getResponse() {
+        return response;
     }
 
-    public void setAttemptedProblems(List<Problem> wrongProblem) {
-        this.attemptedProblems = wrongProblem;
+    public Problem getProblem() {
+        return problem;
     }
 
-    public List<Date> getDates() {
-        return dates;
-    }
-
-    public void setDates(List<Date> dates) {
-        this.dates = dates;
+    public Date getTimestamp() {
+        return timestamp;
     }
 }
