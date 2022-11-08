@@ -9,31 +9,27 @@ class GameModes extends React.Component {
         this.handlePageChange = this.handlePageChange.bind(this);
     }
 
-    handlePageChange(e, page) {
+    handlePageChange(e) {
         this.props.handlePageChange(e, e.target.dataset.page);
     }
 
     render() {
         return (
-            <div>
-                <head>
-                    <link rel="stylesheet" href="../css/gamepage.css"/>
-                </head>
-                <div class="background">
-                        <div class="container-column">
-                            <button class="btn-game_mode" data-page={"casual"} onClick={this.handlePageChange}>Casual Mode</button>
-                            <div class="game_mode-container"/>
-                            <div class="game_description-content">
-                                <text>[Description of Casual Mode]</text>
-                            </div>
-                        </div>
-                        <div class="container-column">
-                            <button class="btn-game_mode">Timed Mode</button>
-                            <div class="game_mode-container"/>
-                            <div class="game_description-content">
-                                <text>[Description of Timed Mode]</text>
-                            </div>
-                        </div>                 
+            <div className="background">
+                <div className="container-column">
+                    <button className="btn-game_mode" data-page={"casual"} onClick={this.handlePageChange}>Casual Mode
+                    </button>
+                    <div className="game_mode-container"/>
+                    <div className="game_description-content">
+                        <p>[Description of Casual Mode]</p>
+                    </div>
+                </div>
+                <div className="container-column">
+                    <button className="btn-game_mode">Timed Mode</button>
+                    <div className="game_mode-container"/>
+                    <div className="game_description-content">
+                        <p>[Description of Timed Mode]</p>
+                    </div>
                 </div>
             </div>
         );

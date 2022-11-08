@@ -9,78 +9,73 @@ class Casual extends React.Component {
         super(props);
         this.state = {
             loading: true,
-            problems: []
+            level: {
+                id: 0,
+                name: "0",
+                problems: []
+            },
+            problem: {
+                leftOperand: 0,
+                operator: '?',
+                rightOperand: 0
+            },
+            wrong: []
+        }
+        this.handleSelect = this.handleSelect.bind(this);
+    }
+
+    handleSelect(e) {
+        const selection = e.target.value;
+        //
+        if (selection === this.state.problem.result) {
+        } else {
+            // Place problem back into rotation
+            const probs = this.state.level.problems;
+            this.setState({
+                problem: probs.at(0),
+                level: {
+                    problems: probs.slice(1)
+                }
+            })
         }
     }
 
     componentDidMount() {
-        client({method: 'GET', path: `/api/levels/${this.props.level}/problems`}).done(response => {
-            console.log(response)
+        client({method: 'GET', path: `/api/levels/4/problems`}).done(response => {
+            const probs = response.entity._embedded.problems;
             this.setState({
-                problems: response.entity._embedded.problems
-            })
-
-            // call setContentStates here to set initial problem/answer button content state ?
+                loading: false,
+                problem: probs.at(0),
+                level: {
+                    problems: probs.slice(1)
+                }
+            });
         });
-
-        this.setState({
-            loading: false
-        })
-
-    }
-
-    // function to shift problem/answer & set content 
-    setContentStates() {
-        // {problems.shift()} <-- this returns a div, need to set it
-        // {answers.shift()}
-        var x = document.getElementById("2nd");
-        var y = document.getElementById("3rd");
-        var z = document.getElementById("4th");
-        //var y = answers.shift();
-        //x.replaceWith(y);
-        //x.innerHTML = answers.shift();
-        x.innerHTML = Math.floor(Math.random() * 75);    // 0 to 74
-        y.innerHTML = Math.floor(Math.random() * 301);   // 0 to 300
-        z.innerHTML = Math.floor(Math.random() * 101);   // 0 to 100
     }
 
     render() {
         if (this.state.loading) {
             return <div>Loading!</div>
         } else {
-
-            var problems = this.state.problems.map(function (problem, index) {
-                return <div key={index}>{problem.leftOperand} {problem.operator} {problem.rightOperand} = ?</div>
-            });
-
-            // window. <-- marks it as a global variable 
-            window.answers = this.state.problems.map(function (problem, index) {
-                return <div key={index}>{problem.result}</div>
-            });
-
             return (
-                <div>
-                    <head>
-                        <link rel="stylesheet" href="../css/gamepage.css"/>
-                    </head>
-                    <div class="background">
-                        <div class="container">
-                            <div class="progress">
-                                <div id="levelProgress" class="progress_bar"/>
-                            </div>
+                <div className="background">
+                    <div className="container">
+                        <div className="progress">
+                            <div id="levelProgress" className="progress_bar"/>
                         </div>
-                        <div class="equation-container">
-                            <div class="equation-content">
-                                {problems.shift()}
-                            </div>
+                    </div>
+                    <div className="equation-container">
+                        <div className="equation-content">
+                            <div>{this.state.problem.leftOperand} {this.state.problem.operator} {this.state.problem.rightOperand} = ?</div>
                         </div>
-                        <div class="container"/>
-                        <div class="container">
-                            <button class="btn-answer" id="1st">{answers.shift()}</button>
-                            <button class="btn-answer" onClick={this.setContentStates} id="2nd">2</button>
-                            <button class="btn-answer" onClick={this.setContentStates} id="3rd">300</button>
-                            <button class="btn-answer" onClick={this.setContentStates} id="4th">4</button>
-                        </div>
+                    </div>
+                    <div className="container"/>
+                    <div className="container">
+                        {
+                            this.state.problem.options.map((option, index) => {
+                                return <button key={Math.random() * 10000 + option} className="btn-answer" onClick={this.handleSelect}>{this.state.problem.options.at(index)}</button>
+                            })
+                        }
                     </div>
                 </div>
             );
