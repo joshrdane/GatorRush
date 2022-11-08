@@ -9,7 +9,7 @@ import edu.ufl.gatorrush.repository.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Random;
+import java.util.*;
 
 @SpringBootApplication
 public class Application {
@@ -39,28 +39,57 @@ public class Application {
         userRepository.save(new User("Tamitha", "tamitha@domain.com", hash));
         userRepository.save(new User("Bolinder", "bolinder@domain.com", hash));
 
-        // Add 1000 problems and (for now) randomly assign to levels
         Random random = new Random();
-        int i = 0;
-        Level level = levelRepository.save(new Level(++i));
-        for (int left = 1; left <= 100; left++) {
-            for (int right = 1; right <= 100; right++) {
-                Problem problem = problemRepository.save(new Problem(left, '+', right));
-                if (random.nextDouble() < 0.05) {
-                    level.getProblems().add(problem);
-                    if (random.nextDouble() < 0.1) {
-                        Level next = levelRepository.save(new Level(++i));
-                        level.setNext(next);
-                        levelRepository.save(level);
-                        level = next;
+        HashMap<Character, List<Problem>> pool = new HashMap<>();
+        Arrays.stream(new Character[] {'+', '-', 'x', '/'}).forEach(character -> pool.put(character, new ArrayList<>()));
+        // Define parameters for generation
+        int addition = 1;
+        int subtraction = addition + 5;
+        int multiplication = subtraction + 5;
+        int division = multiplication + 5;
+        // Generate pool of problems
+        for (int left = 0; left < 100; left++) {
+            for (int right = 0; right < 100; right++) {
+                if (Problem.getResult(left, '+', right) <= 144) {
+                    pool.get('+').add(problemRepository.save(new Problem(left, '+', right)));
+                }
+                if (Problem.getResult(left, '-', right) >= 0) {
+                    pool.get('-').add(problemRepository.save(new Problem(left, '-', right)));
+                }
+                if (left <= 12 && right <= 12) {
+                    pool.get('x').add(problemRepository.save(new Problem(left, '-', right)));
+                    if (right != 0 && left % right == 0) {
+                        pool.get('/').add(problemRepository.save(new Problem(left, '/', right)));
                     }
                 }
             }
         }
-        if (level.getProblems().size() > 0) {
-            Level next = levelRepository.save(new Level(++i));
-            level.setNext(next);
-            levelRepository.save(level);
+        Integer levels = 30;
+        Level current = new Level(1);
+        for (int i = 1; i <= levels; i++) {
+            List<Character> operators = new ArrayList<>();
+            if (current.getName() >= addition) {
+                operators.add('+');
+            }
+            if (current.getName() >= subtraction) {
+                operators.add('-');
+            }
+            if (current.getName() >= multiplication) {
+                operators.add('x');
+            }
+            if (current.getName() >= division) {
+                operators.add('/');
+            }
+            while (current.getProblems().size() < 20) {
+                Character operator = operators.get(random.nextInt(0, operators.size()));
+                current.getProblems().add(pool.get(operator).get(random.nextInt(0, pool.get(operator).size())));
+            }
+            current = levelRepository.save(current);
+            if (current.getName() < levels) {
+                current.setNext(levelRepository.save(new Level(current.getName() + 1)));
+                current = levelRepository.save(current);
+            }
+            current = current.getNext();
         }
     }
 

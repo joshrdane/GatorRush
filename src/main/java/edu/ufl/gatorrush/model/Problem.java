@@ -1,8 +1,7 @@
 package edu.ufl.gatorrush.model;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Represents a two operand equation
@@ -74,7 +73,7 @@ public class Problem {
         return getResult(leftOperand, operator, rightOperand);
     }
 
-    private static Integer getResult(Integer leftOperand, Character operator, Integer rightOperand) {
+    public static Integer getResult(Integer leftOperand, Character operator, Integer rightOperand) {
         return switch (operator) {
             case '+' -> leftOperand + rightOperand;
             case '-' -> leftOperand - rightOperand;
@@ -87,33 +86,22 @@ public class Problem {
     public Integer[] getOptions() {
         Random random = new Random();
         boolean flipFlop = random.nextBoolean();
-        Integer[] result = new Integer[] {
-                getResult(leftOperand + 1, operator, rightOperand),
-                getResult(leftOperand, operator, rightOperand + 1),
-                getResult(leftOperand, switch (operator) {
-                    default -> operator;
-                    case '+', '/' -> '-';
-                    case '-', 'x' -> '+';
-                }, rightOperand),
-                getResult(leftOperand + (flipFlop ? 1 : 0), switch (operator) {
-                    default -> operator;
-                    case '+', '/' -> '-';
-                    case '-', 'x' -> '+';
-                }, rightOperand + (flipFlop ? 0 : 1))
-        };
-        // Custom shuffle
-        for (int i = 0; i < result.length; i++) {
-            for (int j = 0; j < result.length; j++) {
-                if (i != j && random.nextBoolean()) {
-                    Integer temp = result[i];
-                    result[i] = result[j];
-                    result[j] = temp;
-                }
+        List<Integer> potentialOptions = new ArrayList<>();
+        Integer result = getResult();
+        for (int i = 1; i <= 5; i++) {
+            potentialOptions.add(result + i);
+            potentialOptions.add(result - i);
+        }
+        List<Integer> options = new ArrayList<>();
+        while (options.size() < 3) {
+            Integer option = potentialOptions.get(random.nextInt(0, potentialOptions.size()));
+            if (option >= 0 && option <= 144 && !option.equals(result) && !options.contains(option)) {
+                options.add(option);
             }
         }
-        // Inject the correct answer into a random spot within the results array
-        result[(int)(random.nextDouble() * result.length)] = getResult();
-        return result;
+        options.add(result);
+        Collections.shuffle(options);
+        return options.toArray(Integer[]::new);
     }
 
     public void setOperator(Character operator) {

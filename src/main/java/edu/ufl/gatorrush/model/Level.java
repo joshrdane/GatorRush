@@ -22,7 +22,7 @@ public class Level {
     /**
      * List of Problems assigned to this Level
      */
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Problem> problems = new ArrayList<>();
 
     /**
