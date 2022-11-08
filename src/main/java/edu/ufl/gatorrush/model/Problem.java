@@ -78,7 +78,7 @@ public class Problem {
         return switch (operator) {
             case '+' -> leftOperand + rightOperand;
             case '-' -> leftOperand - rightOperand;
-            case '*' -> leftOperand * rightOperand;
+            case 'x' -> leftOperand * rightOperand;
             case '/' -> leftOperand / rightOperand;
             default -> throw new IllegalStateException("Unexpected value: " + operator);
         };
@@ -93,12 +93,12 @@ public class Problem {
                 getResult(leftOperand, switch (operator) {
                     default -> operator;
                     case '+', '/' -> '-';
-                    case '-', '*' -> '+';
+                    case '-', 'x' -> '+';
                 }, rightOperand),
                 getResult(leftOperand + (flipFlop ? 1 : 0), switch (operator) {
                     default -> operator;
                     case '+', '/' -> '-';
-                    case '-', '*' -> '+';
+                    case '-', 'x' -> '+';
                 }, rightOperand + (flipFlop ? 0 : 1))
         };
         // Custom shuffle
@@ -117,7 +117,7 @@ public class Problem {
     }
 
     public void setOperator(Character operator) {
-        if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
+        if (operator == '+' || operator == '-' || operator == 'x' || operator == '/') {
             this.operator = operator;
         }
     }

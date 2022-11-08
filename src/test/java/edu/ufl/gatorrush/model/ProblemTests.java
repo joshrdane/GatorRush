@@ -11,7 +11,7 @@ public class ProblemTests {
             for (int right = 0; right < 100; right++) {
                 Assertions.assertEquals(new Problem(left, '+', right).getResult(), left + right);
                 Assertions.assertEquals(new Problem(left, '-', right).getResult(), left - right);
-                Assertions.assertEquals(new Problem(left, '*', right).getResult(), left * right);
+                Assertions.assertEquals(new Problem(left, 'x', right).getResult(), left * right);
                 if (right > 0) {
                     Assertions.assertEquals(new Problem(left, '/', right).getResult(), left / right);
                 }
