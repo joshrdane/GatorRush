@@ -45,8 +45,8 @@ public class User {
     /**
      * List of completed Levels
      */
-    @ManyToMany
-    private final List<Level> completedLevels = new ArrayList<>();
+    @ManyToOne
+    private Level level;
 
     /**
      * List of attempted problems
@@ -110,7 +110,11 @@ public class User {
         return attempts;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 }
