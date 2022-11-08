@@ -19,7 +19,7 @@ public class LevelDto {
         return level.getId();
     }
 
-    public String getName() {
+    public Integer getName() {
         return level.getName();
     }
 
