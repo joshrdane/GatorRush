@@ -121,4 +121,9 @@ public class Problem {
             this.operator = operator;
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d %c %d", leftOperand, operator, rightOperand);
+    }
 }
