@@ -1,5 +1,7 @@
 package edu.ufl.gatorrush.model;
 
+import edu.ufl.gatorrush.GameMode;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,6 +13,12 @@ public class Attempt {
     @Id
     @GeneratedValue
     private Long id;
+
+    /**
+     * Game Mode associated with attempt
+     */
+    @Column(nullable = false)
+    private GameMode mode;
 
     /**
      * User associated with attempt
@@ -42,8 +50,9 @@ public class Attempt {
         this.timestamp = new Date();
     }
 
-    public Attempt(User user, Problem problem, Integer response) {
+    public Attempt(GameMode mode, User user, Problem problem, Integer response) {
         this();
+        this.mode = mode;
         this.user = user;
         this.problem = problem;
         this.response = response;
@@ -51,6 +60,10 @@ public class Attempt {
 
     public Long getId() {
         return id;
+    }
+
+    public GameMode getMode() {
+        return mode;
     }
 
     public Boolean getCorrect() {
