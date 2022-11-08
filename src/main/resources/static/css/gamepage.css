@@ -1,0 +1,213 @@
+.background {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(/images/46461.jpg);
+    background-color: white;
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;  
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.container-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 25px;
+    padding: 50px;
+}
+
+.background .equation-container {
+    position: absolute;
+    background-image: url(/images/Wood_Paper.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 100%;
+    width: 300px;
+    height: 300px;
+}
+
+.background .equation-content {
+    position: relative;
+    top: 35%;
+    font-size: 48px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #388EDD;
+}
+
+.background .btn-answer {
+    background-image: url(/images/Wood.png);
+    background-color: transparent;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 150px;
+    border-color: transparent;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 32px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #388EDD;
+}
+
+.background .btn-answer:hover{
+    background-image: url(/images/Wood2.png);
+}
+
+/*===== Attributions =====*/
+
+/* Background Image */
+.background .attribution {
+    color: white;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+/* UI elements */
+.background .attribution-1 {
+    color: white;
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+}
+
+/*===== Progress Bar =====*/
+
+.background .progress {
+    margin: 50px auto;
+    padding: 2px;
+    width: 100%;
+    max-width: 300px;
+    background-color: white;
+    border: 5px solid #388EDD;
+    border-radius: 20px;
+    height: 25px;
+    overflow: hidden;
+}
+
+.background .progress .progress_bar {
+    height: 100%;
+    width: 5%;
+    border-radius: 15px;
+    background: linear-gradient(#FC9634, #FC782C, #bc441c);
+    animation: fill-bar 8s infinite;
+}
+
+@keyframes fill-bar {
+    from {width: 0%;}
+    to {width: 100%;}
+}
+
+/*===== Home Page =====*/
+
+/*TODO: Fix formatting */
+.background .title {
+    
+    font-style: normal;
+    font-weight: bold;
+    font-size: xx-large;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000000;
+}
+
+.background .login-container {
+    position: absolute;
+    background-image: url(/images/Login.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 100%;
+    width: 300px;
+    height: 500px;
+}
+
+.background .game_description-container {
+    position: absolute;
+    background-image: url(/images/Wood2.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 100%;
+    width: 500px;
+    height: 500px;
+}
+
+.background .game_description-content {
+    position: absolute;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    color: white;
+}
+
+
+/*===== Game Mode Selection Page =====*/
+
+.background .btn-game_mode {
+    background-image: url(/images/Wood.png);
+    background-color: transparent;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 350px;
+    height: 120px;
+    border-color: transparent;
+    text-align: center;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 32px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #388EDD;
+}
+
+.background .btn-game_mode:hover{
+    background-image: url(/images/Wood2.png);
+}
+
+.background .game_mode-container {
+    background-image: url(/images/Wood2.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 100%;
+    width: 500px;
+    height: 250px;
+    text-align: center;
+    justify-content: center;
+}

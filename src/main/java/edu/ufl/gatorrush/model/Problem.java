@@ -3,6 +3,10 @@ package edu.ufl.gatorrush.model;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Random;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Represents a two operand equation
