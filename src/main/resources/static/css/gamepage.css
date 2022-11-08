@@ -45,9 +45,8 @@
 }
 
 .background .equation-content {
-    position: absolute;
+    position: relative;
     top: 35%;
-    left: 18%;
     font-size: 48px;
     text-align: center;
     font-weight: bold;
@@ -76,12 +75,14 @@
     background-image: url(/images/Wood2.png);
 }
 
+/*===== Attributions =====*/
+
 /* Background Image */
 .background .attribution {
     color: white;
     position: absolute;
     bottom: 5%;
-    right: 10%;
+    right: 5%;
 }
 
 /* UI elements */
@@ -89,7 +90,7 @@
     color: white;
     position: absolute;
     bottom: 2%;
-    right: 10%;
+    right: 5%;
 }
 
 /*===== Progress Bar =====*/
@@ -126,14 +127,11 @@
     
     font-style: normal;
     font-weight: bold;
-    font-size: 10000px;
-    line-height: 177.52%;
+    font-size: xx-large;
     display: flex;
     align-items: center;
     text-align: center;
-
     color: white;
-
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000000;
@@ -172,18 +170,20 @@
     font-weight: bold;
     align-items: center;
     justify-content: center;
+    width: 450px;
     color: white;
 }
 
 
 /*===== Game Mode Selection Page =====*/
 
-/*To Do: Fix Formatting */
 .background .btn-game_mode {
     background-image: url(/images/Wood.png);
     background-color: transparent;
-    background-size: contain;
+    background-size: 100%;
     background-repeat: no-repeat;
+    width: 350px;
+    height: 120px;
     border-color: transparent;
     text-align: center;
     justify-content: center;
@@ -208,4 +208,6 @@
     background-size: 100%;
     width: 500px;
     height: 250px;
+    text-align: center;
+    justify-content: center;
 }

@@ -19,6 +19,8 @@ class Casual extends React.Component {
             this.setState({
                 problems: response.entity._embedded.problems
             })
+
+            // call setContentStates here to set initial problem/answer button content state ?
         });
 
         this.setState({
@@ -27,15 +29,32 @@ class Casual extends React.Component {
 
     }
 
+    // function to shift problem/answer & set content 
+    setContentStates() {
+        // {problems.shift()} <-- this returns a div, need to set it
+        // {answers.shift()}
+        var x = document.getElementById("2nd");
+        var y = document.getElementById("3rd");
+        var z = document.getElementById("4th");
+        //var y = answers.shift();
+        //x.replaceWith(y);
+        //x.innerHTML = answers.shift();
+        x.innerHTML = Math.floor(Math.random() * 75);    // 0 to 74
+        y.innerHTML = Math.floor(Math.random() * 301);   // 0 to 300
+        z.innerHTML = Math.floor(Math.random() * 101);   // 0 to 100
+    }
+
     render() {
         if (this.state.loading) {
             return <div>Loading!</div>
         } else {
 
             var problems = this.state.problems.map(function (problem, index) {
-                return <div key={index}>{problem.leftOperand} {problem.operator} {problem.rightOperand} =?</div>
+                return <div key={index}>{problem.leftOperand} {problem.operator} {problem.rightOperand} = ?</div>
             });
-            var answers = this.state.problems.map(function (problem, index) {
+
+            // window. <-- marks it as a global variable 
+            window.answers = this.state.problems.map(function (problem, index) {
                 return <div key={index}>{problem.result}</div>
             });
 
@@ -57,13 +76,11 @@ class Casual extends React.Component {
                         </div>
                         <div class="container"/>
                         <div class="container">
-                            <button class="btn-answer">{answers.shift()}</button>
-                            <button class="btn-answer">2</button>
-                            <button class="btn-answer">300</button>
-                            <button class="btn-answer">4</button>
+                            <button class="btn-answer" id="1st">{answers.shift()}</button>
+                            <button class="btn-answer" onClick={this.setContentStates} id="2nd">2</button>
+                            <button class="btn-answer" onClick={this.setContentStates} id="3rd">300</button>
+                            <button class="btn-answer" onClick={this.setContentStates} id="4th">4</button>
                         </div>
-                        <p class="attribution"><a href="https://www.freepik.com/free-vector/blank-landscape-nature-park-scene-with-swamp_9720494.htm#query=swamp&position=5&from_view=search&track=sph%22%3EImage">Image by brgfx</a> on Freepik</p>
-                        <p class="attribution-1"><a href="https://www.freepik.com/free-vector/game-ui-menu-interface-scrolls-parchments_31368897.htm#page=2&query=web%20game&position=11&from_view=search&track=sph%22%3EImage">Image by upklyak</a> on Freepik</p>
                     </div>
                 </div>
             );

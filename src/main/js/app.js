@@ -55,7 +55,7 @@ class App extends React.Component {
                 }
                 {
                     page === "casual" &&
-                    <Casual level="5050"/>
+                    <Casual level="9358"/>
                 }
                 {
                     page === "time trial" &&
