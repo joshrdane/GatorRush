@@ -6,7 +6,6 @@ import edu.ufl.gatorrush.model.User;
 import edu.ufl.gatorrush.repository.LevelRepository;
 import edu.ufl.gatorrush.repository.ProblemRepository;
 import edu.ufl.gatorrush.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -42,14 +41,15 @@ public class Application {
 
         // Add 1000 problems and (for now) randomly assign to levels
         Random random = new Random();
-        Level level = levelRepository.save(new Level());
+        int i = 0;
+        Level level = levelRepository.save(new Level(++i));
         for (int left = 1; left <= 100; left++) {
             for (int right = 1; right <= 100; right++) {
                 Problem problem = problemRepository.save(new Problem(left, '+', right));
                 if (random.nextDouble() < 0.05) {
                     level.getProblems().add(problem);
                     if (random.nextDouble() < 0.1) {
-                        Level next = levelRepository.save(new Level());
+                        Level next = levelRepository.save(new Level(++i));
                         level.setNext(next);
                         levelRepository.save(level);
                         level = next;
@@ -58,7 +58,7 @@ public class Application {
             }
         }
         if (level.getProblems().size() > 0) {
-            Level next = levelRepository.save(new Level());
+            Level next = levelRepository.save(new Level(++i));
             level.setNext(next);
             levelRepository.save(level);
         }
