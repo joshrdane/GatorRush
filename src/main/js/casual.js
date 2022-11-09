@@ -105,7 +105,6 @@ class Casual extends React.Component {
                         problems: this.state.level.problems.slice(1)
                     }
                 });
-                console.log(response);
             });
     }
 
