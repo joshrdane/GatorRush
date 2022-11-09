@@ -39,6 +39,7 @@ class Casual extends React.Component {
         }
         // Check local history for completion criteria
         let correct = 0;
+
         // Ensure at least 10 problems have been attempted
         if (newHistory.length >= 10) {
             // Get last 10 problems attempted
@@ -48,7 +49,17 @@ class Casual extends React.Component {
                     this.updateProgressBar(correct);
                 }
             }
+        } else {
+
+            for (var problem of newHistory) {
+                if (problem.response === problem.result) {
+                    correct++;
+                    this.updateProgressBar(correct);
+                }
+            }
         }
+
+
         if (correct >= 7) {
             // reset the progress bar for the next level
             this.updateProgressBar(0);
@@ -74,8 +85,7 @@ class Casual extends React.Component {
                             problems: this.state.level.problems.slice(1)
                         },
                         // Reset history for new level
-                        history: []
-                        
+                        history: [] 
                     });
                 });
             // TODO: Show history? note: use newHistory
@@ -121,6 +131,8 @@ class Casual extends React.Component {
 
         if (value == 0) {
             value = 5;
+        } else if (value > 100) {
+            value = 100;
         }
 
         if (value >= 0 && value <= 100) {
