@@ -211,3 +211,15 @@
     text-align: center;
     justify-content: center;
 }
+
+.background .game_mode-content {
+    position: absolute;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 250px;
+    color: white;
+}
