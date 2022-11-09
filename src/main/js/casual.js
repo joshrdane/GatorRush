@@ -45,6 +45,8 @@ class Casual extends React.Component {
             for (let problem in newHistory.slice(-10)) {
                 if (problem.response === problem.result) {
                     correct++;
+                    // 
+                    this.updateProgressBar(correct);
                 }
             }
         }
@@ -54,6 +56,7 @@ class Casual extends React.Component {
             fetch(`http://localhost:8080/level?${user === null ? `id=${this.state.level.id}` : `user=${user}`}`, {method: 'post'})
                 .then(response => response.json())
                 .then(response => {
+                    console.log(response.id);
                     this.setState({
                         // Blanket drop response level JSON into level
                         level: response
@@ -70,9 +73,13 @@ class Casual extends React.Component {
                         },
                         // Reset history for new level
                         history: []
+                        
                     });
                 });
             // TODO: Show history? note: use newHistory
+            // reset progress bar
+            //this.updateProgressBar(0);
+
         } else {
             this.setState({
                 problem: this.state.level.problems.at(0),
@@ -109,6 +116,20 @@ class Casual extends React.Component {
             });
     }
 
+    updateProgressBar(value) {
+        let progressbar = document.getElementById("levelProgress");
+
+        value *= 10;
+
+        if (value == 0) {
+            value = 5;
+        }
+
+        if (value >= 0 && value <= 100) {
+            progressbar.style.width = value + "%";
+        }
+    }
+    
     render() {
         if (this.state.loading) {
             return <div>Loading!</div>
