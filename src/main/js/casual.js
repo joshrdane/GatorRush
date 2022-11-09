@@ -42,7 +42,7 @@ class Casual extends React.Component {
         // Ensure at least 10 problems have been attempted
         if (newHistory.length >= 10) {
             // Get last 10 problems attempted
-            for (let problem in newHistory.slice(-10)) {
+            for (let problem of newHistory.slice(-10)) {
                 if (problem.response === problem.result) {
                     correct++;
                     // 
@@ -112,7 +112,6 @@ class Casual extends React.Component {
                         problems: this.state.level.problems.slice(1)
                     }
                 });
-                console.log(response);
             });
     }
 
