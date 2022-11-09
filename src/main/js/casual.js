@@ -39,21 +39,37 @@ class Casual extends React.Component {
         }
         // Check local history for completion criteria
         let correct = 0;
+
         // Ensure at least 10 problems have been attempted
         if (newHistory.length >= 10) {
             // Get last 10 problems attempted
             for (let problem of newHistory.slice(-10)) {
                 if (problem.response === problem.result) {
                     correct++;
+                    this.updateProgressBar(correct);
+                }
+            }
+        } else {
+
+            for (var problem of newHistory) {
+                if (problem.response === problem.result) {
+                    correct++;
+                    this.updateProgressBar(correct);
                 }
             }
         }
+
+
         if (correct >= 7) {
+            // reset the progress bar for the next level
+            this.updateProgressBar(0);
+            
             // TODO: Add error handling for 400 & 400 errors
             // TODO: Add handle final level completion error 418
             fetch(`http://localhost:8080/level?${user === null ? `id=${this.state.level.id}` : `user=${user}`}`, {method: 'post'})
                 .then(response => response.json())
                 .then(response => {
+                    console.log(response.id);
                     this.setState({
                         // Blanket drop response level JSON into level
                         level: response
@@ -69,7 +85,7 @@ class Casual extends React.Component {
                             problems: this.state.level.problems.slice(1)
                         },
                         // Reset history for new level
-                        history: []
+                        history: [] 
                     });
                 });
             // TODO: Show history? note: use newHistory
@@ -108,6 +124,22 @@ class Casual extends React.Component {
             });
     }
 
+    updateProgressBar(value) {
+        let progressbar = document.getElementById("levelProgress");
+
+        value = parseInt((value / 7) * 100);
+
+        if (value == 0) {
+            value = 5;
+        } else if (value > 100) {
+            value = 100;
+        }
+
+        if (value >= 0 && value <= 100) {
+            progressbar.style.width = value + "%";
+        }
+    }
+    
     render() {
         if (this.state.loading) {
             return <div>Loading!</div>
