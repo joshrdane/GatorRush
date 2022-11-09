@@ -45,12 +45,14 @@ class Casual extends React.Component {
             for (let problem of newHistory.slice(-10)) {
                 if (problem.response === problem.result) {
                     correct++;
-                    // 
                     this.updateProgressBar(correct);
                 }
             }
         }
         if (correct >= 7) {
+            // reset the progress bar for the next level
+            this.updateProgressBar(0);
+            
             // TODO: Add error handling for 400 & 400 errors
             // TODO: Add handle final level completion error 418
             fetch(`http://localhost:8080/level?${user === null ? `id=${this.state.level.id}` : `user=${user}`}`, {method: 'post'})
@@ -77,9 +79,6 @@ class Casual extends React.Component {
                     });
                 });
             // TODO: Show history? note: use newHistory
-            // reset progress bar
-            //this.updateProgressBar(0);
-
         } else {
             this.setState({
                 problem: this.state.level.problems.at(0),
@@ -118,7 +117,7 @@ class Casual extends React.Component {
     updateProgressBar(value) {
         let progressbar = document.getElementById("levelProgress");
 
-        value *= 10;
+        value = parseInt((value / 7) * 100);
 
         if (value == 0) {
             value = 5;
