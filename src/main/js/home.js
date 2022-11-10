@@ -11,10 +11,12 @@ class Home extends React.Component {
     render() {
         return (
             <div className="background">
+                
                 <div className="container">
                     <div className="title"><p>Gator Rush</p></div>
                 </div>
                 <div className="container">
+                    <img className="alligator-homepage" src="/images/Gator_TransparentBG.png"/>
                     <div className="login-container">
                     </div>
                 </div>
@@ -26,8 +28,7 @@ class Home extends React.Component {
                 <div className="container">
                     <div className="game_description-container">
                         <div className="game_description-content">
-                            <p>[Description of Game] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            <p>Gator Rush is an engaging game geared towards helping kids practice and review their math skills. With two different game modes, kids can choose between a casual or challenging experience. 
                             </p>
                         </div>
                     </div>

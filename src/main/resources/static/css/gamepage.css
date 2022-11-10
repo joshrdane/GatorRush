@@ -172,6 +172,7 @@
     font-weight: bold;
     align-items: center;
     justify-content: center;
+    width: 450px;
     color: white;
 }
 
@@ -229,4 +230,12 @@
     height: 250px;
     text-align: center;
     justify-content: center;
+}
+
+.alligator-homepage {
+    position: absolute;
+    background-size: contain;
+    height: 229px;
+    transform: scaleX(-1);
+    left: 27%;
 }
