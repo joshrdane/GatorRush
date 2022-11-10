@@ -12,19 +12,27 @@ class Home extends React.Component {
         return (
             <div className="background">
                 <div className="container">
-                    <div className="title"><h1>Gator Rush</h1></div>
+                    <div className="title"><p>Gator Rush</p></div>
                 </div>
-                <div className="login-container">
-                </div>
-                <div className="container"/>
                 <div className="container">
-                    <div className="game_description-container"/>
-                    <div className="game_description-content">
-                        <p>[Description of Game] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
+                    <div className="login-container">
                     </div>
                 </div>
+                <div className="container">
+                    <button className="btn-sign-up">Create an Account
+                    </button>
+                </div>
+                
+                <div className="container">
+                    <div className="game_description-container">
+                        <div className="game_description-content">
+                            <p>[Description of Game] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
                 <p className="attribution"><a
                     href="https://www.freepik.com/free-vector/blank-landscape-nature-park-scene-with-swamp_9720494.htm#query=swamp&position=5&from_view=search&track=sph%22%3EImage">Image
                     by brgfx</a> on Freepik</p>
