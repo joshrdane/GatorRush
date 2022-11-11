@@ -39,23 +39,11 @@ class Casual extends React.Component {
         }
         // Check local history for completion criteria
         let correct = 0;
-
-        // Ensure at least 10 problems have been attempted
-        if (newHistory.length >= 10) {
-            // Get last 10 problems attempted
-            for (let problem of newHistory.slice(-10)) {
-                if (problem.response === problem.result) {
-                    correct++;
-                    this.updateProgressBar(correct);
-                }
-            }
-        } else {
-
-            for (var problem of newHistory) {
-                if (problem.response === problem.result) {
-                    correct++;
-                    this.updateProgressBar(correct);
-                }
+        // Get last 10 problems attempted
+        for (let problem of newHistory.slice(-10)) {
+            if (problem.response === problem.result) {
+                correct++;
+                this.updateProgressBar(correct);
             }
         }
 
