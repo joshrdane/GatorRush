@@ -124,10 +124,9 @@
 
 /*TODO: Fix formatting */
 .background .title {
-    
     font-style: normal;
     font-weight: bold;
-    font-size: xx-large;
+    font-size: 96px;
     display: flex;
     align-items: center;
     text-align: center;
@@ -138,7 +137,7 @@
 }
 
 .background .login-container {
-    position: absolute;
+    position: relative;
     background-image: url(/images/Login.png);
     background-color: transparent;
     background-repeat: no-repeat;
@@ -147,11 +146,11 @@
     color: white;
     background-size: 100%;
     width: 300px;
-    height: 500px;
+    height: 450px;
 }
 
 .background .game_description-container {
-    position: absolute;
+    position: relative;
     background-image: url(/images/Wood2.png);
     background-color: transparent;
     background-repeat: no-repeat;
@@ -160,11 +159,14 @@
     color: white;
     background-size: 100%;
     width: 500px;
-    height: 500px;
+    height: 250px;
 }
 
 .background .game_description-content {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 14px;
     text-align: center;
     font-weight: bold;
@@ -174,6 +176,24 @@
     color: white;
 }
 
+.background .btn-sign-up {
+    position: relative;
+    background-image: linear-gradient(#FC9634, #FC782C, #bc441c);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 8px 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+
+}
+
+.background .btn-sign-up:hover {
+    background-image: linear-gradient(#bc441c, #FC782C, #FC9634);
+}
 
 /*===== Game Mode Selection Page =====*/
 
@@ -210,4 +230,12 @@
     height: 250px;
     text-align: center;
     justify-content: center;
+}
+
+.alligator-homepage {
+    position: absolute;
+    background-size: contain;
+    height: 229px;
+    transform: scaleX(-1);
+    left: 27%;
 }
