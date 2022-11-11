@@ -146,6 +146,7 @@ class Casual extends React.Component {
         } else {
             return (
                 <div className="background">
+                    <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
                     <div className="container">
                         <div className="progress">
                             <div id="levelProgress" className="progress_bar"/>
