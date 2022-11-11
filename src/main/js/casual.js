@@ -156,13 +156,13 @@ class Casual extends React.Component {
                         <ImmediateFeedback feedback={this.state.feedback}/>
                         <Score totalScore = {this.state.score}/>
 
-                        {/*<div className="progress">*/}
+                        <div className="progress">
 
-                        {/*    <div id="levelProgress" className="progress_bar"/>*/}
-                        {/*</div>*/}
+                            <div id="levelProgress" className="progress_bar"/>
+                        </div>
 
                         {/*For the timer mode*/}
-                        <TimerBar/>
+                        {/*<TimerBar/>*/}
 
                     </div>
                     <div className="equation-container">
