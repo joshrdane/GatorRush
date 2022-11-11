@@ -1,4 +1,8 @@
 'use strict';
+import TimerBar from './components/timerBar';
+import Timer from './components/timer';
+import Score from "./components/score";
+import ImmediateFeedback from "./components/ImmediateFeedback";
 
 const React = require('react');
 
@@ -8,6 +12,8 @@ class Casual extends React.Component {
         super(props);
         this.state = {
             loading: true,
+            score: 0,
+            feedback: '',
             level: {
                 id: 0,
                 name: '0',
@@ -37,6 +43,16 @@ class Casual extends React.Component {
             // Saves attempt to database
             fetch(`http://localhost:8080/attempt/challenge?user=${user}&problem=${this.state.problem.id}&response=${current.response}`, {method: 'post'});
         }
+
+        // adding to score if question is correct (UPDATE scoring algorithm later)
+        if(current.response === current.result){
+            this.setState({score: this.state.score + 1})
+            this.setState({feedback: "Correct, Great Job :)"})
+        }
+        else{
+            this.setState({feedback: "Incorrect, Too bad :("})
+        }
+
         // Check local history for completion criteria
         let correct = 0;
         // Get last 10 problems attempted
@@ -135,10 +151,19 @@ class Casual extends React.Component {
             return (
                 <div className="background">
                     <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
-                    <div className="container">
-                        <div className="progress">
-                            <div id="levelProgress" className="progress_bar"/>
-                        </div>
+                    <div className="container upper">
+
+                        <ImmediateFeedback feedback={this.state.feedback}/>
+                        <Score totalScore = {this.state.score}/>
+
+                        {/*<div className="progress">*/}
+
+                        {/*    <div id="levelProgress" className="progress_bar"/>*/}
+                        {/*</div>*/}
+
+                        {/*For the timer mode*/}
+                        <TimerBar/>
+
                     </div>
                     <div className="equation-container">
                         <div className="equation-content">

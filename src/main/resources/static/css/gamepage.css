@@ -21,6 +21,11 @@
     gap: 25px;
 }
 
+.container.upper{
+    display: block;
+    width: 500px;
+}
+
 .container-column {
     display: flex;
     justify-content: center;
