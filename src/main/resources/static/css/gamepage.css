@@ -219,6 +219,7 @@
 }
 
 .background .game_mode-container {
+    position: relative;
     background-image: url(/images/Wood2.png);
     background-color: transparent;
     background-repeat: no-repeat;
@@ -228,19 +229,19 @@
     background-size: 100%;
     width: 500px;
     height: 250px;
-    text-align: center;
-    justify-content: center;
 }
 
 .background .game_mode-content {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 14px;
     text-align: center;
     font-weight: bold;
     align-items: center;
     justify-content: center;
     width: 450px;
-    height: 250px;
     color: white;
 }
 
@@ -250,4 +251,12 @@
     height: 229px;
     transform: scaleX(-1);
     left: 27%;
+}
+
+.alligator-casual {
+    position: absolute;
+    background-size: contain;
+    height: 229px;
+    left: 22%;
+    top: 43%;
 }
