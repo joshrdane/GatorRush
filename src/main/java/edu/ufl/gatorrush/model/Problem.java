@@ -88,14 +88,14 @@ public class Problem {
         boolean flipFlop = random.nextBoolean();
         List<Integer> potentialOptions = new ArrayList<>();
         Integer result = getResult();
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 10; i++) {
             potentialOptions.add(result + i);
             potentialOptions.add(result - i);
         }
         List<Integer> options = new ArrayList<>();
         while (options.size() < 3) {
             Integer option = potentialOptions.get(random.nextInt(0, potentialOptions.size()));
-            if (option >= 0 && option <= 144 && !option.equals(result) && !options.contains(option)) {
+            if (option >= 0 && option <= 150 && !option.equals(result) && !options.contains(option)) {
                 options.add(option);
             }
         }
