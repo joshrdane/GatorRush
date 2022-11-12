@@ -154,7 +154,6 @@ class Casual extends React.Component {
                     <div className="container upper">
 
                         <ImmediateFeedback feedback={this.state.feedback}/>
-                        <Score totalScore = {this.state.score}/>
 
                         <div className="progress">
 
