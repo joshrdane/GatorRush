@@ -15,9 +15,14 @@ public class Level {
     private Long id;
 
     /**
+     * Sequential level identifier
+     */
+    private Integer name;
+
+    /**
      * List of Problems assigned to this Level
      */
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Problem> problems = new ArrayList<>();
 
     /**
@@ -26,8 +31,22 @@ public class Level {
     @OneToOne
     private Level next;
 
+    protected Level() {}
+
+    public Level(Integer name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public Integer getName() {
+        return name;
+    }
+
+    public void setName(Integer name) {
+        this.name = name;
     }
 
     public List<Problem> getProblems() {

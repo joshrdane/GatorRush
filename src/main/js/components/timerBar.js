@@ -1,0 +1,81 @@
+import Timer from "./timer";
+import React from "react";
+import Score from "./score";
+
+
+
+const TimerBar = (props) => {
+    const [counter, setCounter] = React.useState(100);
+    React.useEffect(() => {
+        const timer =
+            counter > 0 && setInterval(() => setCounter(counter - 0.84), 1000);
+        return () => clearInterval(timer);
+    }, [counter]);
+
+
+    const { completed} = props;
+
+    let bgcolor = "green" ;
+    let displa = "";
+
+    if(counter < 0){
+        setCounter(0);
+    }
+
+    if(counter > 8 && counter < 25){
+        bgcolor = "yellow"
+    }
+    else if(counter > 0 && counter< 8){
+        bgcolor = "red"
+    }
+    else if(counter <= 0){
+        bgcolor = "rgb(224, 224, 222)"
+
+    }
+
+    const containerStyles = {
+        height: 20,
+        // width: '25%',
+        backgroundColor: "#e0e0de",
+        borderRadius: 50,
+        margin: 50,
+        border: '5px solid #388EDD',
+        display: 'block'
+
+
+    }
+
+    const fillerStyles = {
+        height: '100%',
+        width: `${counter}%`,
+        transition: 'width 1s ease-in-out',
+
+        backgroundColor: bgcolor,
+        borderRadius: 'inherit',
+        textAlign: 'right'
+    }
+
+    const labelStyles = {
+        padding: 5,
+        color: '#150c05',
+        fontSize: '0.9rem',
+        fontFamily: 'cursive',
+        textAlign: 'right',
+
+        // fontWeight: 'bold'
+    }
+
+    return (
+        <div style={containerStyles}>
+
+            <div style={fillerStyles}>
+
+                {/* <span>{counter}</span>*/}
+                {/*<Score/>*/}
+            </div>
+            <div style = {labelStyles}><Timer/></div>
+        </div>
+    );
+};
+
+export default TimerBar;

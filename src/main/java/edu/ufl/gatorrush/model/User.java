@@ -1,5 +1,7 @@
 package edu.ufl.gatorrush.model;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,16 +36,17 @@ public class User {
     private String email;
 
     /**
-     * Password Hash
+     * Password
      */
     @Column(nullable = false)
-    private String passwordHash;
+    @JsonIgnore
+    private String password;
 
     /**
      * List of completed Levels
      */
-    @ManyToMany
-    private final List<Level> completedLevels = new ArrayList<>();
+    @ManyToOne
+    private Level level;
 
     /**
      * List of attempted problems
@@ -57,12 +60,12 @@ public class User {
      * Constructor for testing purposes, does not validate
      * @param username Nonvalidated username
      * @param email Nonvalidated email
-     * @param passwordHash Nonvalidated password hash
+     * @param password Nonvalidated password
      */
-    public User(String username, String email, String passwordHash) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 
     public long getId() {
@@ -95,11 +98,23 @@ public class User {
         }
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Attempt> getAttempts() {
+        return attempts;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 }
