@@ -101,7 +101,7 @@
 /*===== Progress Bar =====*/
 
 .background .progress {
-    margin: 50px auto;
+    margin: 25px auto;
     padding: 2px;
     width: 100%;
     max-width: 300px;
@@ -127,7 +127,6 @@
 
 /*===== Home Page =====*/
 
-/*TODO: Fix formatting */
 .background .title {
     font-style: normal;
     font-weight: bold;
@@ -250,6 +249,8 @@
     color: white;
 }
 
+/*===== Alligators =====*/
+
 .alligator-homepage {
     position: absolute;
     background-size: contain;
@@ -265,3 +266,5 @@
     left: 22%;
     top: 43%;
 }
+
+
