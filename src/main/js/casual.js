@@ -47,10 +47,10 @@ class Casual extends React.Component {
         // adding to score if question is correct (UPDATE scoring algorithm later)
         if(current.response === current.result){
             this.setState({score: this.state.score + 1})
-            this.setState({feedback: "Correct, Great Job :)"})
+            this.setState({feedback: "Great job!"})
         }
         else{
-            this.setState({feedback: "Incorrect, Too bad :("})
+            this.setState({feedback: "Not quite. Try again."})
         }
 
         // Check local history for completion criteria
@@ -151,19 +151,15 @@ class Casual extends React.Component {
             return (
                 <div className="background">
                     <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
-                    <div className="container upper">
-
+                    <div className="container">
                         <ImmediateFeedback feedback={this.state.feedback}/>
-
+                    </div>
+                    <div className="container">
                         <div className="progress">
-
                             <div id="levelProgress" className="progress_bar"/>
                         </div>
-
-                        {/*For the timer mode*/}
-                        {/*<TimerBar/>*/}
-
                     </div>
+                    <div className="container"/>
                     <div className="equation-container">
                         <div className="equation-content">
                             <div>{this.state.problem.leftOperand} {this.state.problem.operator} {this.state.problem.rightOperand} = ?</div>

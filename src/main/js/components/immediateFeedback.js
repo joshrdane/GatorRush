@@ -11,7 +11,7 @@ const ImmediateFeedback = (props) => {
 
     let c = 'green';
 
-    if( feedback === "Incorrect, Too bad :(" ) {
+    if( feedback === "Not quite. Try again." ) {
         c = 'red';
     }
 
@@ -20,11 +20,9 @@ const ImmediateFeedback = (props) => {
     const feedbackStyle = {
         textAlign: 'center',
         fontFamily: 'fantasy',
-        fontSize: '3rem',
-        display: 'block',
+        fontSize: '16px',
+        display: 'contents',
         color: c,
-
-
     }
 
 
@@ -34,7 +32,7 @@ const ImmediateFeedback = (props) => {
 
     return (
         <div style={feedbackStyle}>
-            <div style={labelStyle}>{feedback}</div>
+            {feedback}
         </div>
     );
 };
