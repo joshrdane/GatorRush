@@ -1,21 +1,13 @@
 
 import React from "react";
 
-
-
 const ImmediateFeedback = (props) => {
 
-
-
     const {feedback} = props;
-
     let c = 'green';
-
     if( feedback === "Not quite. Try again." ) {
         c = 'red';
     }
-
-
 
     const feedbackStyle = {
         textAlign: 'center',
@@ -24,7 +16,6 @@ const ImmediateFeedback = (props) => {
         display: 'contents',
         color: c,
     }
-
 
     const labelStyle = {
         fontSize: '1rem'

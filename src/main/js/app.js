@@ -4,6 +4,7 @@ import MainMenu from './mainmenu';
 import Home from './home';
 import GameModes from './gamemodes';
 import Casual from './casual';
+import TimeTrial from './timetrial';
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -58,8 +59,8 @@ class App extends React.Component {
                     <Casual />
                 }
                 {
-                    page === "time trial" &&
-                    <div>Time Trial</div>
+                    page === "timetrial" &&
+                    <TimeTrial />
                 }
                 {
                     page === "profile" &&

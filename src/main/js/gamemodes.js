@@ -29,7 +29,7 @@ class GameModes extends React.Component {
                     
                 </div>
                 <div className="container-column">
-                    <button className="btn-game_mode">Timed Mode</button>
+                    <button className="btn-game_mode" data-page={"timetrial"} onClick={this.handlePageChange}>Timed Mode</button>
                     <div className="container">
                         <div className="game_mode-container">
                             <div className="game_mode-content">

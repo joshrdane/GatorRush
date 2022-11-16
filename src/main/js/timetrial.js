@@ -1,9 +1,11 @@
 'use strict';
 import ImmediateFeedback from './components/ImmediateFeedback';
+import Score from './components/score';
+import TimerBar from './components/timerBar';
 
 const React = require('react');
 
-class Casual extends React.Component {
+class TimeTrial extends React.Component {
 
     constructor(props) {
         super(props);
@@ -56,15 +58,11 @@ class Casual extends React.Component {
         for (let problem of newHistory.slice(-10)) {
             if (problem.response === problem.result) {
                 correct++;
-                this.updateProgressBar(correct);
             }
         }
 
 
         if (correct >= 7) {
-            // reset the progress bar for the next level
-            this.updateProgressBar(0);
-            
             // TODO: Add error handling for 400 & 400 errors
             // TODO: Add handle final level completion error 418
             fetch(`http://localhost:8080/level?${user === null ? `id=${this.state.level.id}` : `user=${user}`}`, {method: 'post'})
@@ -124,22 +122,6 @@ class Casual extends React.Component {
                 });
             });
     }
-
-    updateProgressBar(value) {
-        let progressbar = document.getElementById("levelProgress");
-
-        value = parseInt((value / 7) * 100);
-
-        if (value == 0) {
-            value = 5;
-        } else if (value > 100) {
-            value = 100;
-        }
-
-        if (value >= 0 && value <= 100) {
-            progressbar.style.width = value + "%";
-        }
-    }
     
     render() {
         if (this.state.loading) {
@@ -152,9 +134,7 @@ class Casual extends React.Component {
                         <ImmediateFeedback feedback={this.state.feedback}/>
                     </div>
                     <div className="container">
-                        <div className="progress">
-                            <div id="levelProgress" className="progress_bar"/>
-                        </div>
+                        <TimerBar/>
                     </div>
                     <div className="container"/>
                     <div className="equation-container">
@@ -183,4 +163,4 @@ class Casual extends React.Component {
     }
 }
 
-export default Casual;
+export default TimeTrial;
