@@ -24,12 +24,15 @@ public class GatorRush {
     private final ProblemRepository problemRepository;
     private final UserRepository userRepository;
 
+    private final AuthService authService;
+
     public GatorRush(AttemptRepository attemptRepository, LevelRepository levelRepository,
-                     ProblemRepository problemRepository, UserRepository userRepository) {
+                     ProblemRepository problemRepository, UserRepository userRepository, AuthService authService) {
         this.attemptRepository = attemptRepository;
         this.levelRepository = levelRepository;
         this.problemRepository = problemRepository;
         this.userRepository = userRepository;
+        this.authService = authService;
     }
 
     static class NotFoundException extends Exception {
