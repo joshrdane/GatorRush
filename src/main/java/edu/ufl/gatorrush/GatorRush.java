@@ -102,4 +102,15 @@ public class GatorRush {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
         }
     }
+
+    @ResponseBody
+    @PostMapping("auth")
+    public ResponseEntity<Object> authenticate(@RequestHeader("username") String username, @RequestHeader("password") String password) {
+        Long userId = authService.authenticate(username, password);
+        if (userId == -1) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        } else {
+            return ResponseEntity.ok(authService.getToken(userId));
+        }
+    }
 }
