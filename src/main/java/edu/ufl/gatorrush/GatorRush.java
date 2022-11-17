@@ -48,8 +48,9 @@ public class GatorRush {
 
     @ResponseBody
     @GetMapping("attempts")
-    public ResponseEntity<Object> getAttempts(@RequestParam("user") Long userId) {
+    public ResponseEntity<Object> getAttempts(@RequestHeader("token") String token) {
         try {
+            Long userId = authService.validate(token);
             return ResponseEntity.ok(userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId)).getAttempts().stream().map(AttemptDto::new));
         } catch (NotFoundException exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
@@ -58,8 +59,9 @@ public class GatorRush {
 
     @ResponseBody
     @PostMapping("attempt/{game_mode}")
-    public ResponseEntity<String> saveAttempt(@PathVariable("game_mode") GameMode mode, @RequestParam("user") Long userId, @RequestParam("problem") Long problemId, @RequestParam("response") Integer response) {
+    public ResponseEntity<String> saveAttempt(@RequestHeader("token") String token, @PathVariable("game_mode") GameMode mode, @RequestParam("problem") Long problemId, @RequestParam("response") Integer response) {
         try {
+            Long userId = authService.validate(token);
             User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
             Problem problem = problemRepository.findById(problemId).orElseThrow(() -> new NotFoundException(Problem.class, problemId));
             attemptRepository.save(new Attempt(mode, user, problem, response));
@@ -86,10 +88,11 @@ public class GatorRush {
 
     @ResponseBody
     @PostMapping("level")
-    public ResponseEntity<Object> completeLevel(@RequestParam(value = "id", required = false) Optional<Long> levelId, @RequestParam(value = "user", required = false) Optional<Long> userId) {
+    public ResponseEntity<Object> completeLevel(@RequestHeader("token") Optional<String> token, @RequestParam(value = "id", required = false) Optional<Long> levelId) {
         try {
-            if (userId.isPresent()) {
-                User user = userRepository.findById(userId.get()).orElseThrow(() -> new NotFoundException(User.class, userId.get()));
+            if (token.isPresent()) {
+                Long userId = authService.validate(token.get());
+                User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
                 user.setLevel(user.getLevel().getNext());
                 user = userRepository.save(user);
                 return getLevel(user.getLevel().getId());
