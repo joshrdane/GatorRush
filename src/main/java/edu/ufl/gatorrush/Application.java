@@ -11,7 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.*;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class}
+)
 public class Application {
 
     private UserRepository userRepository;
