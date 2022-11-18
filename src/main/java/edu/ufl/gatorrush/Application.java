@@ -44,9 +44,9 @@ public class Application {
         Arrays.stream(new Character[] {'+', '-', 'x', '/'}).forEach(character -> pool.put(character, new ArrayList<>()));
         // Define parameters for generation
         int addition = 1;
-        int subtraction = addition + 1;
-        int multiplication = subtraction + 1;
-        int division = multiplication + 1;
+        int subtraction = addition + 5;
+        int multiplication = subtraction + 5;
+        int division = multiplication + 5;
         // Generate pool of problems
         for (int left = 0; left < 100; left++) {
             for (int right = 0; right < 100; right++) {
