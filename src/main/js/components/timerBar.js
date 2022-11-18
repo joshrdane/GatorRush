@@ -1,5 +1,6 @@
 import React from 'react';
 import Timer from './timer';
+import Score from './score';
 
 const TimerBar = (props) => {
     const [counter, setCounter] = React.useState(100);
@@ -64,8 +65,8 @@ const TimerBar = (props) => {
 
             <div style={fillerStyles}>
 
-                {/* <span>{counter}</span>*/}
-                {/*<Score/>*/}
+                {<span>{counter}</span>}
+                {<Score/>}
             </div>
             <div style = {labelStyles}><Timer/></div>
         </div>
