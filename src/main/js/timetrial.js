@@ -1,7 +1,7 @@
 'use strict';
 import ImmediateFeedback from './components/ImmediateFeedback';
-import Score from './components/score';
 import TimerBar from './components/timerBar';
+
 
 const React = require('react');
 
@@ -45,7 +45,8 @@ class TimeTrial extends React.Component {
 
         // adding to score if question is correct (UPDATE scoring algorithm later)
         if(current.response === current.result){
-            this.setState({score: this.state.score + 1})
+            //this.setState({score: this.state.score + 1}) // use score algo
+            this.incrementScore();
             this.setState({feedback: "Great job!"})
         }
         else{
@@ -122,6 +123,33 @@ class TimeTrial extends React.Component {
                 });
             });
     }
+
+    incrementScore() {
+        
+        let lowerOperand = this.state.problem.leftOperand;
+        
+        if (this.state.problem.rightOperand < lowerOperand) {
+            lowerOperand = this.state.problem.rightOperand;
+        }
+
+        let incrementAmount = 0;
+
+        if (lowerOperand < 2) {
+            incrementAmount = 1;
+        }
+        else if (lowerOperand < 11) {
+            incrementAmount = 2;
+        }
+        else {
+            incrementAmount = 3;
+        }
+
+        if (this.state.problem.operator === 'x' || this.state.problem.operator === '/') {
+            ++incrementAmount;
+        }
+        
+        this.setState({score: this.state.score + incrementAmount})
+    }
     
     render() {
         if (this.state.loading) {
@@ -131,11 +159,12 @@ class TimeTrial extends React.Component {
                 <div className="background">
                     <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
                     <div className="container">
-                        <ImmediateFeedback feedback={this.state.feedback}/>
+                        <div className="container-column">
+                        <div className="score">{this.state.score}</div>
+                        <TimerBar />
+                        </div>
                     </div>
-                    <div className="container">
-                        <TimerBar/>
-                    </div>
+                    
                     <div className="container"/>
                     <div className="equation-container">
                         <div className="equation-content">

@@ -1,6 +1,5 @@
 import React from 'react';
 import Timer from './timer';
-import Score from './score';
 
 const TimerBar = (props) => {
     const [counter, setCounter] = React.useState(100);
@@ -32,11 +31,11 @@ const TimerBar = (props) => {
     }
 
     const containerStyles = {
-        height: 20,
-        width: '25%',
+        height: '25px',
+        width: '300px',
         backgroundColor: "white",
         borderRadius: 50,
-        margin: 50,
+        margin: 0,
         border: '5px solid #388EDD',
         display: 'block'
     }
@@ -65,8 +64,8 @@ const TimerBar = (props) => {
 
             <div style={fillerStyles}>
 
-                {<span>{counter}</span>}
-                {<Score/>}
+                {/*<span>{counter}</span>*/}
+                {/*<Score/>*/}
             </div>
             <div style = {labelStyles}><Timer/></div>
         </div>
