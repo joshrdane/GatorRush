@@ -22,8 +22,13 @@ class App extends React.Component {
     }
 
     handleLogin(e, username, password) {
-        fetch('http://localhost:8080/auth', {method: 'post', headers: { 'username': username, 'password': password}})
-            .then(response => response.body)
+        fetch('http://localhost:8080/auth', {
+            method: 'post',
+            headers: {
+                'username': username,
+                'password': password
+            }
+        }).then(response => response.body)
             .then(response => this.setState({ token: response }));
     }
 
