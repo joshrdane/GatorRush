@@ -48,7 +48,7 @@ class App extends React.Component {
                 <MainMenu token={token} handleLogout={this.handleLogout} handleLogin={this.handleLogin} handlePageChange={this.handlePageChange}/>
                 {
                     page === "home" &&
-                    <Home/>
+                    <Home handleLogin={this.handleLogin} />
                 }
                 {
                     page === "play" &&
