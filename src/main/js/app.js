@@ -66,10 +66,6 @@ class App extends React.Component {
                     page === "profile" &&
                     <div>Profile</div>
                 }
-                {
-                    page === "login" &&
-                    <div>Profile</div>
-                }
             </div>
         )
     }
