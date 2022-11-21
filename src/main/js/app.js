@@ -14,7 +14,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            auth: false,
+            token: null,
             page: "home"
         }
         this.handlePageChange = this.handlePageChange.bind(this);
@@ -22,15 +22,21 @@ class App extends React.Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-    handleLogin(e) {
-        this.setState({
-            auth: true
-        })
+    handleLogin(e, username, password) {
+        fetch('http://localhost:8080/auth', {
+            method: 'post',
+            headers: {
+                'username': username,
+                'password': password
+            }
+        }).then(response => response.body)
+            .then(response => this.setState({ token: response }));
     }
 
     handleLogout(e) {
+        // TODO: Create endpoint for invalidating tokens
         this.setState({
-            auth: false
+            token: null
         })
     }
 
@@ -41,14 +47,14 @@ class App extends React.Component {
     }
 
     render() {
-        const auth = this.state.auth;
+        const token = this.state.token;
         const page = this.state.page;
         return (
             <div>
-                <MainMenu auth={auth} handleLogout={this.handleLogout} handleLogin={this.handleLogin} handlePageChange={this.handlePageChange}/>
+                <MainMenu token={token} handleLogout={this.handleLogout} handleLogin={this.handleLogin} handlePageChange={this.handlePageChange}/>
                 {
                     page === "home" &&
-                    <Home/>
+                    <Home handleLogin={this.handleLogin} />
                 }
                 {
                     page === "play" &&
@@ -56,7 +62,7 @@ class App extends React.Component {
                 }
                 {
                     page === "casual" &&
-                    <Casual />
+                    <Casual token={token}/>
                 }
                 {
                     page === "timetrial" &&
@@ -64,10 +70,6 @@ class App extends React.Component {
                 }
                 {
                     page === "profile" &&
-                    <div>Profile</div>
-                }
-                {
-                    page === "login" &&
                     <div>Profile</div>
                 }
             </div>

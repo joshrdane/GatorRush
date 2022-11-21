@@ -34,11 +34,14 @@ class Casual extends React.Component {
         // Create a 'new' history instance
         let newHistory = this.state.history.concat(current);
         /* Post to attempts */
-        // Temporary logic until we get authentication
-        let user = null;
-        if (user) {
+        if (token != null) {
             // Saves attempt to database
-            fetch(`http://localhost:8080/attempt/challenge?user=${user}&problem=${this.state.problem.id}&response=${current.response}`, {method: 'post'});
+            fetch(`http://localhost:8080/attempt/challenge?problem=${this.state.problem.id}&response=${current.response}`, {
+                method: 'post',
+                headers: {
+                    token: this.state.token
+                }
+            });
         }
 
         // adding to score if question is correct (UPDATE scoring algorithm later)
@@ -67,8 +70,12 @@ class Casual extends React.Component {
             
             // TODO: Add error handling for 400 & 400 errors
             // TODO: Add handle final level completion error 418
-            fetch(`http://localhost:8080/level?${user === null ? `id=${this.state.level.id}` : `user=${user}`}`, {method: 'post'})
-                .then(response => response.json())
+            fetch(`http://localhost:8080/level?${user === null ? `id=${this.state.level.id}` : `user=${user}`}`, {
+                method: 'post',
+                headers: {
+                    token: this.state.token
+                }
+            }).then(response => response.json())
                 .then(response => {
                     console.log(response.id);
                     this.setState({
