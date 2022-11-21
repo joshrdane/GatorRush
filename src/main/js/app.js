@@ -4,6 +4,7 @@ import MainMenu from './mainmenu';
 import Home from './home';
 import GameModes from './gamemodes';
 import Casual from './casual';
+import Profile from "./profile";
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -64,7 +65,7 @@ class App extends React.Component {
                 }
                 {
                     page === "profile" &&
-                    <div>Profile</div>
+                    <Profile />
                 }
             </div>
         )
