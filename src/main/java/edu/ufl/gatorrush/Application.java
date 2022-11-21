@@ -59,7 +59,7 @@ public class Application {
                     pool.get('-').add(problemRepository.save(new Problem(left, '-', right)));
                 }
                 if (left <= 12 && right <= 12) {
-                    pool.get('x').add(problemRepository.save(new Problem(left, '-', right)));
+                    pool.get('x').add(problemRepository.save(new Problem(left, 'x', right)));
                     if (right != 0 && left % right == 0) {
                         pool.get('/').add(problemRepository.save(new Problem(left, '/', right)));
                     }
