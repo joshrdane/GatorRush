@@ -36,7 +36,7 @@ class Casual extends React.Component {
         /* Post to attempts */
         if (token != null) {
             // Saves attempt to database
-            fetch(`http://localhost:8080/attempt/challenge?problem=${this.state.problem.id}&response=${current.response}`, {
+            fetch(`http://localhost:8080/attempt/casual?problem=${this.state.problem.id}&response=${current.response}`, {
                 method: 'post',
                 headers: {
                     token: this.state.token
