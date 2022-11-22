@@ -38,9 +38,8 @@ class TimeTrial extends React.Component {
             fetch(`http://localhost:8080/attempt/challenge?user=${user}&problem=${this.state.problem.id}&response=${current.response}`, {method: 'post'});
         }
 
-        // adding to score if question is correct (UPDATE scoring algorithm later)
+        // adding to score if question is correct
         if(current.response === current.result){
-            //this.setState({score: this.state.score + 1}) // use score algo
             this.incrementScore();
             this.setState({feedback: "Great job!"})
         }
@@ -92,6 +91,10 @@ class TimeTrial extends React.Component {
         
         this.setState({score: this.state.score + incrementAmount})
     }
+
+    timeOverAlert() {
+        alert("Time is up!");
+    }
     
     render() {
         if (this.state.loading) {
@@ -103,7 +106,7 @@ class TimeTrial extends React.Component {
                     <div className="container">
                         <div className="container-column">
                         <div className="score">{this.state.score}</div>
-                        <TimerBar />
+                        <TimerBar timeOverAlert={() => this.timeOverAlert()} />
                         </div>
                     </div>
                     

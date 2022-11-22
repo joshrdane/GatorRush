@@ -33,7 +33,7 @@ export default class Timer extends Component {
     }
 
     render() {
-        const { minutes, seconds } = this.state
+        //const { minutes, seconds } = this.state
         return (
             <div/>
         )

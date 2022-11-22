@@ -1,7 +1,7 @@
 import React from 'react';
 import Timer from './timer';
 
-const TimerBar = (props) => {
+const TimerBar = ({timeOverAlert}) => {
     const [counter, setCounter] = React.useState(100);
     React.useEffect(() => {
         const timer =
@@ -9,14 +9,11 @@ const TimerBar = (props) => {
         return () => clearInterval(timer);
     }, [counter]);
 
-
-    const { completed } = props;
-
     let bgcolor = "green";
-    let displa = "";
 
     if (counter < 0) {
         setCounter(0);
+        timeOverAlert();
     }
 
     if (counter > 8 && counter < 25) {
@@ -55,18 +52,11 @@ const TimerBar = (props) => {
         fontSize: '0.9rem',
         fontFamily: 'cursive',
         textAlign: 'right',
-
-        // fontWeight: 'bold'
     }
 
     return (
         <div style={containerStyles}>
-
-            <div style={fillerStyles}>
-
-                {/*<span>{counter}</span>*/}
-                {/*<Score/>*/}
-            </div>
+            <div style={fillerStyles}/>
             <div style = {labelStyles}><Timer/></div>
         </div>
     );
