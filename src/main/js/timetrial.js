@@ -13,11 +13,6 @@ class TimeTrial extends React.Component {
             loading: true,
             score: 0,
             feedback: '',
-            level: {
-                id: 0,
-                name: '0',
-                problems: []
-            },
             problem: {
                 id: 0,
                 leftOperand: 0,
