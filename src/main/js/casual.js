@@ -160,9 +160,6 @@ class Casual extends React.Component {
                 <div className="background">
                     <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
                     <div className="container">
-                        {/*<ImmediateFeedback feedback={this.state.feedback}/>*/}
-                    </div>
-                    <div className="container">
                         <div className="progress">
                             <div id="levelProgress" className="progress_bar"/>
                         </div>
