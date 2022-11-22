@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.Random;
 
 @Controller
 public class GatorRush {
@@ -104,6 +105,16 @@ public class GatorRush {
         } catch (NotFoundException exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
         }
+    }
+
+    @ResponseBody
+    @GetMapping("problem")
+    public ResponseEntity<?> getProblem() {
+        Long id;
+        do {
+            id = new Random().nextLong(15000);
+        } while (!problemRepository.existsById(id));
+        return ResponseEntity.ok(problemRepository.findById(id));
     }
 
     @ResponseBody
