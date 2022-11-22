@@ -142,9 +142,9 @@ class Casual extends React.Component {
     updateProgressBar(value) {
         let progressbar = document.getElementById("levelProgress");
 
-        value = parseInt((value / 7) * 100);
+        value = (parseInt(value) / 7) * 100;
 
-        if (value == 0) {
+        if (value === 0) {
             value = 5;
         } else if (value > 100) {
             value = 100;
