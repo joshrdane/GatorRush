@@ -96,12 +96,12 @@ class Casual extends React.Component {
                             });
                             this.setState({
                                 loading: false,
-                                problem: response.problems.at(0),
+                                problem: this.state.level.problems.at(0),
                                 level: {
                                     // The next two lines are required to not nullify the existing values
                                     id: this.state.level.id,
                                     name: this.state.level.name,
-                                    problems: response.problems.slice(1)
+                                    problems: this.state.level.problems.slice(1)
                                 }
                             });
                             // TODO: Show history? note: use newHistory
