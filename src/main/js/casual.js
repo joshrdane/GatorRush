@@ -34,7 +34,7 @@ class Casual extends React.Component {
         // Create a 'new' history instance
         let newHistory = this.state.history.concat(current);
         /* Post to attempts */
-        if (token != null) {
+        if (this.state.token != null) {
             // Saves attempt to database
             fetch(`http://localhost:8080/attempt/casual?problem=${this.state.problem.id}&response=${current.response}`, {
                 method: 'post',
@@ -77,7 +77,6 @@ class Casual extends React.Component {
                 }
             }).then(response => response.json())
                 .then(response => {
-                    console.log(response.id);
                     this.setState({
                         // Blanket drop response level JSON into level
                         level: response
