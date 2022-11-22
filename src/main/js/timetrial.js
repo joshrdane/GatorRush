@@ -48,75 +48,22 @@ class TimeTrial extends React.Component {
             this.setState({feedback: "Not quite. Try again."})
         }
 
-        // Check local history for completion criteria
-        let correct = 0;
-        // Get last 10 problems attempted
-        for (let problem of newHistory.slice(-10)) {
-            if (problem.response === problem.result) {
-                correct++;
-            }
-        }
-
-
-        if (correct >= 7) {
-            // TODO: Add error handling for 400 & 400 errors
-            // TODO: Add handle final level completion error 418
-            fetch(`http://localhost:8080/level?${user === null ? `id=${this.state.level.id}` : `user=${user}`}`, {method: 'post'})
-                .then(response => response.json())
-                .then(response => {
-                    console.log(response.id);
-                    this.setState({
-                        // Blanket drop response level JSON into level
-                        level: response
-                    });
-                    this.setState({
-                        // Set problem to the first problem in level
-                        problem: this.state.level.problems.at(0),
-                        level: {
-                            // The next two lines are required to not nullify the existing values
-                            id: this.state.level.id,
-                            name: this.state.level.name,
-                            // Set remaining problems to exclude removed problem
-                            problems: this.state.level.problems.slice(1)
-                        },
-                        // Reset history for new level
-                        history: [] 
-                    });
-                });
-            // TODO: Show history? note: use newHistory
-        } else {
-            this.setState({
-                problem: this.state.level.problems.at(0),
-                level: {
-                    // The next two lines are required to not nullify the existing values
-                    id: this.state.level.id,
-                    name: this.state.level.name,
-                    // Set remaining problems to exclude removed problem and add previous problem
-                    problems: this.state.level.problems.slice(1).concat(this.state.problem)
-                },
-                history: newHistory
-            });
-        }
+        this.loadNewProblem();
     }
 
-    componentDidMount() {
-        fetch('http://localhost:8080/level?id=13785')
+    loadNewProblem() {
+        fetch('http://localhost:8080/problem')
             .then(response => response.json())
             .then(response => {
                 this.setState({
-                    level: response
-                });
-                this.setState({
                     loading: false,
-                    problem: this.state.level.problems.at(0),
-                    level: {
-                        // The next two lines are required to not nullify the existing values
-                        id: this.state.level.id,
-                        name: this.state.level.name,
-                        problems: this.state.level.problems.slice(1)
-                    }
+                    problem: response
                 });
             });
+    }
+
+    componentDidMount() {
+        this.loadNewProblem();
     }
 
     incrementScore() {
