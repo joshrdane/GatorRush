@@ -119,7 +119,7 @@ class TimeTrial extends React.Component {
                             this.state.problem.options.map((option, index) => {
                                 return (
                                     <button
-                                        key={`${this.state.level.id}-${this.state.problem.id}-${index}-${option}-${this.state.history.length}`}
+                                        key={`${this.state.problem.id}-${index}-${option}-${this.state.history.length}`}
                                         className="btn-answer"
                                         onClick={this.handleSelect}>
                                         {this.state.problem.options.at(index)}
