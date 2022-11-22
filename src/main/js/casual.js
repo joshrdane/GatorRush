@@ -10,7 +10,8 @@ class Casual extends React.Component {
         this.state = {
             loading: true,
             score: 0,
-            feedback: '',
+            trigger: false,
+            isCorrect: false,
             level: {
                 id: 0,
                 name: '0',
@@ -44,13 +45,20 @@ class Casual extends React.Component {
             });
         }
 
+        this.setState({trigger: true});
+
+        // will close immediate feedback popup after 1000 ms
+        setTimeout(() => {
+            this.setState({trigger: false});
+        }, 1000)
+
         // adding to score if question is correct (UPDATE scoring algorithm later)
         if(current.response === current.result){
             this.setState({score: this.state.score + 1})
-            this.setState({feedback: "Great job!"})
+            this.setState({isCorrect: true})
         }
         else{
-            this.setState({feedback: "Not quite. Try again."})
+            this.setState({isCorrect: false})
         }
 
         // Check local history for completion criteria
@@ -155,9 +163,6 @@ class Casual extends React.Component {
                 <div className="background">
                     <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
                     <div className="container">
-                        <ImmediateFeedback feedback={this.state.feedback}/>
-                    </div>
-                    <div className="container">
                         <div className="progress">
                             <div id="levelProgress" className="progress_bar"/>
                         </div>
@@ -167,6 +172,8 @@ class Casual extends React.Component {
                         <div className="equation-content">
                             <div>{this.state.problem.leftOperand} {this.state.problem.operator} {this.state.problem.rightOperand} = ?</div>
                         </div>
+
+                        <ImmediateFeedback trigger = {this.state.trigger} isCorrect = {this.state.isCorrect} />
                     </div>
                     <div className="container"/>
                     <div className="container">
