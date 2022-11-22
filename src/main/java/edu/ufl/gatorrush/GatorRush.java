@@ -89,7 +89,7 @@ public class GatorRush {
 
     @ResponseBody
     @PostMapping("level")
-    public ResponseEntity<Object> completeLevel(@RequestHeader("token") Optional<String> token, @RequestParam(value = "id", required = false) Optional<Long> levelId) {
+    public ResponseEntity<Object> completeLevel(@RequestHeader(value = "token", required = false) Optional<String> token, @RequestParam(value = "id", required = false) Optional<Long> levelId) {
         try {
             if (token.isPresent()) {
                 Long userId = authService.validate(token.get());
