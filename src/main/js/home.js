@@ -18,8 +18,15 @@ class Home extends React.Component {
                 <div className="container">
                     <img className="alligator-homepage" src="/images/Gator_TransparentBG.png"/>
                     <div className="login-container">
+                        <div className="username-input">
+                            <input type="text" id="username-input" name="username-input" maxLength="15"/>
+                        </div>
+                        <div className="password-input">
+                            <input type="password" id="password-input" name="password-input"/>
+                        </div>
                     </div>
                 </div>
+
                 <div className="container">
                     <button className="btn-sign-up">Create an Account
                     </button>
@@ -28,7 +35,7 @@ class Home extends React.Component {
                 <div className="container">
                     <div className="game_description-container">
                         <div className="game_description-content">
-                            <p>Gator Rush is an engaging game geared towards helping kids practice and review their math skills. With two different game modes, kids can choose between a casual or challenging experience. 
+                            <p>Gator Rush is an engaging game geared towards helping kids practice and review their math skills. With two different game modes, kids can choose between a casual or challenging experience.
                             </p>
                         </div>
                     </div>

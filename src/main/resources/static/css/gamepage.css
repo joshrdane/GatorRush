@@ -153,6 +153,33 @@
     height: 450px;
 }
 
+#username-input {
+    position: relative;
+    left: 43px;
+    top: 172px;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    width: 211px;
+    height: 39px;
+}
+
+#password-input {
+    position: relative;
+    left: 43px;
+    top: 229px;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    width: 211px;
+    height: 39px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 1px 1px 10px deepskyblue;
+}
+
 .background .game_description-container {
     position: relative;
     background-image: url(/images/Wood2.png);
