@@ -4,6 +4,7 @@ import MainMenu from './mainmenu';
 import Home from './home';
 import GameModes from './gamemodes';
 import Casual from './casual';
+import CreateAcc from './createaccount';
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -47,15 +48,20 @@ class App extends React.Component {
                 <MainMenu auth={auth} handleLogout={this.handleLogout} handleLogin={this.handleLogin} handlePageChange={this.handlePageChange}/>
                 {
                     page === "home" &&
-                    <Home/>
+                    <Home handlePageChange={this.handlePageChange}/>
                 }
                 {
                     page === "play" &&
                     <GameModes handlePageChange={this.handlePageChange}/>
                 }
+
                 {
                     page === "casual" &&
                     <Casual />
+                }
+                {
+                    page === "create-account" &&
+                    <CreateAcc />
                 }
                 {
                     page === "time trial" &&

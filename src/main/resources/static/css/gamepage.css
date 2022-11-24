@@ -165,6 +165,18 @@
     width: 500px;
     height: 250px;
 }
+.background .create_account-container {
+    position: relative;
+    background-image: url(/images/Wood_paper.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 600px 800px;
+    width: 800px;
+    height: 800px;
+}
 
 .background .game_description-content {
     position: absolute;
@@ -267,4 +279,16 @@
     top: 43%;
 }
 
+
+
+/*create account error*/
+.error-create-account {
+    font-size: 10px;
+    color: #fe6c6c;
+    display: none;
+}
+
+input:invalid[focused='true'] ~ .error-create-account{
+    display: block;
+}
 

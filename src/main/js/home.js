@@ -6,6 +6,10 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props);
+        this.handlePageChange = this.handlePageChange.bind(this);
+    }
+    handlePageChange(e) {
+        this.props.handlePageChange(e, e.target.dataset.page);
     }
 
     render() {
@@ -21,7 +25,7 @@ class Home extends React.Component {
                     </div>
                 </div>
                 <div className="container">
-                    <button className="btn-sign-up">Create an Account
+                    <button data-page={"create-account"} className="btn-sign-up" onClick={this.handlePageChange}>Create an Account
                     </button>
                 </div>
                 
