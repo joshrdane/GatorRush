@@ -12,7 +12,7 @@ class MainMenu extends React.Component {
     }
 
     handleLogin(e) {
-        this.props.handleLogin(e, "Tamitha", "");
+        this.props.handleLogin(e, "Tamitha", "Password123");
     }
 
     handleLogout(e) {

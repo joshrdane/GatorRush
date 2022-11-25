@@ -127,4 +127,21 @@ public class GatorRush {
             return ResponseEntity.ok(authService.getToken(userId));
         }
     }
+
+    @ResponseBody
+    @PostMapping("account/create")
+    public ResponseEntity<?> createAccount(@RequestHeader("username") String username, @RequestHeader("email") String email, @RequestHeader("password") String password) {
+        if (userRepository.existsByEmail(email)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email address already associated with another user.");
+        } else if (userRepository.existsByUsername(username)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already associated with another user.");
+        } else {
+            try {
+                userRepository.save(new User(username, email, password));
+                return ResponseEntity.status(HttpStatus.CREATED).build();
+            } catch (Exception exception) {
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exception);
+            }
+        }
+    }
 }
