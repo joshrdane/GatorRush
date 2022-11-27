@@ -9,7 +9,9 @@ const FormInput = (props) => {
 
     const formStyle = {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        marginTop: '40px'
+
 
     }
 
@@ -20,7 +22,7 @@ const FormInput = (props) => {
         backgroundColor: 'rgb(239 151 74)',
         background: 'url(images/Wood2.png) center center / 28rem 4rem no-repeat',
         height: '4rem',
-        width: '28rem',
+        width: '100%',
         border: '0',
         textAlign: 'center',
         color: 'orange',
@@ -33,7 +35,8 @@ const FormInput = (props) => {
     const labelStyle = {
         fontSize: '17px',
         textAlign: 'center',
-        textShadow: '1px 1px black'
+        textShadow: '1px 1px black',
+        marginTop: '-20px'
 
     }
 
