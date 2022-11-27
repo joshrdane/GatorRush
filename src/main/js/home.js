@@ -24,6 +24,9 @@ class Home extends React.Component {
                         <div className="password-input">
                             <input type="password" id="password-input" name="password-input"/>
                         </div>
+                        <div className="remember-me">
+                            <input type="checkbox" id="remember-me" name="remember-me"/>
+                        </div>
                     </div>
                 </div>
 

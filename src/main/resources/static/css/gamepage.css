@@ -142,7 +142,7 @@
 
 .background .login-container {
     position: relative;
-    background-image: url(/images/Login.png);
+    background-image: url(/images/Login_v2.png);
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
@@ -156,7 +156,7 @@
 #username-input {
     position: relative;
     left: 43px;
-    top: 172px;
+    top: 158px;
     background-color: transparent;
     border-color: transparent;
     color: white;
@@ -167,12 +167,22 @@
 #password-input {
     position: relative;
     left: 43px;
-    top: 229px;
+    top: 214px;
     background-color: transparent;
     border-color: transparent;
     color: white;
     width: 211px;
     height: 39px;
+}
+
+#remember-me {
+    position: relative;
+    left: 48px;
+    top: 230px;
+    opacity: 0;
+}
+#remember-me:checked {
+    opacity: .9;
 }
 
 input:focus {
