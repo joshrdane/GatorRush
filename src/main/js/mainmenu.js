@@ -12,7 +12,7 @@ class MainMenu extends React.Component {
     }
 
     handleLogin(e) {
-        this.props.handleLogin(e);
+        this.props.handleLogin(e, "Tamitha", "Password123");
     }
 
     handleLogout(e) {
@@ -24,7 +24,7 @@ class MainMenu extends React.Component {
     }
 
     render() {
-        const auth = this.props.auth;
+        const auth = this.props.token != null;
         return (
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
