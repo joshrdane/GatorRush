@@ -96,13 +96,31 @@ function CreateAccount(props){
         }
     ]
 
-
-
-
-
     const handleSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         console.log("test");
+
+        fetch(`http://localhost:8080/account/create`, {
+            method: 'post',
+            headers: {
+                username: values.username,
+                email: values.email,
+                password: values.password
+            }
+        }).then(response => {
+            switch (response.status) {
+                case 200:
+                    props.handleLogin(e, values.username, values.password);
+                    props.handlePageChange(e, "home");
+                    props.handleTrigger();
+                    // TODO: maybe create some sort of visual to notify the user of success and get rid of alert
+                    alert("Account created successfully, you are now logged in.");
+                    break;
+                default:
+                    // TODO: handle errors, response body should include the reason for the backend error
+                    break;
+            }
+        });
 
         // NOT DONE YET: send user info to DB, create account
         console.log(values);

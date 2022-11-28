@@ -119,7 +119,7 @@ public class GatorRush {
 
     @ResponseBody
     @PostMapping("auth")
-    public ResponseEntity<Object> authenticate(@RequestHeader("username") String username, @RequestHeader("password") String password) {
+    public ResponseEntity<?> authenticate(@RequestHeader("username") String username, @RequestHeader("password") String password) {
         Long userId = authService.authenticate(username, password);
         if (userId == -1) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -138,7 +138,7 @@ public class GatorRush {
         } else {
             try {
                 userRepository.save(new User(username, email, password));
-                return ResponseEntity.status(HttpStatus.CREATED).build();
+                return authenticate(username, password);
             } catch (Exception exception) {
                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exception);
             }

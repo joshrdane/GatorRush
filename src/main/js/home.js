@@ -10,14 +10,20 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.handlePageChange = this.handlePageChange.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
         this.handleCreateAcc = this.handleCreateAcc.bind(this);
         this.state = {
             trigger: false
         }
         // this.trigger = false;
     }
-    handlePageChange(e) {
-        this.props.handlePageChange(e, e.target.dataset.page);
+
+    handleLogin(e, username, password) {
+        this.props.handleLogin(e, username, password);
+    }
+
+    handlePageChange(e, page) {
+        this.props.handlePageChange(e, page);
 
     }
 
@@ -86,7 +92,7 @@ class Home extends React.Component {
                     by upklyak</a> on Freepik</p>
                 </div>
 
-                <CreateAccount trigger = {this.state.trigger} handleTrigger={this.handleCreateAcc} handlePageChange={this.handlePageChange}/>
+                <CreateAccount trigger = {this.state.trigger} handleLogin={this.handleLogin} handleTrigger={this.handleCreateAcc} handlePageChange={this.handlePageChange}/>
 
             </div>
         );
