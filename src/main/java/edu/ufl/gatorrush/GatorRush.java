@@ -184,7 +184,7 @@ public class GatorRush {
                 // Retrieve user
                 User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
                 // Ensure OLD passwords match
-                if (user.getPassword().equals(User.PASSWORD_ENCODER.encode(oldPassword))) {
+                if (User.PASSWORD_ENCODER.matches(oldPassword, user.getPassword())) {
                     // Save new password and return successful
                     user.setPassword(newPassword);
                     userRepository.save(user);
