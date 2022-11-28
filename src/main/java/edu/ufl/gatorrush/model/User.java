@@ -150,7 +150,8 @@ public class User implements UserDetails {
         return level;
     }
 
-    public void setLevel(Level level) {
+    public User setLevel(Level level) {
         this.level = level;
+        return this;
     }
 }
