@@ -2,8 +2,6 @@ package edu.ufl.gatorrush;
 
 import edu.ufl.gatorrush.model.User;
 import edu.ufl.gatorrush.repository.UserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -64,12 +62,11 @@ public class AuthService {
      */
     public Long authenticate(String username, String password) {
         try {
-            UserDetails userDetails = userRepository.findByUsername(username);
-            User user = (User) userDetails;
+            User user = userRepository.findByUsernameIgnoreCase(username).orElseThrow();
             if (User.PASSWORD_ENCODER.matches(password, user.getPassword())) {
                 return user.getId();
             }
-        } catch (UsernameNotFoundException ignored) {}
+        } catch (Exception ignored) {}
         return (long) -1;
     }
 
