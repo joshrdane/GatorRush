@@ -6,6 +6,7 @@ import edu.ufl.gatorrush.model.Problem;
 import edu.ufl.gatorrush.model.User;
 import edu.ufl.gatorrush.model.dto.AttemptDto;
 import edu.ufl.gatorrush.model.dto.LevelDto;
+import edu.ufl.gatorrush.model.dto.UserDto;
 import edu.ufl.gatorrush.repository.AttemptRepository;
 import edu.ufl.gatorrush.repository.LevelRepository;
 import edu.ufl.gatorrush.repository.ProblemRepository;
@@ -142,6 +143,60 @@ public class GatorRush {
             } catch (Exception exception) {
                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exception);
             }
+        }
+    }
+
+    /**
+     * Retrieves user account information
+     * @param token Token of logged in user
+     * @return User DTO of logged in user
+     */
+    @ResponseBody
+    @GetMapping("account")
+    public ResponseEntity<?> getAccount(@RequestHeader(value = "token") String token) {
+        Long userId = authService.validate(token);
+        if (userId != -1) {
+            try {
+                return ResponseEntity.ok(new UserDto(userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId))));
+            } catch (NotFoundException ignored) {
+                return ResponseEntity.internalServerError().build();
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
+    /**
+     * Updates the user's password
+     * @param token Token of logged in user
+     * @param oldPassword Old password
+     * @param newPassword New password
+     * @return HTTP status code (and error if applicable)
+     */
+    @ResponseBody
+    @PatchMapping("account/password")
+    public ResponseEntity<?> updatePassword(@RequestHeader(value = "token") String token, @RequestHeader("old_password") String oldPassword, @RequestHeader("new_password") String newPassword) {
+        // Get userId from token
+        Long userId = authService.validate(token);
+        // Ensure a valid userId was obtained
+        if (userId != -1) {
+            try {
+                // Retrieve user
+                User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
+                // Ensure OLD passwords match
+                if (User.PASSWORD_ENCODER.matches(oldPassword, user.getPassword())) {
+                    // Save new password and return successful
+                    user.setPassword(newPassword);
+                    userRepository.save(user);
+                    return ResponseEntity.ok().build();
+                } else {
+                    return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body("Incorrect password.");
+                }
+            } catch (NotFoundException ignored) {
+                return ResponseEntity.internalServerError().build();
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 

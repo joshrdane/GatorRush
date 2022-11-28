@@ -11,6 +11,7 @@ class TimeTrial extends React.Component {
         super(props);
         this.state = {
             loading: true,
+            token: props.token,
             score: 0,
             feedback: '',
             problem: {

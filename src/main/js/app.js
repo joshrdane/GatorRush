@@ -4,6 +4,7 @@ import MainMenu from './mainmenu';
 import Home from './home';
 import GameModes from './gamemodes';
 import Casual from './casual';
+import Profile from "./profile";
 import TimeTrial from './timetrial';
 
 const React = require('react');
@@ -29,7 +30,7 @@ class App extends React.Component {
                 'username': username,
                 'password': password
             }
-        }).then(response => response.body)
+        }).then(response => response.text())
             .then(response => this.setState({ token: response }));
     }
 
@@ -62,15 +63,15 @@ class App extends React.Component {
                 }
                 {
                     page === "casual" &&
-                    <Casual token={token}/>
+                    <Casual token={token} />
                 }
                 {
                     page === "timetrial" &&
-                    <TimeTrial />
+                    <TimeTrial token={token} />
                 }
                 {
                     page === "profile" &&
-                    <div>Profile</div>
+                    <Profile token={token} />
                 }
             </div>
         )

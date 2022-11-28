@@ -109,8 +109,7 @@ public class User implements UserDetails {
     }
 
     public void setUsername(String username) throws Exception {
-        username = username.toLowerCase();
-        if (USERNAME.matcher(username).matches()) {
+        if (USERNAME.matcher(username.toLowerCase()).matches()) {
             this.username = username;
         } else {
             throw new Exception("Invalid username format.");
@@ -151,7 +150,8 @@ public class User implements UserDetails {
         return level;
     }
 
-    public void setLevel(Level level) {
+    public User setLevel(Level level) {
         this.level = level;
+        return this;
     }
 }

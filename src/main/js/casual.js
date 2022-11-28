@@ -9,6 +9,7 @@ class Casual extends React.Component {
         super(props);
         this.state = {
             loading: true,
+            token: props.token,
             score: 0,
             trigger: false,
             isCorrect: false,

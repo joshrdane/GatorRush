@@ -16,4 +16,8 @@ public class UserDto {
     public String getUsername() {
         return user.getUsername();
     }
+
+    public Integer getLevel() {
+        return user.getLevel().getName();
+    }
 }
