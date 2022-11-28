@@ -66,6 +66,11 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private final List<Attempt> attempts = new ArrayList<>();
 
+    /**
+     * Highest challenge mode score
+     */
+    private Integer score = 0;
+
     protected User() {}
 
     /**
@@ -152,6 +157,25 @@ public class User implements UserDetails {
 
     public User setLevel(Level level) {
         this.level = level;
+        return this;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public User setScore(Integer score) {
+        this.score = score;
+        return this;
+    }
+
+    /**
+     * Sets the score to the provided score if higher than the current score
+     * @param score New score
+     * @return The potentially modified object
+     */
+    public User setHighScore(Integer score) {
+        this.score = Math.max(this.score, score);
         return this;
     }
 }
