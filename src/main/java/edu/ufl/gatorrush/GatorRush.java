@@ -6,6 +6,7 @@ import edu.ufl.gatorrush.model.Problem;
 import edu.ufl.gatorrush.model.User;
 import edu.ufl.gatorrush.model.dto.AttemptDto;
 import edu.ufl.gatorrush.model.dto.LevelDto;
+import edu.ufl.gatorrush.model.dto.UserDto;
 import edu.ufl.gatorrush.repository.AttemptRepository;
 import edu.ufl.gatorrush.repository.LevelRepository;
 import edu.ufl.gatorrush.repository.ProblemRepository;
@@ -142,6 +143,26 @@ public class GatorRush {
             } catch (Exception exception) {
                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exception);
             }
+        }
+    }
+
+    /**
+     * Retrieves user account information
+     * @param token Token of logged in user
+     * @return User DTO of logged in user
+     */
+    @ResponseBody
+    @GetMapping("account")
+    public ResponseEntity<?> createAccount(@RequestHeader(value = "token") String token) {
+        Long userId = authService.validate(token);
+        if (userId != -1) {
+            try {
+                return ResponseEntity.ok(new UserDto(userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId))));
+            } catch (NotFoundException ignored) {
+                return ResponseEntity.internalServerError().build();
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 }
