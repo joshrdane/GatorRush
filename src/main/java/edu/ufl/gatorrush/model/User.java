@@ -69,15 +69,15 @@ public class User implements UserDetails {
     protected User() {}
 
     /**
-     * Constructor for testing purposes, does not validate
-     * @param username Nonvalidated username
-     * @param email Nonvalidated email
-     * @param password Nonvalidated password
+     * Constructor
+     * @param username Username
+     * @param email Email
+     * @param password Password
      */
-    public User(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.setPassword(password);
+    public User(String username, String email, String password) throws Exception {
+        setUsername(username);
+        setEmail(email);
+        setPassword(password);
     }
 
     public long getId() {

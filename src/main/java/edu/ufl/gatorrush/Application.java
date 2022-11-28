@@ -36,10 +36,14 @@ public class Application {
      * Preloads information into database
      */
     public void preload() {
-        String hash = "";
-        userRepository.save(new User("Jimothy", "jimothy@domain.com", hash));
-        userRepository.save(new User("Tamitha", "tamitha@domain.com", hash));
-        userRepository.save(new User("Bolinder", "bolinder@domain.com", hash));
+        String hash = "Password123";
+        try {
+            userRepository.save(new User("Jimothy", "jimothy@domain.com", hash));
+            userRepository.save(new User("Tamitha", "tamitha@domain.com", hash));
+            userRepository.save(new User("Bolinder", "bolinder@domain.com", hash));
+        } catch (Exception ignored) {
+            System.out.println("Unable to create one or all temporary users.");
+        }
 
         Random random = new Random();
         HashMap<Character, List<Problem>> pool = new HashMap<>();

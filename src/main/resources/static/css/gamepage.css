@@ -160,6 +160,22 @@
     width: 500px;
     height: 250px;
 }
+.create_account-container {
+    position: relative;
+
+
+    background-image: url(/images/Wood_paper.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 600px 800px;
+    width: 800px;
+    height: 800px;
+
+
+}
 
 .background .game_description-content {
     position: absolute;
@@ -262,6 +278,51 @@
     top: 43%;
 }
 
+
+
+/*create account error*/
+.error-create-account {
+    font-size: 10px;
+    color: #fe6c6c;
+    display: none;
+}
+
+input:invalid[focused='true'] ~ .error-create-account{
+    display: block;
+}
+
+.create_account-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    color: white;
+}
+
+.btn-create-account{
+    position: relative;
+    background-image: linear-gradient(#FC9634, #FC782C, #bc441c);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 8px 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+
+}
+
+.btn-create-account:hover {
+    background-image: linear-gradient(#bc441c, #FC782C, #FC9634);
+}
 
 /*===== Timed Mode Page =====*/
 .score {

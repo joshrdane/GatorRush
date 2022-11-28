@@ -3,7 +3,7 @@ import React from 'react'
 function ImmediateFeedback(props){
     let setTrigger = props.trigger;
     let isCorrect = props.isCorrect;
-    
+
     let bgColor = '';
     let color = '';
 
@@ -45,7 +45,6 @@ function ImmediateFeedback(props){
         backgroundColor: bgColor,
         color: color,
         borderRadius: '2rem'
-
     }
 
     return(setTrigger) ? (

@@ -89,7 +89,7 @@ public class GatorRush {
 
     @ResponseBody
     @PostMapping("level")
-    public ResponseEntity<Object> completeLevel(@RequestHeader("token") Optional<String> token, @RequestParam(value = "id", required = false) Optional<Long> levelId) {
+    public ResponseEntity<Object> completeLevel(@RequestHeader(value = "token", required = false) Optional<String> token, @RequestParam(value = "id", required = false) Optional<Long> levelId) {
         try {
             if (token.isPresent()) {
                 Long userId = authService.validate(token.get());
@@ -119,12 +119,29 @@ public class GatorRush {
 
     @ResponseBody
     @PostMapping("auth")
-    public ResponseEntity<Object> authenticate(@RequestHeader("username") String username, @RequestHeader("password") String password) {
+    public ResponseEntity<?> authenticate(@RequestHeader("username") String username, @RequestHeader("password") String password) {
         Long userId = authService.authenticate(username, password);
         if (userId == -1) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         } else {
             return ResponseEntity.ok(authService.getToken(userId));
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("account/create")
+    public ResponseEntity<?> createAccount(@RequestHeader("username") String username, @RequestHeader("email") String email, @RequestHeader("password") String password) {
+        if (userRepository.existsByEmail(email)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email address already associated with another user.");
+        } else if (userRepository.existsByUsername(username)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already associated with another user.");
+        } else {
+            try {
+                userRepository.save(new User(username, email, password));
+                return authenticate(username, password);
+            } catch (Exception exception) {
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exception);
+            }
         }
     }
 }
