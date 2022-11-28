@@ -5,6 +5,7 @@ import Home from './home';
 import GameModes from './gamemodes';
 import Casual from './casual';
 import Profile from "./profile";
+import TimeTrial from './timetrial';
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -23,8 +24,13 @@ class App extends React.Component {
     }
 
     handleLogin(e, username, password) {
-        fetch('http://localhost:8080/auth', {method: 'post', headers: { 'username': username, 'password': password}})
-            .then(response => response.body)
+        fetch('http://localhost:8080/auth', {
+            method: 'post',
+            headers: {
+                'username': username,
+                'password': password
+            }
+        }).then(response => response.body)
             .then(response => this.setState({ token: response }));
     }
 
@@ -49,7 +55,7 @@ class App extends React.Component {
                 <MainMenu token={token} handleLogout={this.handleLogout} handleLogin={this.handleLogin} handlePageChange={this.handlePageChange}/>
                 {
                     page === "home" &&
-                    <Home handleLogin={this.handleLogin} />
+                    <Home handlePageChange={this.handlePageChange} handleLogin={this.handleLogin} />
                 }
                 {
                     page === "play" &&
@@ -60,8 +66,8 @@ class App extends React.Component {
                     <Casual token={token}/>
                 }
                 {
-                    page === "time trial" &&
-                    <div>Time Trial</div>
+                    page === "timetrial" &&
+                    <TimeTrial />
                 }
                 {
                     page === "profile" &&

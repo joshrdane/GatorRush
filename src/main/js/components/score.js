@@ -1,14 +1,9 @@
 
-import React from "react";
-
-
+import React from 'react';
 
 const Score = (props) => {
-
-
-
+    
     const {totalScore} = props;
-
 
     const scoreboard = {
         // width: '300px',

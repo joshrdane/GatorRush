@@ -1,8 +1,5 @@
 'use strict';
-import TimerBar from './components/timerBar';
-import Timer from './components/timer';
-import Score from "./components/score";
-import ImmediateFeedback from "./components/ImmediateFeedback";
+import ImmediateFeedback from './components/ImmediateFeedback';
 
 const React = require('react');
 
@@ -13,7 +10,8 @@ class Casual extends React.Component {
         this.state = {
             loading: true,
             score: 0,
-            feedback: '',
+            trigger: false,
+            isCorrect: false,
             level: {
                 id: 0,
                 name: '0',
@@ -37,20 +35,30 @@ class Casual extends React.Component {
         // Create a 'new' history instance
         let newHistory = this.state.history.concat(current);
         /* Post to attempts */
-        // Temporary logic until we get authentication
-        let user = null;
-        if (user) {
+        if (this.state.token != null) {
             // Saves attempt to database
-            fetch(`http://localhost:8080/attempt/challenge?user=${user}&problem=${this.state.problem.id}&response=${current.response}`, {method: 'post'});
+            fetch(`http://localhost:8080/attempt/casual?problem=${this.state.problem.id}&response=${current.response}`, {
+                method: 'post',
+                headers: {
+                    token: this.state.token
+                }
+            });
         }
+
+        this.setState({trigger: true});
+
+        // will close immediate feedback popup after 1000 ms
+        setTimeout(() => {
+            this.setState({trigger: false});
+        }, 1000)
 
         // adding to score if question is correct (UPDATE scoring algorithm later)
         if(current.response === current.result){
             this.setState({score: this.state.score + 1})
-            this.setState({feedback: "Great job!"})
+            this.setState({isCorrect: true})
         }
         else{
-            this.setState({feedback: "Not quite. Try again."})
+            this.setState({isCorrect: false})
         }
 
         // Check local history for completion criteria
@@ -67,32 +75,45 @@ class Casual extends React.Component {
         if (correct >= 7) {
             // reset the progress bar for the next level
             this.updateProgressBar(0);
-            
+
             // TODO: Add error handling for 400 & 400 errors
             // TODO: Add handle final level completion error 418
-            fetch(`http://localhost:8080/level?${user === null ? `id=${this.state.level.id}` : `user=${user}`}`, {method: 'post'})
-                .then(response => response.json())
-                .then(response => {
-                    console.log(response.id);
-                    this.setState({
-                        // Blanket drop response level JSON into level
-                        level: response
-                    });
-                    this.setState({
-                        // Set problem to the first problem in level
-                        problem: this.state.level.problems.at(0),
-                        level: {
-                            // The next two lines are required to not nullify the existing values
-                            id: this.state.level.id,
-                            name: this.state.level.name,
-                            // Set remaining problems to exclude removed problem
-                            problems: this.state.level.problems.slice(1)
-                        },
-                        // Reset history for new level
-                        history: [] 
-                    });
-                });
-            // TODO: Show history? note: use newHistory
+            let header = {}
+            if (this.state.token != null) {
+                header = {
+                    token: this.state.token
+                }
+            }
+            fetch(`http://localhost:8080/level?id=${this.state.level.id}`, {
+                method: 'post',
+                headers: header
+            }).then(response => {
+                switch (response.status) {
+                    case 200:
+                        response = response.json().then(response => {
+                            this.setState({
+                                level: response
+                            });
+                            this.setState({
+                                loading: false,
+                                problem: this.state.level.problems.at(0),
+                                level: {
+                                    // The next two lines are required to not nullify the existing values
+                                    id: this.state.level.id,
+                                    name: this.state.level.name,
+                                    problems: this.state.level.problems.slice(1)
+                                }
+                            });
+                            // TODO: Show history? note: use newHistory
+                        });
+                        break;
+                    case 418:
+                        alert("Congrats, you have completed all levels");
+                        break;
+                    default:
+                        alert(response.status);
+                }
+            })
         } else {
             this.setState({
                 problem: this.state.level.problems.at(0),
@@ -106,6 +127,10 @@ class Casual extends React.Component {
                 history: newHistory
             });
         }
+    }
+
+    advanceLevel(response) {
+
     }
 
     componentDidMount() {
@@ -131,9 +156,9 @@ class Casual extends React.Component {
     updateProgressBar(value) {
         let progressbar = document.getElementById("levelProgress");
 
-        value = parseInt((value / 7) * 100);
+        value = (parseInt(value) / 7) * 100;
 
-        if (value == 0) {
+        if (value === 0) {
             value = 5;
         } else if (value > 100) {
             value = 100;
@@ -152,9 +177,6 @@ class Casual extends React.Component {
                 <div className="background">
                     <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
                     <div className="container">
-                        <ImmediateFeedback feedback={this.state.feedback}/>
-                    </div>
-                    <div className="container">
                         <div className="progress">
                             <div id="levelProgress" className="progress_bar"/>
                         </div>
@@ -164,6 +186,8 @@ class Casual extends React.Component {
                         <div className="equation-content">
                             <div>{this.state.problem.leftOperand} {this.state.problem.operator} {this.state.problem.rightOperand} = ?</div>
                         </div>
+
+                        <ImmediateFeedback trigger = {this.state.trigger} isCorrect = {this.state.isCorrect} />
                     </div>
                     <div className="container"/>
                     <div className="container">

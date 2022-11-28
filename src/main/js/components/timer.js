@@ -35,10 +35,7 @@ export default class Timer extends Component {
     render() {
         const { minutes, seconds } = this.state
         return (
-            <div>
-                {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-
-            </div>
+            <div/>
         )
     }
 }

@@ -1,40 +1,59 @@
+import React from 'react'
 
-import React from "react";
+function ImmediateFeedback(props){
+    let setTrigger = props.trigger;
+    let isCorrect = props.isCorrect;
 
+    let bgColor = '';
+    let color = '';
 
+    let feedback = []
 
-const ImmediateFeedback = (props) => {
+    let feedbackIndex = Math.floor(Math.random() * 4);
 
-
-
-    const {feedback} = props;
-
-    let c = 'green';
-
-    if( feedback === "Not quite. Try again." ) {
-        c = 'red';
+    // will change the style and feedback message depending if the user selected the correct answer or not
+    if(isCorrect){
+        color = 'green';
+        bgColor = 'white';
+        feedback = ["Great job!", "You got it!", "Awesome!", "You did it!"]
+    }
+    else{
+        color = 'red';
+        bgColor = 'white';
+        feedback = ["Try again!", "You're almost there!", "So close!", "You can do this!"]
     }
 
-
-
-    const feedbackStyle = {
-        textAlign: 'center',
-        fontFamily: 'fantasy',
-        fontSize: '16px',
-        display: 'contents',
-        color: c,
+    const popupStyle = {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100vh',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: 'black',
+        textAlign: 'center'
     }
 
-
-    const labelStyle = {
-        fontSize: '1rem'
+    const popupInner = {
+        position: 'relative',
+        padding: '32px',
+        width: '100%',
+        maxWidth: '340px',
+        backgroundColor: bgColor,
+        color: color,
+        borderRadius: '2rem'
     }
 
-    return (
-        <div style={feedbackStyle}>
-            {feedback}
+    return(setTrigger) ? (
+        <div style={popupStyle}>
+            <div style={popupInner}>
+                <h3>{feedback[feedbackIndex]}</h3>
+            </div>
         </div>
-    );
-};
+    ) : "";
+}
 
 export default ImmediateFeedback;
