@@ -57,6 +57,15 @@ class Home extends React.Component {
 
                     <div className="login-container">
 
+                        <div className="username-input">
+                            <input type="text" id="username-input" name="username-input" maxLength="15"/>
+                        </div>
+                        <div className="password-input">
+                            <input type="password" id="password-input" name="password-input"/>
+                        </div>
+                        <div className="remember-me">
+                            <input type="checkbox" id="remember-me" name="remember-me"/>
+                        </div>
                     </div>
 
 
@@ -65,6 +74,7 @@ class Home extends React.Component {
 
 
                 </div>
+
                 <div className="container">
                     <button data-page={"create-account"} className="btn-sign-up" onClick={this.handleCreateAcc}>Create an Account
                     </button>
