@@ -153,7 +153,7 @@ public class GatorRush {
      */
     @ResponseBody
     @GetMapping("account")
-    public ResponseEntity<?> createAccount(@RequestHeader(value = "token") String token) {
+    public ResponseEntity<?> getAccount(@RequestHeader(value = "token") String token) {
         Long userId = authService.validate(token);
         if (userId != -1) {
             try {
