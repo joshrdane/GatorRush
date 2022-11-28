@@ -53,7 +53,7 @@ public class GatorRush {
     public ResponseEntity<Object> getAttempts(@RequestHeader("token") String token) {
         try {
             Long userId = authService.validate(token);
-            return ResponseEntity.ok(userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId)).getAttempts().stream().map(AttemptDto::new));
+            return ResponseEntity.ok(userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId)).getAttempts().stream().map(AttemptDto::new).sorted((a1, a2) -> a2.getTimestamp().compareTo(a1.getTimestamp())));
         } catch (NotFoundException exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
         }
