@@ -97,6 +97,9 @@ public class Application {
             }
             current = current.getNext();
         }
+        userRepository.save(userRepository.findByUsernameIgnoreCase("tamitha").get().setLevel(levelRepository.findByName(1).get()));
+        userRepository.save(userRepository.findByUsernameIgnoreCase("bolinder").get().setLevel(levelRepository.findByName(1).get()));
+        userRepository.save(userRepository.findByUsernameIgnoreCase("jimothy").get().setLevel(levelRepository.findByName(1).get()));
     }
 
     public static void main(String[] args) {
