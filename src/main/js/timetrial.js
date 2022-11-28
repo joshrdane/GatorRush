@@ -32,11 +32,14 @@ class TimeTrial extends React.Component {
         // Create a 'new' history instance
         let newHistory = this.state.history.concat(current);
         /* Post to attempts */
-        // Temporary logic until we get authentication
-        let user = null;
-        if (user) {
+        if (this.state.token != null) {
             // Saves attempt to database
-            fetch(`http://localhost:8080/attempt/challenge?user=${user}&problem=${this.state.problem.id}&response=${current.response}`, {method: 'post'});
+            fetch(`http://localhost:8080/attempt/challenge?problem=${this.state.problem.id}&response=${current.response}`, {
+                method: 'post',
+                headers: {
+                    token: this.state.token
+                }
+            });
         }
 
         // adding to score if question is correct
