@@ -99,6 +99,21 @@ class TimeTrial extends React.Component {
     timeOverAlert() {
         alert("Time is up!");
     }
+
+    uploadScore() {
+        fetch(`http://localhost:8080/challenge/score?score=${this.state.score}`, {
+            method: 'post',
+            headers: {
+                token: this.state.token
+            }}).then(response => {
+                switch (response.status) {
+                    case 200:
+                        break;
+                    default:
+                        console.log(`Failed uploading score with response code ${response.status}.`);
+                }
+        });
+    }
     
     render() {
         if (this.state.loading) {
