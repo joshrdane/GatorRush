@@ -144,4 +144,16 @@ public class GatorRush {
             }
         }
     }
+
+    @ResponseBody
+    @PostMapping("challenge/score")
+    public ResponseEntity<Object> saveScore(@RequestHeader("token") String token, @RequestParam("score") Integer score) {
+        try {
+            Long userId = authService.validate(token);
+            userRepository.save(userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId)).setHighScore(score));
+            return ResponseEntity.ok().build();
+        } catch (NotFoundException exception) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+        }
+    }
 }
