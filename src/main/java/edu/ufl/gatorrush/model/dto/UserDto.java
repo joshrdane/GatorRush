@@ -20,4 +20,8 @@ public class UserDto {
     public Integer getLevel() {
         return user.getLevel().getName();
     }
+
+    public Integer getScore() {
+        return user.getScore();
+    }
 }
