@@ -30,8 +30,18 @@ class App extends React.Component {
                 'username': username,
                 'password': password
             }
-        }).then(response => response.text())
-            .then(response => this.setState({ token: response }));
+        }).then(response => {
+            switch (response.status) {
+                case 200:
+                    response.text().then(response => this.setState({ token: response }));
+                    this.handlePageChange(e, "play");
+                    break;
+                default:
+                    // TODO: Handle errors
+                    alert(`HTTP Status Code: ${response.status}`);
+                    break;
+            }
+        })
     }
 
     handleLogout(e) {
