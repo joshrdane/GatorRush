@@ -12,7 +12,7 @@ class MainMenu extends React.Component {
     }
 
     handleLogin(e) {
-        this.props.handleLogin(e);
+        this.props.handleLogin(e, "Tamitha", "Password123");
     }
 
     handleLogout(e) {
@@ -24,7 +24,7 @@ class MainMenu extends React.Component {
     }
 
     render() {
-        const auth = this.props.auth;
+        const auth = this.props.token != null;
         return (
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
@@ -36,9 +36,13 @@ class MainMenu extends React.Component {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <a className="nav-link" href={"#"} data-page={"home"} onClick={this.handlePageChange}>Home</a>
-                            </li>
+                            {
+                                !auth &&
+                                <li className="nav-item">
+                                    <a className="nav-link" href={"#"} data-page={"home"} onClick={this.handlePageChange}>Home</a>
+                                </li>
+                            }
+
                             <li className="nav-item">
                                 <a className="nav-link" href={"#"} data-page={"play"} onClick={this.handlePageChange}>Play</a>
                             </li>

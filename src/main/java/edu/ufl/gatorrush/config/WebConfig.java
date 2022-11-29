@@ -1,4 +1,4 @@
-package edu.ufl.gatorrush;
+package edu.ufl.gatorrush.config;
 
 import edu.ufl.gatorrush.util.StringToEnumConverter;
 import org.springframework.context.annotation.Configuration;

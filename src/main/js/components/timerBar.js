@@ -1,10 +1,7 @@
-import Timer from "./timer";
-import React from "react";
-import Score from "./score";
+import React from 'react';
+import Timer from './timer';
 
-
-
-const TimerBar = (props) => {
+const TimerBar = ({timeOverAlert}) => {
     const [counter, setCounter] = React.useState(100);
     React.useEffect(() => {
         const timer =
@@ -12,44 +9,38 @@ const TimerBar = (props) => {
         return () => clearInterval(timer);
     }, [counter]);
 
+    let bgcolor = "green";
 
-    const { completed} = props;
-
-    let bgcolor = "green" ;
-    let displa = "";
-
-    if(counter < 0){
+    if (counter < 0) {
         setCounter(0);
+        timeOverAlert();
     }
 
-    if(counter > 8 && counter < 25){
+    if (counter > 8 && counter < 25) {
         bgcolor = "yellow"
     }
-    else if(counter > 0 && counter< 8){
+    else if (counter > 0 && counter< 8) {
         bgcolor = "red"
     }
-    else if(counter <= 0){
+    else if (counter <= 0) {
         bgcolor = "rgb(224, 224, 222)"
 
     }
 
     const containerStyles = {
-        height: 20,
-        // width: '25%',
-        backgroundColor: "#e0e0de",
+        height: '25px',
+        width: '300px',
+        backgroundColor: "white",
         borderRadius: 50,
-        margin: 50,
+        margin: 0,
         border: '5px solid #388EDD',
         display: 'block'
-
-
     }
 
     const fillerStyles = {
         height: '100%',
         width: `${counter}%`,
         transition: 'width 1s ease-in-out',
-
         backgroundColor: bgcolor,
         borderRadius: 'inherit',
         textAlign: 'right'
@@ -61,18 +52,11 @@ const TimerBar = (props) => {
         fontSize: '0.9rem',
         fontFamily: 'cursive',
         textAlign: 'right',
-
-        // fontWeight: 'bold'
     }
 
     return (
         <div style={containerStyles}>
-
-            <div style={fillerStyles}>
-
-                {/* <span>{counter}</span>*/}
-                {/*<Score/>*/}
-            </div>
+            <div style={fillerStyles}/>
             <div style = {labelStyles}><Timer/></div>
         </div>
     );

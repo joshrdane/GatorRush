@@ -11,7 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.*;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class}
+)
 public class Application {
 
     private UserRepository userRepository;
@@ -34,10 +36,14 @@ public class Application {
      * Preloads information into database
      */
     public void preload() {
-        String hash = "";
-        userRepository.save(new User("Jimothy", "jimothy@domain.com", hash));
-        userRepository.save(new User("Tamitha", "tamitha@domain.com", hash));
-        userRepository.save(new User("Bolinder", "bolinder@domain.com", hash));
+        String hash = "Password123";
+        try {
+            userRepository.save(new User("Jimothy", "jimothy@domain.com", hash));
+            userRepository.save(new User("Tamitha", "tamitha@domain.com", hash));
+            userRepository.save(new User("Bolinder", "bolinder@domain.com", hash));
+        } catch (Exception ignored) {
+            System.out.println("Unable to create one or all temporary users.");
+        }
 
         Random random = new Random();
         HashMap<Character, List<Problem>> pool = new HashMap<>();
@@ -57,7 +63,7 @@ public class Application {
                     pool.get('-').add(problemRepository.save(new Problem(left, '-', right)));
                 }
                 if (left <= 12 && right <= 12) {
-                    pool.get('x').add(problemRepository.save(new Problem(left, '-', right)));
+                    pool.get('x').add(problemRepository.save(new Problem(left, 'x', right)));
                     if (right != 0 && left % right == 0) {
                         pool.get('/').add(problemRepository.save(new Problem(left, '/', right)));
                     }
@@ -91,6 +97,9 @@ public class Application {
             }
             current = current.getNext();
         }
+        userRepository.save(userRepository.findByUsernameIgnoreCase("tamitha").get().setLevel(levelRepository.findByName(1).get()));
+        userRepository.save(userRepository.findByUsernameIgnoreCase("bolinder").get().setLevel(levelRepository.findByName(1).get()));
+        userRepository.save(userRepository.findByUsernameIgnoreCase("jimothy").get().setLevel(levelRepository.findByName(1).get()));
     }
 
     public static void main(String[] args) {

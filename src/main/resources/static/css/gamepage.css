@@ -21,11 +21,6 @@
     gap: 25px;
 }
 
-.container.upper{
-    display: block;
-    width: 500px;
-}
-
 .container-column {
     display: flex;
     justify-content: center;
@@ -142,7 +137,7 @@
 
 .background .login-container {
     position: relative;
-    background-image: url(/images/Login.png);
+    background-image: url(/images/Login_v2.png);
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
@@ -151,6 +146,53 @@
     background-size: 100%;
     width: 300px;
     height: 450px;
+}
+
+#username-input {
+    position: relative;
+    left: 43px;
+    top: 158px;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    width: 211px;
+    height: 39px;
+}
+
+#password-input {
+    position: relative;
+    left: 43px;
+    top: 214px;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    width: 211px;
+    height: 39px;
+}
+
+#remember-me {
+    position: relative;
+    left: 48px;
+    top: 230px;
+    opacity: 0;
+}
+
+#remember-me:checked {
+    opacity: .9;
+}
+
+#login-button {
+    position: relative;
+    left: 110px;
+    top: 232px;
+    width: 74px;
+    height: 55px;
+    opacity: 0;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 1px 1px 10px deepskyblue;
 }
 
 .background .game_description-container {
@@ -164,6 +206,22 @@
     background-size: 100%;
     width: 500px;
     height: 250px;
+}
+.create_account-container {
+    position: relative;
+
+
+    background-image: url(/images/Wood_paper.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 600px 800px;
+    width: 800px;
+    height: 800px;
+
+
 }
 
 .background .game_description-content {
@@ -268,3 +326,61 @@
 }
 
 
+
+/*create account error*/
+.error-create-account {
+    font-size: 10px;
+    color: #fe6c6c;
+    display: none;
+}
+
+input:invalid[focused='true'] ~ .error-create-account{
+    display: block;
+}
+
+.create_account-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    color: white;
+}
+
+.btn-create-account{
+    position: relative;
+    background-image: linear-gradient(#FC9634, #FC782C, #bc441c);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 8px 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+
+}
+
+.btn-create-account:hover {
+    background-image: linear-gradient(#bc441c, #FC782C, #FC9634);
+}
+
+/*===== Timed Mode Page =====*/
+.score {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000000;
+}

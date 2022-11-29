@@ -4,6 +4,8 @@ import MainMenu from './mainmenu';
 import Home from './home';
 import GameModes from './gamemodes';
 import Casual from './casual';
+import Profile from "./profile";
+import TimeTrial from './timetrial';
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -13,7 +15,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            auth: false,
+            token: null,
             page: "home"
         }
         this.handlePageChange = this.handlePageChange.bind(this);
@@ -21,16 +23,40 @@ class App extends React.Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-    handleLogin(e) {
-        this.setState({
-            auth: true
+    handleLogin(e, username, password) {
+        fetch('http://localhost:8080/auth', {
+            method: 'post',
+            headers: {
+                'username': username,
+                'password': password
+            }
+        }).then(response => {
+            switch (response.status) {
+                case 200:
+                    response.text().then(response => this.setState({ token: response }));
+                    this.handlePageChange(e, "play");
+                    break;
+                default:
+                    // TODO: Handle errors
+                    alert(`HTTP Status Code: ${response.status}`);
+                    break;
+            }
         })
     }
 
     handleLogout(e) {
-        this.setState({
-            auth: false
-        })
+        this.handlePageChange(e, "home");
+        fetch('http://localhost:8080/logout', {
+            method: 'post',
+            headers: {
+                'userToken': this.state.token
+            }
+        }).then(
+            this.setState({
+                token: null
+            })
+        );
+        this.handlePageChange(e, "home");
     }
 
     handlePageChange(e, page) {
@@ -40,14 +66,14 @@ class App extends React.Component {
     }
 
     render() {
-        const auth = this.state.auth;
+        const token = this.state.token;
         const page = this.state.page;
         return (
             <div>
-                <MainMenu auth={auth} handleLogout={this.handleLogout} handleLogin={this.handleLogin} handlePageChange={this.handlePageChange}/>
+                <MainMenu token={token} handleLogout={this.handleLogout} handleLogin={this.handleLogin} handlePageChange={this.handlePageChange}/>
                 {
                     page === "home" &&
-                    <Home/>
+                    <Home handlePageChange={this.handlePageChange} handleLogin={this.handleLogin} />
                 }
                 {
                     page === "play" &&
@@ -55,19 +81,15 @@ class App extends React.Component {
                 }
                 {
                     page === "casual" &&
-                    <Casual />
+                    <Casual token={token} />
                 }
                 {
-                    page === "time trial" &&
-                    <div>Time Trial</div>
+                    page === "timetrial" &&
+                    <TimeTrial token={token} />
                 }
                 {
                     page === "profile" &&
-                    <div>Profile</div>
-                }
-                {
-                    page === "login" &&
-                    <div>Profile</div>
+                    <Profile token={token} />
                 }
             </div>
         )
