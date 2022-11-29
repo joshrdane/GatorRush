@@ -3,7 +3,7 @@ package edu.ufl.gatorrush.model.dto;
 import edu.ufl.gatorrush.model.User;
 
 public class UserDto {
-    private User user;
+    private final User user;
 
     public UserDto(User user) {
         this.user = user;
