@@ -49,6 +49,7 @@ class App extends React.Component {
         this.setState({
             token: null
         })
+        this.handlePageChange(e, "home");
     }
 
     handlePageChange(e, page) {
