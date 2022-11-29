@@ -87,6 +87,10 @@ public class AuthService {
             tokenMap.get(token).refresh();
         }
     }
+
+    public boolean endSession(String token) {
+        return tokenMap.remove(token) != null;
+    }
 }
 
 class Session {
