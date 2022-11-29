@@ -44,19 +44,13 @@ class Home extends React.Component {
 
         return (
             <div className="background">
-
                 <div>
                 <div className="container">
                     <div className="title"><p>Gator Rush</p></div>
                 </div>
-
                 <div className="container">
                     <img className="alligator-homepage" src="/images/Gator_TransparentBG.png"/>
-
-
-
                     <div className="login-container">
-
                         <div className="username-input">
                             <input type="text" id="username-input" name="username-input" maxLength="15"/>
                         </div>
@@ -67,21 +61,11 @@ class Home extends React.Component {
                             <input type="checkbox" id="remember-me" name="remember-me"/>
                         </div>
                     </div>
-
-
-
-
-
-
                 </div>
-
                 <div className="container">
                     <button data-page={"create-account"} className="btn-sign-up" onClick={this.handleCreateAcc}>Create an Account
                     </button>
-
-
                 </div>
-
                 <div className="container">
                     <div className="game_description-container">
                         <div className="game_description-content">
@@ -90,10 +74,6 @@ class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-
-
-
-
                 <p className="attribution"><a
                     href="https://www.freepik.com/free-vector/blank-landscape-nature-park-scene-with-swamp_9720494.htm#query=swamp&position=5&from_view=search&track=sph%22%3EImage">Image
                     by brgfx</a> on Freepik</p>
@@ -101,9 +81,7 @@ class Home extends React.Component {
                     href="https://www.freepik.com/free-vector/game-ui-menu-interface-scrolls-parchments_31368897.htm#page=2&query=web%20game&position=11&from_view=search&track=sph%22%3EImage">Image
                     by upklyak</a> on Freepik</p>
                 </div>
-
                 <CreateAccount trigger = {this.state.trigger} handleLogin={this.handleLogin} handleTrigger={this.handleCreateAcc} handlePageChange={this.handlePageChange}/>
-
             </div>
         );
     }

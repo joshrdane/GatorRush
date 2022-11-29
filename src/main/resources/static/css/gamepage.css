@@ -199,8 +199,6 @@ input:focus {
 }
 .create_account-container {
     position: relative;
-
-
     background-image: url(/images/Wood_paper.png);
     background-color: transparent;
     background-repeat: no-repeat;
@@ -373,4 +371,171 @@ input:invalid[focused='true'] ~ .error-create-account{
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000000;
+}
+
+/*===== Profile Page =====*/
+
+.background .title-profile {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 70px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000000;
+}
+
+.background .change-password-container {
+    position: relative;
+    background-image: url(/images/Wood_Paper.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 300px 600px;
+    width: 300px;
+    height: 625px;
+}
+
+.background .review-questions-container {
+    position: relative;
+    background-image: url(/images/Wood_Paper2.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 300px 550px;
+    width: 300px;
+    height: 625px;
+}
+
+.background .greeting-container {
+    position: relative;
+    background-image: url(/images/Gator_3.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 100%;
+    width: 350px;
+    height: 300px;
+}
+
+.background .stats-container {
+    position: relative;
+    background-image: url(/images/Wood_Paper.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 350px 200px;
+    width: 350px;
+    height: 200px;
+}
+
+.background .change-password-content-title {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    text-decoration-line: underline;
+    text-decoration-color: black;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.background .change-password-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.background .password-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    background-image: url(/images/Wood2.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 200px 50px;
+    transform: translateX(-50%);
+    border: none;
+    color: white;
+    width: 200px;
+    height: 50px;
+}
+
+#currentPassword-input {
+    position: relative;
+    bottom: 50px;
+    left: 0px;
+    background-color: transparent; 
+    border-color: transparent;
+    border: none;
+    color: white;
+    width: 180px;
+    height: 45px;
+}
+
+#newPassword-input {
+    position: relative;
+    bottom: 45px;
+    left: 0px;
+    background-color: transparent; 
+    border-color: transparent;
+    border: none;
+    color: white;
+    width: 180px;
+    height: 45px;
+}
+
+#reenteredPassword-input {
+    position: relative;
+    bottom: 45px;
+    left: 0px;
+    background-color: transparent; 
+    border-color: transparent;
+    border: none;
+    color: white;
+    width: 180px;
+    height: 45px;
+}
+
+.background .btn-ok {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    background-image: url(/images/OK.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    transform: translate(-200%, -100%);
+    border: none;
+    width: 60px;
+    height: 60px;
 }
