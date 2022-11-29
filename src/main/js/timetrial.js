@@ -11,6 +11,7 @@ class TimeTrial extends React.Component {
         super(props);
         this.state = {
             loading: true,
+            token: props.token,
             score: 0,
             feedback: '',
             problem: {
@@ -31,16 +32,18 @@ class TimeTrial extends React.Component {
         // Create a 'new' history instance
         let newHistory = this.state.history.concat(current);
         /* Post to attempts */
-        // Temporary logic until we get authentication
-        let user = null;
-        if (user) {
+        if (this.state.token != null) {
             // Saves attempt to database
-            fetch(`http://localhost:8080/attempt/challenge?user=${user}&problem=${this.state.problem.id}&response=${current.response}`, {method: 'post'});
+            fetch(`http://localhost:8080/attempt/challenge?problem=${this.state.problem.id}&response=${current.response}`, {
+                method: 'post',
+                headers: {
+                    token: this.state.token
+                }
+            });
         }
 
-        // adding to score if question is correct (UPDATE scoring algorithm later)
+        // adding to score if question is correct
         if(current.response === current.result){
-            //this.setState({score: this.state.score + 1}) // use score algo
             this.incrementScore();
             this.setState({feedback: "Great job!"})
         }
@@ -92,6 +95,25 @@ class TimeTrial extends React.Component {
         
         this.setState({score: this.state.score + incrementAmount})
     }
+
+    timeOverAlert() {
+        alert("Time is up!");
+    }
+
+    uploadScore() {
+        fetch(`http://localhost:8080/challenge/score?score=${this.state.score}`, {
+            method: 'post',
+            headers: {
+                token: this.state.token
+            }}).then(response => {
+                switch (response.status) {
+                    case 200:
+                        break;
+                    default:
+                        console.log(`Failed uploading score with response code ${response.status}.`);
+                }
+        });
+    }
     
     render() {
         if (this.state.loading) {
@@ -103,7 +125,7 @@ class TimeTrial extends React.Component {
                     <div className="container">
                         <div className="container-column">
                         <div className="score">{this.state.score}</div>
-                        <TimerBar />
+                        <TimerBar timeOverAlert={() => this.timeOverAlert()} />
                         </div>
                     </div>
                     

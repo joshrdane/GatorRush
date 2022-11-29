@@ -137,7 +137,7 @@
 
 .background .login-container {
     position: relative;
-    background-image: url(/images/Login.png);
+    background-image: url(/images/Login_v2.png);
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
@@ -146,6 +146,43 @@
     background-size: 100%;
     width: 300px;
     height: 450px;
+}
+
+#username-input {
+    position: relative;
+    left: 43px;
+    top: 158px;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    width: 211px;
+    height: 39px;
+}
+
+#password-input {
+    position: relative;
+    left: 43px;
+    top: 214px;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    width: 211px;
+    height: 39px;
+}
+
+#remember-me {
+    position: relative;
+    left: 48px;
+    top: 230px;
+    opacity: 0;
+}
+#remember-me:checked {
+    opacity: .9;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 1px 1px 10px deepskyblue;
 }
 
 .background .game_description-container {
