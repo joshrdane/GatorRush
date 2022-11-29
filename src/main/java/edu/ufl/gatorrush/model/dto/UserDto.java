@@ -18,7 +18,7 @@ public class UserDto {
     }
 
     public Integer getLevel() {
-        return user.getLevel().getName();
+        return user.getLevel() == null ? -1 : user.getLevel().getName();
     }
 
     public Integer getScore() {
