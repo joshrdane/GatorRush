@@ -75,9 +75,16 @@ public class GatorRush {
 
     @ResponseBody
     @GetMapping("level")
-    public ResponseEntity<Object> getLevel(@RequestParam("id") Long levelId) {
+    public ResponseEntity<Object> getLevel(@RequestHeader(value = "token", required = false) Optional<String> token, @RequestParam("id") Optional<Long> levelId) {
         try {
-            Level level = levelRepository.findById(levelId).orElseThrow(() -> new NotFoundException(Level.class, levelId));
+            Level level = null;
+            if (token.isPresent() && levelId.isEmpty()) {
+                level = userRepository.findById(authService.validate(token.get())).orElseThrow().getLevel();
+            } else if (levelId.isPresent()) {
+                level = levelRepository.findById(levelId.get()).orElseThrow(() -> new NotFoundException(Level.class, levelId.get()));
+            } else if (token.isEmpty() && levelId.isEmpty()) {
+                level = levelRepository.findByName(1).orElseThrow();
+            }
             if (level == null) {
                 return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("Congratulations, you have completed all levels!");
             } else {
@@ -97,9 +104,9 @@ public class GatorRush {
                 User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
                 user.setLevel(user.getLevel().getNext());
                 user = userRepository.save(user);
-                return getLevel(user.getLevel().getId());
+                return getLevel(Optional.empty(), user.getLevel().getId().describeConstable());
             } else if (levelId.isPresent()) {
-                return getLevel(levelRepository.findById(levelId.get()).orElseThrow(() -> new NotFoundException(Level.class, levelId.get())).getNext().getId());
+                return getLevel(Optional.empty(), levelRepository.findById(levelId.get()).orElseThrow(() -> new NotFoundException(Level.class, levelId.get())).getNext().getId().describeConstable());
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Not enough parameters.");
             }

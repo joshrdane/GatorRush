@@ -135,8 +135,16 @@ class Casual extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/level?id=13785')
-            .then(response => response.json())
+        let header = {}
+        if (this.state.token != null) {
+            header = {
+                token: this.state.token
+            }
+        }
+        fetch('http://localhost:8080/level', {
+            method: 'get',
+            headers: header
+        }).then(response => response.json())
             .then(response => {
                 this.setState({
                     level: response
