@@ -176,8 +176,18 @@
     top: 230px;
     opacity: 0;
 }
+
 #remember-me:checked {
     opacity: .9;
+}
+
+#login-button {
+    position: relative;
+    left: 110px;
+    top: 232px;
+    width: 74px;
+    height: 55px;
+    opacity: 0;
 }
 
 input:focus {
