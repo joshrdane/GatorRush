@@ -19,6 +19,7 @@ class Home extends React.Component {
         this.handleLogin = this.handleLogin.bind(this);
         this.handlePageChange = this.handlePageChange.bind(this);
         this.handleCreateAcc = this.handleCreateAcc.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e) {
@@ -31,13 +32,17 @@ class Home extends React.Component {
         });
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        this.handleLogin(e, this.state.username, this.state.password);
+    }
+
     handleLogin(e, username, password) {
         this.props.handleLogin(e, username, password);
     }
 
     handlePageChange(e, page) {
         this.props.handlePageChange(e, page);
-
     }
 
     handleCreateAcc(){
@@ -61,7 +66,7 @@ class Home extends React.Component {
                     <div className="container">
                         <div className="title"><p>Gator Rush</p></div>
                     </div>
-                    <form className="container">
+                    <form className="container" onSubmit={this.handleSubmit}>
                         <img className="alligator-homepage" src="/images/Gator_TransparentBG.png"/>
                         <div className="login-container">
                             <div className="username-input">
@@ -74,7 +79,7 @@ class Home extends React.Component {
                                 <input type="checkbox" id="remember-me" name="rememberMe" value={rememberMe} onChange={this.handleChange}/>
                             </div>
                             <div>
-                                <button type="submit" id="login-button" onSubmit={this.handleLogin}></button>
+                                <button type="submit" id="login-button"></button>
                             </div>
                         </div>
                     </form>
