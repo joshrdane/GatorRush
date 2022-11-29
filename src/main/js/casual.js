@@ -130,10 +130,6 @@ class Casual extends React.Component {
         }
     }
 
-    advanceLevel(response) {
-
-    }
-
     componentDidMount() {
         let header = {}
         if (this.state.token != null) {
