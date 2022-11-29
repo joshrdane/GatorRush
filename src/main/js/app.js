@@ -45,10 +45,17 @@ class App extends React.Component {
     }
 
     handleLogout(e) {
-        // TODO: Create endpoint for invalidating tokens
-        this.setState({
-            token: null
-        })
+        this.handlePageChange(e, "home");
+        fetch('http://localhost:8080/logout', {
+            method: 'post',
+            headers: {
+                'userToken': this.state.token
+            }
+        }).then(
+            this.setState({
+                token: null
+            })
+        );
         this.handlePageChange(e, "home");
     }
 

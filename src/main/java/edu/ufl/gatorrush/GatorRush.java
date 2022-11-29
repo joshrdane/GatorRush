@@ -137,6 +137,17 @@ public class GatorRush {
     }
 
     @ResponseBody
+    @PostMapping("logout")
+    public ResponseEntity<Object> logout(@RequestHeader("userToken") String token) {
+        boolean loggedOut = authService.endSession(token);
+        if(loggedOut) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
+    @ResponseBody
     @PostMapping("account/create")
     public ResponseEntity<?> createAccount(@RequestHeader("username") String username, @RequestHeader("email") String email, @RequestHeader("password") String password) {
         if (userRepository.existsByEmail(email)) {
