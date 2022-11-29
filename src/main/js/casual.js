@@ -76,8 +76,6 @@ class Casual extends React.Component {
             // reset the progress bar for the next level
             this.updateProgressBar(0);
 
-            // TODO: Add error handling for 400 & 400 errors
-            // TODO: Add handle final level completion error 418
             let header = {}
             if (this.state.token != null) {
                 header = {
@@ -107,8 +105,12 @@ class Casual extends React.Component {
                             // TODO: Show history? note: use newHistory
                         });
                         break;
+                    case 400:
+                    case 404:
+                        alert("Oops! Something went wrong. Try refreshing the page.");
+                        break;
                     case 418:
-                        alert("Congrats, you have completed all levels");
+                        alert("Congrats, you have completed all levels!");
                         break;
                     default:
                         alert(response.status);
