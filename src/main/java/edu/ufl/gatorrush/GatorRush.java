@@ -138,7 +138,7 @@ public class GatorRush {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already associated with another user.");
         } else {
             try {
-                userRepository.save(new User(username, email, password));
+                userRepository.save(new User(username, email, password).setLevel(levelRepository.findByName(1).orElseThrow()));
                 return authenticate(username, password);
             } catch (Exception exception) {
                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exception);
