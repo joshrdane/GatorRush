@@ -48,7 +48,7 @@ class Home extends React.Component {
     toggleCreateAccountVisibility() {
         this.setState({
             trigger: !this.state.trigger
-        })
+        });
     }
 
     render() {
