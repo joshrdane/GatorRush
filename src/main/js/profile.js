@@ -120,24 +120,26 @@ class Profile extends React.Component {
                             </div>
                             <div className="change-password-content">
                                 <p>Current Password</p>
-                                <div className="password-container"/>
+                                <div/>
                                 <div className="currentPassword-input">
-                                    <input type="text" id="currentPassword-input" name="currentPassword-input"/>
+                                    <input type="password" className="password-container" id="currentPassword-input" name="currentPassword-input" onChange={this.handleChange}/>
                                 </div>
+                                <div/><div/>
                                 <p>New Password</p>
-                                <div className="password-container"/>
+                                <div/>
                                 <div className="newPassword-input">
-                                    <input type="text" id="newPassword-input" name="newPassword-input"/>
+                                    <input type="password" className="password-container" id="newPassword-input" name="newPassword-input" onChange={this.handleChange}/>
                                 </div>
-
+                                <div/><div/>
                                 <p>Reenter New Password</p>
-                                <div className="password-container"/>
+                                <div/>
                                 <div className="reenteredPassword-input">
-                                    <input type="text" id="reenteredPassword-input" name="reenteredPassword-input"/>
+                                    <input type="password" className="password-container" id="reenteredPassword-input" name="reenteredPassword-input" onChange={this.handleChange}/>
                                 </div>
-
+                                <div/><div/>
                             </div>
-                            <button className="btn-ok"></button>
+                            <div/><div/><div/><div/>
+                            <button className="btn-ok" type={"submit"}></button>
                         </div>
                     </div>
                     <div className="container-column">
@@ -165,6 +167,7 @@ class Profile extends React.Component {
                                 <div/><div/>
                                 <p>Review Questions</p>
                             </div>
+                            <div id="review-scroll">
                             {
                                 attempts.map((attempt, index) => {
                                     return (
@@ -172,6 +175,7 @@ class Profile extends React.Component {
                                     )
                                 })
                             }
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -451,39 +451,42 @@ input:invalid[focused='true'] ~ .error-create-account{
 
 #currentPassword-input {
     position: relative;
-    bottom: 50px;
-    left: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-62%, 0%);
     background-color: transparent; 
     border-color: transparent;
     border: none;
     color: white;
-    width: 180px;
+    width: 200px;
     height: 45px;
     -webkit-text-stroke-width: 0;
 }
 
 #newPassword-input {
     position: relative;
-    bottom: 45px;
-    left: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-62%, 0%);
     background-color: transparent; 
     border-color: transparent;
     border: none;
     color: white;
-    width: 180px;
+    width: 200px;
     height: 45px;
     -webkit-text-stroke-width: 0;
 }
 
 #reenteredPassword-input {
     position: relative;
-    bottom: 45px;
-    left: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-62%, 0%);
     background-color: transparent; 
     border-color: transparent;
     border: none;
     color: white;
-    width: 180px;
+    width: 200px;
     height: 45px;
     -webkit-text-stroke-width: 0;
 }
@@ -496,15 +499,12 @@ input:invalid[focused='true'] ~ .error-create-account{
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 50px 50px;
-    transform: translate(-200%, -100%);
+    transform: translate(-200%, -170%);
     border: none;
     width: 60px;
     height: 60px;
 }
 
-p {
-    margin: 0;
-}
 
 .background .review-questions-container {
     position: relative;
@@ -539,18 +539,24 @@ p {
 
 .background .review-questions-content {
     position: relative;
-    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-55%);
     font-size: 20px;
     text-align: center;
     font-weight: bold;
     align-items: center;
     justify-content: center;
-    width: 250px;
     color: white;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
+}
+
+#review-scroll { 
+    height: 380px; 
+    width: 250px; 
+    overflow: auto; 
+    scrollbar-width: thin;
+    scrollbar-color: white #388EDD;
 }
 
 .background .greeting-container {
@@ -616,7 +622,7 @@ p {
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translate(-53%, -250%);
+    transform: translate(-53%, -300%);
     font-size: 20px;
     text-align: center;
     font-weight: bold;
