@@ -30,15 +30,33 @@ class App extends React.Component {
                 'username': username,
                 'password': password
             }
-        }).then(response => response.text())
-            .then(response => this.setState({ token: response }));
+        }).then(response => {
+            switch (response.status) {
+                case 200:
+                    response.text().then(response => this.setState({ token: response }));
+                    this.handlePageChange(e, "play");
+                    break;
+                default:
+                    // TODO: Handle errors
+                    alert(`HTTP Status Code: ${response.status}`);
+                    break;
+            }
+        })
     }
 
     handleLogout(e) {
-        // TODO: Create endpoint for invalidating tokens
-        this.setState({
-            token: null
-        })
+        this.handlePageChange(e, "home");
+        fetch('http://localhost:8080/logout', {
+            method: 'post',
+            headers: {
+                'userToken': this.state.token
+            }
+        }).then(
+            this.setState({
+                token: null
+            })
+        );
+        this.handlePageChange(e, "home");
     }
 
     handlePageChange(e, page) {
@@ -52,7 +70,7 @@ class App extends React.Component {
         const page = this.state.page;
         return (
             <div>
-                <MainMenu token={token} handleLogout={this.handleLogout} handleLogin={this.handleLogin} handlePageChange={this.handlePageChange}/>
+                <MainMenu token={token} handleLogout={this.handleLogout} handlePageChange={this.handlePageChange}/>
                 {
                     page === "home" &&
                     <Home handlePageChange={this.handlePageChange} handleLogin={this.handleLogin} />

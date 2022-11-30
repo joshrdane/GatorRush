@@ -7,12 +7,7 @@ class MainMenu extends React.Component {
     constructor(props) {
         super(props);
         this.handlePageChange = this.handlePageChange.bind(this);
-        this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
-    }
-
-    handleLogin(e) {
-        this.props.handleLogin(e, "Tamitha", "Password123");
     }
 
     handleLogout(e) {
@@ -53,15 +48,9 @@ class MainMenu extends React.Component {
                                 </li>
                             }
                             {
-                                auth && // TODO: logout functionality
+                                auth &&
                                 <li className="nav-item">
                                     <a className="nav-link" href={"#"} data-page={"logout"} onClick={this.handleLogout}>Logout</a>
-                                </li>
-                            }
-                            {
-                                !auth && // TODO: get rid of this, it is just a placeholder to simulate logging in for testing the navigation
-                                <li className="nav-item">
-                                    <a className="nav-link" href={"#"} data-page={"login"} onClick={this.handleLogin}>Log In</a>
                                 </li>
                             }
                         </ul>

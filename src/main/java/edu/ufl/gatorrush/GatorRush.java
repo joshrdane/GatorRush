@@ -75,9 +75,16 @@ public class GatorRush {
 
     @ResponseBody
     @GetMapping("level")
-    public ResponseEntity<Object> getLevel(@RequestParam("id") Long levelId) {
+    public ResponseEntity<Object> getLevel(@RequestHeader(value = "token", required = false) Optional<String> token, @RequestParam("id") Optional<Long> levelId) {
         try {
-            Level level = levelRepository.findById(levelId).orElseThrow(() -> new NotFoundException(Level.class, levelId));
+            Level level = null;
+            if (token.isPresent() && levelId.isEmpty()) {
+                level = userRepository.findById(authService.validate(token.get())).orElseThrow().getLevel();
+            } else if (levelId.isPresent()) {
+                level = levelRepository.findById(levelId.get()).orElseThrow(() -> new NotFoundException(Level.class, levelId.get()));
+            } else if (token.isEmpty() && levelId.isEmpty()) {
+                level = levelRepository.findByName(1).orElseThrow();
+            }
             if (level == null) {
                 return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("Congratulations, you have completed all levels!");
             } else {
@@ -97,9 +104,9 @@ public class GatorRush {
                 User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
                 user.setLevel(user.getLevel().getNext());
                 user = userRepository.save(user);
-                return getLevel(user.getLevel().getId());
+                return getLevel(Optional.empty(), user.getLevel().getId().describeConstable());
             } else if (levelId.isPresent()) {
-                return getLevel(levelRepository.findById(levelId.get()).orElseThrow(() -> new NotFoundException(Level.class, levelId.get())).getNext().getId());
+                return getLevel(Optional.empty(), levelRepository.findById(levelId.get()).orElseThrow(() -> new NotFoundException(Level.class, levelId.get())).getNext().getId().describeConstable());
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Not enough parameters.");
             }
@@ -130,6 +137,17 @@ public class GatorRush {
     }
 
     @ResponseBody
+    @PostMapping("logout")
+    public ResponseEntity<Object> logout(@RequestHeader("userToken") String token) {
+        boolean loggedOut = authService.endSession(token);
+        if(loggedOut) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
+    @ResponseBody
     @PostMapping("account/create")
     public ResponseEntity<?> createAccount(@RequestHeader("username") String username, @RequestHeader("email") String email, @RequestHeader("password") String password) {
         if (userRepository.existsByEmail(email)) {
@@ -138,7 +156,7 @@ public class GatorRush {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already associated with another user.");
         } else {
             try {
-                userRepository.save(new User(username, email, password));
+                userRepository.save(new User(username, email, password).setLevel(levelRepository.findByName(1).orElseThrow()));
                 return authenticate(username, password);
             } catch (Exception exception) {
                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(exception);
