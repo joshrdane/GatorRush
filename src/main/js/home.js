@@ -52,8 +52,6 @@ class Home extends React.Component {
         else{
             this.setState({trigger:true});
         }
-
-        console.log(this.state.trigger);
     }
 
 
