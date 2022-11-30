@@ -65,10 +65,9 @@ function CreateAccount(props){
             switch (response.status) {
                 case 200:
                     props.handleLogin(e, values.username, values.password);
-                    props.handlePageChange(e, "play");
-                    props.handleTrigger();
                     // TODO: maybe create some sort of visual to notify the user of success and get rid of alert
                     alert("Account created successfully, you are now logged in.");
+                    props.handlePageChange(e, "play");
                     break;
                 default:
                     // TODO: handle errors, response body should include the reason for the backend error
