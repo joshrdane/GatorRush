@@ -124,7 +124,6 @@ class Profile extends React.Component {
                                 <div className="currentPassword-input">
                                     <input type="text" id="currentPassword-input" name="currentPassword-input"/>
                                 </div>
-
                                 <p>New Password</p>
                                 <div className="password-container"/>
                                 <div className="newPassword-input">
@@ -142,13 +141,39 @@ class Profile extends React.Component {
                         </div>
                     </div>
                     <div className="container-column">
-                        <div className="greeting-container"></div>
-                        <div/>
-                        <div/>
-                        <div/>
-                        <div className="stats-container"></div>
+                        <div className="greeting-container">
+                            <div className="greeting-content">
+                                <p>Hey</p>
+                                <p>{username}!</p>
+                            </div>
+                        </div>
+                        <div/><div/><div/>
+                        <div className="stats-container">
+                            <img className="star-icon" src="/images/Star_Icon.png"/>
+                            <img className="lightning-icon" src="/images/Lightning_Icon.png"/>
+                            <div className="stats-content-currentLevel">
+                                <p>Current Level: {level}/30</p>
+                            </div>
+                            <div className="stats-content-topScore">
+                                <p>Top Score: {score}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="review-questions-container"></div>
+                    <div className="review-questions-container">
+                        <div className="container-column">
+                            <div className="review-questions-content-title">
+                                <div/><div/>
+                                <p>Review Questions</p>
+                            </div>
+                            {
+                                attempts.map((attempt, index) => {
+                                    return (
+                                        <div className="review-questions-content" key={attempt.timestamp}>{attempt.problem} = {attempt.response}</div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>    
         );
