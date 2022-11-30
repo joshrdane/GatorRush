@@ -108,53 +108,78 @@ class Profile extends React.Component {
     render() {
         const { username, score, attempts, level } = this.state;
         return (
-            <div className={"container"}>
-                <div className={"container-fluid row mb-3"}><h1>My Profile</h1></div>
-                <div className={"row mb-3"}>
-                    <div className={"col-lg-4"}>
-                        <form onSubmit={this.handleSubmit}>
-                            <div className={"row mb-3"}>Change Password</div>
-                            <div className={"row mb-3"}>
-                                <label htmlFor="old_password" className="form-label">Old Password</label>
-                                <input type="password" className="form-control" id="old_password" onChange={this.handleChange} value={this.state.old_password} />
+            <div className="background">
+                <div className="container">
+                    <div className="title-profile"><p>My Profile</p></div>
+                </div>
+                <div className="container">
+                    <div className="change-password-container">
+                        <div className="container-column">
+                            <div className="change-password-content-title">
+                                <p>Change Password</p>
                             </div>
-                            <div className={"row mb-3"}>
-                                <label htmlFor="new_password" className="form-label">New Password</label>
-                                <input type="password" className="form-control" id="new_password" onChange={this.handleChange} value={this.state.new_password} />
+                            <div className="change-password-content">
+                                <p>Current Password</p>
+                                <div/>
+                                <div className="currentPassword-input">
+                                    <input type="password" className="password-container" id="currentPassword-input" name="currentPassword-input" onChange={this.handleChange}/>
+                                </div>
+                                <div/><div/>
+                                <p>New Password</p>
+                                <div/>
+                                <div className="newPassword-input">
+                                    <input type="password" className="password-container" id="newPassword-input" name="newPassword-input" onChange={this.handleChange}/>
+                                </div>
+                                <div/><div/>
+                                <p>Reenter New Password</p>
+                                <div/>
+                                <div className="reenteredPassword-input">
+                                    <input type="password" className="password-container" id="reenteredPassword-input" name="reenteredPassword-input" onChange={this.handleChange}/>
+                                </div>
+                                <div/><div/>
                             </div>
-                            <div className={"row mb-3"}>
-                                <label htmlFor="new_password" className="form-label">Reenter New Password</label>
-                                <input type="password" className="form-control" id="reenter_new_password" onChange={this.handleChange} value={this.state.reenter_new_password} />
-                            </div>
-                            <div className={"row mb-3"}>
-                                <button type={"submit"}>Ok</button>
-                            </div>
-                        </form>
+                            <div/><div/><div/><div/>
+                            <button className="btn-ok" type={"submit"}></button>
+                        </div>
                     </div>
-                    <div className={"col-lg-4"}>
-                        <div className={"row"}>Hey {username}!</div>
-                        <div className={"row"}>
-                            <div className={"row"}>
-                                Current Level: {level}/30
+                    <div className="container-column">
+                        <div className="greeting-container">
+                            <div className="greeting-content">
+                                <p>Hey</p>
+                                <p>{username}!</p>
                             </div>
-                            <div className={"row"}>
-                                Top Score: {score}
+                        </div>
+                        <div/><div/><div/>
+                        <div className="stats-container">
+                            <img className="star-icon" src="/images/Star_Icon.png"/>
+                            <img className="lightning-icon" src="/images/Lightning_Icon.png"/>
+                            <div className="stats-content-currentLevel">
+                                <p>Current Level: {level}/30</p>
+                            </div>
+                            <div className="stats-content-topScore">
+                                <p>Top Score: {score}</p>
                             </div>
                         </div>
                     </div>
-                    <div className={"col-lg-4"}>
-                        <div className={"row mb-1"}>Review Missed Questions</div>
-                        {
-                            attempts.map((attempt, index) => {
-                                return (
-                                    // TODO: the div below is just a placeholder
-                                    <div className={"row mb-1"} key={attempt.timestamp}>{attempt.answer === attempt.response ? "Correct" : "Incorrect"}: {attempt.problem} = {attempt.response} {attempt.mode} {attempt.timestamp}</div>
-                                )
-                            })
-                        }
+                    <div className="review-questions-container">
+                        <div className="container-column">
+                            <div className="review-questions-content-title">
+                                <div/><div/>
+                                <p>Review Questions</p>
+                            </div>
+                            <div id="review-scroll">
+                            {
+                                attempts.map((attempt, index) => {
+                                    return (
+                                        <div className="review-questions-content" key={attempt.timestamp}>{attempt.problem} = {attempt.response}</div>
+                                    )
+                                })
+                            }
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div>    
         );
     }
 }

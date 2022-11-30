@@ -209,8 +209,6 @@ input:focus {
 }
 .create_account-container {
     position: relative;
-
-
     background-image: url(/images/Wood_paper.png);
     background-color: transparent;
     background-repeat: no-repeat;
@@ -325,8 +323,6 @@ input:focus {
     top: 43%;
 }
 
-
-
 /*create account error*/
 .error-create-account {
     font-size: 10px;
@@ -384,3 +380,287 @@ input:invalid[focused='true'] ~ .error-create-account{
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000000;
 }
+
+/*===== Profile Page =====*/
+
+.background .title-profile {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 70px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000000;
+}
+
+.background .change-password-container {
+    position: relative;
+    background-image: url(/images/Wood_Paper.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 300px 550px;
+    width: 300px;
+    height: 550px;
+}
+
+.background .change-password-content-title {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    text-decoration-line: underline;
+    text-decoration-color: black;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.background .change-password-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.background .password-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    background-image: url(/images/Wood2.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 200px 50px;
+    transform: translateX(-50%);
+    border: none;
+    color: white;
+    width: 200px;
+    height: 50px;
+}
+
+#currentPassword-input {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-62%, 0%);
+    background-color: transparent; 
+    border-color: transparent;
+    border: none;
+    color: white;
+    width: 200px;
+    height: 45px;
+    -webkit-text-stroke-width: 0;
+}
+
+#newPassword-input {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-62%, 0%);
+    background-color: transparent; 
+    border-color: transparent;
+    border: none;
+    color: white;
+    width: 200px;
+    height: 45px;
+    -webkit-text-stroke-width: 0;
+}
+
+#reenteredPassword-input {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-62%, 0%);
+    background-color: transparent; 
+    border-color: transparent;
+    border: none;
+    color: white;
+    width: 200px;
+    height: 45px;
+    -webkit-text-stroke-width: 0;
+}
+
+.background .btn-ok {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    background-image: url(/images/OK.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    transform: translate(-200%, -170%);
+    border: none;
+    width: 60px;
+    height: 60px;
+}
+
+
+.background .review-questions-container {
+    position: relative;
+    background-image: url(/images/Wood_Paper2.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 300px 550px;
+    width: 300px;
+    height: 550px;
+}
+
+.background .review-questions-content-title {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    text-decoration-line: underline;
+    text-decoration-color: black;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.background .review-questions-content {
+    position: relative;
+    left: 50%;
+    transform: translateX(-55%);
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+#review-scroll { 
+    height: 380px; 
+    width: 250px; 
+    overflow: auto; 
+    scrollbar-width: thin;
+    scrollbar-color: white #388EDD;
+}
+
+.background .greeting-container {
+    position: relative;
+    background-image: url(/images/Gator_3.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 100%;
+    width: 350px;
+    height: 300px;
+}
+
+.background .greeting-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000000;
+}
+
+.background .stats-container {
+    position: relative;
+    background-image: url(/images/Wood_Paper.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    color: white;
+    background-size: 350px 200px;
+    width: 350px;
+    height: 200px;
+}
+
+.background .stats-content-currentLevel {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -380%);
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.background .stats-content-topScore {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-53%, -300%);
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.star-icon {
+    position: relative;
+    background-size: contain;
+    top: 50%;
+    left: 50%;
+    transform: translate(-275%, -150%);
+    width: 50px;
+    height: 50px;
+}
+
+.lightning-icon {
+    position: relative;
+    background-size: contain;
+    top: 50%;
+    left: 50%;
+    transform: translate(-375%, 0%);
+    width: 50px;
+    height: 50px;
+}
+
