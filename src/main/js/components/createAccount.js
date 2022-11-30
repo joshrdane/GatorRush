@@ -150,7 +150,7 @@ function CreateAccount(props){
                     <div>
                         <button className="btn-create-account" style={submitBtnStyle} >Create Account</button>
                     </div>
-                    <img style={cancelBtnStyle} src="/images/X_Button.png" data-page={"home"} onClick={handleCancel}/>
+                    <img style={cancelBtnStyle} src="/images/X_Button.png" alt={"cancel"} data-page={"home"} onClick={handleCancel}/>
                 </form>
             </div>
         </div>
