@@ -98,8 +98,6 @@ function CreateAccount(props){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("test");
-
         fetch(`http://localhost:8080/account/create`, {
             method: 'post',
             headers: {
@@ -121,15 +119,7 @@ function CreateAccount(props){
                     break;
             }
         });
-
-        // NOT DONE YET: send user info to DB, create account
-        console.log(values);
-
-        // send user back to the home page, but now logged in
-        props.handlePageChange(e, e.target.dataset.page);
-
-
-    }
+    };
 
     const handleCancel = (e) => {
         props.handleTrigger();
