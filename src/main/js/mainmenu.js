@@ -7,12 +7,7 @@ class MainMenu extends React.Component {
     constructor(props) {
         super(props);
         this.handlePageChange = this.handlePageChange.bind(this);
-        this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
-    }
-
-    handleLogin(e) {
-        this.props.handleLogin(e, "Tamitha", "Password123");
     }
 
     handleLogout(e) {

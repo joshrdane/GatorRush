@@ -70,7 +70,7 @@ class App extends React.Component {
         const page = this.state.page;
         return (
             <div>
-                <MainMenu token={token} handleLogout={this.handleLogout} handleLogin={this.handleLogin} handlePageChange={this.handlePageChange}/>
+                <MainMenu token={token} handleLogout={this.handleLogout} handlePageChange={this.handlePageChange}/>
                 {
                     page === "home" &&
                     <Home handlePageChange={this.handlePageChange} handleLogin={this.handleLogin} />
