@@ -51,7 +51,7 @@ class App extends React.Component {
             headers: {
                 'userToken': this.state.token
             }
-        }).then(
+        }).then(() =>
             this.setState({
                 token: null
             })
