@@ -18,7 +18,7 @@ class Home extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         this.handlePageChange = this.handlePageChange.bind(this);
-        this.handleCreateAcc = this.handleCreateAcc.bind(this);
+        this.toggleCreateAccountVisibility = this.toggleCreateAccountVisibility.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -45,13 +45,10 @@ class Home extends React.Component {
         this.props.handlePageChange(e, page);
     }
 
-    handleCreateAcc(){
-        if(this.state.trigger){
-            this.setState({trigger:false});
-        }
-        else{
-            this.setState({trigger:true});
-        }
+    toggleCreateAccountVisibility() {
+        this.setState({
+            trigger: !this.state.trigger
+        })
     }
 
     render() {
