@@ -140,7 +140,7 @@ function CreateAccount(props){
     return(trigger) ? (
         <div style={popupStyle}>
             <div style={popupInner}>
-                <form  data-page={"home"} onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <h1 style={headerStyle}>Create an Account</h1>
                     {
                         inputs.map((input) =>
@@ -150,7 +150,7 @@ function CreateAccount(props){
                     <div>
                         <button className="btn-create-account" style={submitBtnStyle} >Create Account</button>
                     </div>
-                    <img style={cancelBtnStyle} src="/images/X_Button.png" alt={"cancel"} data-page={"home"} onClick={handleCancel}/>
+                    <img style={cancelBtnStyle} src="/images/X_Button.png" alt={"cancel"} onClick={handleCancel}/>
                 </form>
             </div>
         </div>
