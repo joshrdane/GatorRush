@@ -48,7 +48,7 @@ class MainMenu extends React.Component {
                                 </li>
                             }
                             {
-                                auth && // TODO: logout functionality
+                                auth &&
                                 <li className="nav-item">
                                     <a className="nav-link" href={"#"} data-page={"logout"} onClick={this.handleLogout}>Logout</a>
                                 </li>
