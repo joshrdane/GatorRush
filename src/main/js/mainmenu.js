@@ -58,12 +58,6 @@ class MainMenu extends React.Component {
                                     <a className="nav-link" href={"#"} data-page={"logout"} onClick={this.handleLogout}>Logout</a>
                                 </li>
                             }
-                            {
-                                !auth && // TODO: get rid of this, it is just a placeholder to simulate logging in for testing the navigation
-                                <li className="nav-item">
-                                    <a className="nav-link" href={"#"} data-page={"login"} onClick={this.handleLogin}>Log In</a>
-                                </li>
-                            }
                         </ul>
                     </div>
                 </div>
