@@ -23,7 +23,7 @@ class App extends React.Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-    handleLogin(e, username, password) {
+    handleLogin(e, username, password, rememberMe) {
         fetch('http://localhost:8080/auth', {
             method: 'post',
             headers: {
@@ -33,7 +33,13 @@ class App extends React.Component {
         }).then(response => {
             switch (response.status) {
                 case 200:
-                    response.text().then(response => this.setState({ token: response }));
+                    response.text().then(response => {
+                        if (rememberMe) {
+                            let date = new Date();
+                            date.setMonth( date.getMonth() + 1 );
+                            document.cookie = "name=" + response + "expires=" + date.toUTCString() + ";"
+                        }
+                        this.setState({ token: response })});
                     this.handlePageChange(e, "play");
                     break;
                 default:

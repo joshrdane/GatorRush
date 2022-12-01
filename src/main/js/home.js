@@ -34,11 +34,11 @@ class Home extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.handleLogin(e, this.state.username, this.state.password);
+        this.handleLogin(e, this.state.username, this.state.password, this.state.rememberMe);
     }
 
-    handleLogin(e, username, password) {
-        this.props.handleLogin(e, username, password);
+    handleLogin(e, username, password, rememberMe) {
+        this.props.handleLogin(e, username, password, rememberMe);
     }
 
     handlePageChange(e, page) {
