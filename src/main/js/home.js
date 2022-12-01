@@ -76,18 +76,19 @@ class Home extends React.Component {
                             </div>
                         </div>
                     </form>
-                </div>
-                <div className="container">
-                    <button data-page={"create-account"} className="btn-sign-up" onClick={this.toggleCreateAccountVisibility}>
-                        Create an Account
-                    </button>
-                </div>
-                <div className="container">
-                    <div className="game_description-container">
-                        <div className="game_description-content">
-                            <p>
-                                Gator Rush is an engaging game geared towards helping kids practice and review their math skills. With two different game modes, kids can choose between a casual or challenging experience.
-                            </p>
+                
+                    <div className="container">
+                        <button data-page={"create-account"} className="btn-sign-up" onClick={this.toggleCreateAccountVisibility}>
+                            Create an Account
+                        </button>
+                    </div>
+                    <div className="container">
+                        <div className="game_description-container">
+                            <div className="game_description-content">
+                                <p>
+                                    Gator Rush is an engaging game geared towards helping kids practice and review their math skills. With two different game modes, kids can choose between a casual or challenging experience.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
