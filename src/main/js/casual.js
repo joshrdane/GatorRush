@@ -184,8 +184,13 @@ class Casual extends React.Component {
                 <div className="background">
                     <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
                     <div className="container">
-                        <div className="progress">
-                            <div id="levelProgress" className="progress_bar"/>
+                        <div className="container-column">
+                            <div className="score">
+                                <p>{this.state.level.name}</p>
+                            </div>
+                            <div className="progress">
+                                <div id="levelProgress" className="progress_bar"/>
+                            </div>
                         </div>
                     </div>
                     <div className="container"/>
@@ -193,7 +198,6 @@ class Casual extends React.Component {
                         <div className="equation-content">
                             <div>{this.state.problem.leftOperand} {this.state.problem.operator} {this.state.problem.rightOperand} = ?</div>
                         </div>
-
                         <ImmediateFeedback trigger = {this.state.trigger} isCorrect = {this.state.isCorrect} />
                     </div>
                     <div className="container"/>
