@@ -14,10 +14,18 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            token: null,
-            page: "home"
+        if (document.cookie == "") {
+            this.state = {
+                token: null,
+                page: "home"
+            }
+        } else {
+            this.state = {
+                token: document.cookie.substring(5,69),
+                page: "play"
+            }
         }
+
         this.handlePageChange = this.handlePageChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
@@ -39,6 +47,7 @@ class App extends React.Component {
                             date.setMonth( date.getMonth() + 1 );
                             document.cookie = "name=" + response + "expires=" + date.toUTCString() + ";"
                         }
+
                         this.setState({ token: response })});
                     this.handlePageChange(e, "play");
                     break;
@@ -62,6 +71,9 @@ class App extends React.Component {
                 token: null
             })
         );
+        let date = new Date();
+        date.setMonth( date.getMonth() - 1 );
+        document.cookie = "name=; " + "expires=" + date.toUTCString() + ";"
         this.handlePageChange(e, "home");
     }
 
