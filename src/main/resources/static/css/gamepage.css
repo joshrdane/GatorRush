@@ -96,9 +96,9 @@
 /*===== Progress Bar =====*/
 
 .background .progress {
-    margin: 25px auto;
+    margin: 0;
     padding: 2px;
-    width: 100%;
+    width: 300px;
     max-width: 300px;
     background-color: white;
     border: 5px solid #388EDD;
@@ -218,8 +218,6 @@ input:focus {
     background-size: 600px 800px;
     width: 800px;
     height: 800px;
-
-
 }
 
 .background .game_description-content {
