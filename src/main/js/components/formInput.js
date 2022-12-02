@@ -31,7 +31,7 @@ const FormInput = (props) => {
 
     }
 
-    const{errorMessage, label, onChange, id, ...inputProps} = props;
+    const{ errorMessage, label, onChange, id, ...inputProps } = props;
 
     const[focused, setFocused] = useState(false);
 
