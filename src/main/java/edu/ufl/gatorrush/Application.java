@@ -20,7 +20,7 @@ import java.util.Map;
 )
 public class Application {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     private final ProblemRepository problemRepository;
     private final LevelRepository levelRepository;
     private static final SecureRandom random = new SecureRandom();
@@ -63,24 +63,30 @@ public class Application {
         userRepository.save(userRepository.findByUsernameIgnoreCase("jimothy").orElseThrow().setLevel(levelRepository.findByName(1).orElseThrow()));
     }
 
+    public Boolean isAcceptable(Problem problem) {
+        return switch (problem.getOperator()) {
+            case '+' -> problem.getResult() <= 144;
+            case '-' -> problem.getResult() >= 0 && problem.getResult() <= 144;
+            case 'x' -> problem.getLeftOperand() <= 12 && problem.getRightOperand() <= 12;
+            case '/' -> problem.getRightOperand() != 0 && problem.getLeftOperand() % problem.getRightOperand() == 0;
+            default -> false;
+        };
+    }
+
     public Map<Character, List<Problem>> generateProblems() {
         HashMap<Character, List<Problem>> pool = new HashMap<>();
         LevelInfo.keySet().forEach(character -> pool.put(character, new ArrayList<>()));
         // Generate pool of problems
         for (int left = 0; left < 100; left++) {
             for (int right = 0; right < 100; right++) {
-                if (Problem.getResult(left, '+', right) <= 144) {
-                    pool.get('+').add(problemRepository.save(new Problem(left, '+', right)));
-                }
-                if (Problem.getResult(left, '-', right) >= 0) {
-                    pool.get('-').add(problemRepository.save(new Problem(left, '-', right)));
-                }
-                if (left <= 12 && right <= 12) {
-                    pool.get('x').add(problemRepository.save(new Problem(left, 'x', right)));
-                    if (right != 0 && left % right == 0) {
-                        pool.get('/').add(problemRepository.save(new Problem(left, '/', right)));
-                    }
-                }
+                int finalLeft = left;
+                int finalRight = right;
+                LevelInfo
+                        .keySet()
+                        .stream()
+                        .map(operator -> new Problem(finalLeft, operator, finalRight))
+                        .filter(this::isAcceptable)
+                        .forEach(problem -> pool.get(problem.getOperator()).add(problemRepository.save(problem)));
             }
         }
         return pool;
