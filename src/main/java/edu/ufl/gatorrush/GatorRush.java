@@ -45,7 +45,7 @@ public class GatorRush {
         }
     }
 
-    @RequestMapping(value = "/")
+    @GetMapping(value = "/")
     public String index() {
         return "index";
     }
