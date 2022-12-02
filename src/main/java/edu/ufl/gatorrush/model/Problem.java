@@ -2,7 +2,9 @@ package edu.ufl.gatorrush.model;
 
 import javax.persistence.*;
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Represents a two operand equation
@@ -87,7 +89,6 @@ public class Problem {
     }
 
     public Integer[] getOptions() {
-        boolean flipFlop = random.nextBoolean();
         List<Integer> potentialOptions = new ArrayList<>();
         Integer result = getResult();
         for (int i = 1; i <= 10; i++) {

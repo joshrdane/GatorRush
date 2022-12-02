@@ -102,7 +102,7 @@ class Casual extends React.Component {
             }).then(response => {
                 switch (response.status) {
                     case 200:
-                        response = response.json().then(response => {
+                        response.json().then(response => {
                             this.setState({
                                 level: response
                             });

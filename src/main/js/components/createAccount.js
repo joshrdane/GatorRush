@@ -81,10 +81,6 @@ function CreateAccount(props){
         props.handleTrigger();
     };
 
-    const handlePageChange = (e) => {
-        handlePageChange(e, e.target.dataset.page);
-    };
-
     const onChange = (e) => {
         setValues({...values, [e.target.name]: e.target.value});
     };
