@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.security.SecureRandom;
 
-public class UserTests {
+class UserTests {
     User user;
 
     SecureRandom random = new SecureRandom();
