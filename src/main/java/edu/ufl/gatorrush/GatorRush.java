@@ -16,8 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.SecureRandom;
 import java.util.Optional;
-import java.util.Random;
 
 @Controller
 public class GatorRush {
@@ -25,6 +25,8 @@ public class GatorRush {
     private final LevelRepository levelRepository;
     private final ProblemRepository problemRepository;
     private final UserRepository userRepository;
+
+    private static final SecureRandom random = new SecureRandom();
 
     private final AuthService authService;
 
@@ -120,7 +122,7 @@ public class GatorRush {
     public ResponseEntity<?> getProblem() {
         Long id;
         do {
-            id = new Random().nextLong(15000);
+            id = random.nextLong(15000);
         } while (!problemRepository.existsById(id));
         return ResponseEntity.ok(problemRepository.findById(id));
     }
