@@ -17,14 +17,11 @@ const TimerBar = ({timeOverAlert}) => {
     }
 
     if (counter > 8 && counter < 25) {
-        bgcolor = "yellow"
-    }
-    else if (counter > 0 && counter< 8) {
-        bgcolor = "red"
-    }
-    else if (counter <= 0) {
-        bgcolor = "rgb(224, 224, 222)"
-
+        bgcolor = "yellow";
+    } else if (counter > 0 && counter< 8) {
+        bgcolor = "red";
+    } else if (counter <= 0) {
+        bgcolor = "rgb(224, 224, 222)";
     }
 
     const containerStyles = {
@@ -35,7 +32,7 @@ const TimerBar = ({timeOverAlert}) => {
         margin: 0,
         border: '5px solid #388EDD',
         display: 'block'
-    }
+    };
 
     const fillerStyles = {
         height: '100%',
@@ -44,7 +41,7 @@ const TimerBar = ({timeOverAlert}) => {
         backgroundColor: bgcolor,
         borderRadius: 'inherit',
         textAlign: 'right'
-    }
+    };
 
     const labelStyles = {
         padding: 5,
@@ -52,12 +49,12 @@ const TimerBar = ({timeOverAlert}) => {
         fontSize: '0.9rem',
         fontFamily: 'cursive',
         textAlign: 'right',
-    }
+    };
 
     return (
         <div style={containerStyles}>
             <div style={fillerStyles}/>
-            <div style = {labelStyles}><Timer/></div>
+            <div style={labelStyles}><Timer/></div>
         </div>
     );
 };

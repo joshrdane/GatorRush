@@ -17,7 +17,8 @@ class GameModes extends React.Component {
         return (
             <div className="background">
                 <div className="container-column">
-                    <button className="btn-game_mode" data-page={"casual"} onClick={this.handlePageChange}>Casual Mode
+                    <button className="btn-game_mode" data-page={"casual"} onClick={this.handlePageChange}>
+                        Casual Mode
                     </button>
                     <div className="container">
                         <div className="game_mode-container">
@@ -29,7 +30,9 @@ class GameModes extends React.Component {
                     
                 </div>
                 <div className="container-column">
-                    <button className="btn-game_mode" data-page={"timetrial"} onClick={this.handlePageChange}>Timed Mode</button>
+                    <button className="btn-game_mode" data-page={"timetrial"} onClick={this.handlePageChange}>
+                        Timed Mode
+                    </button>
                     <div className="container">
                         <div className="game_mode-container">
                             <div className="game_mode-content">

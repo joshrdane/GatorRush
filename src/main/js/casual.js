@@ -115,6 +115,7 @@ class Casual extends React.Component {
                         break;
                     default:
                         alert(response.status);
+                        break;
                 }
             })
         } else {
@@ -133,11 +134,11 @@ class Casual extends React.Component {
     }
 
     componentDidMount() {
-        let header = {}
+        let header = {};
         if (this.state.token != null) {
             header = {
                 token: this.state.token
-            }
+            };
         }
         fetch('http://localhost:8080/level', {
             method: 'get',
@@ -178,7 +179,9 @@ class Casual extends React.Component {
     
     render() {
         if (this.state.loading) {
-            return <div>Loading!</div>
+            return (
+                <div>Loading!</div>
+            );
         } else {
             return (
                 <div className="background">

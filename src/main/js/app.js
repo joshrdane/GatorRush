@@ -17,7 +17,7 @@ class App extends React.Component {
         this.state = {
             token: null,
             page: "home"
-        }
+        };
         this.handlePageChange = this.handlePageChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
@@ -41,7 +41,7 @@ class App extends React.Component {
                     alert(`HTTP Status Code: ${response.status}`);
                     break;
             }
-        })
+        });
     }
 
     handleLogout(e) {
@@ -62,7 +62,7 @@ class App extends React.Component {
     handlePageChange(e, page) {
         this.setState({
             page: page === null ? e.target.dataset.page : page
-        })
+        });
     }
 
     render() {
