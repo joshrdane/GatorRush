@@ -37,6 +37,7 @@ class Profile extends React.Component {
                         });
                     });
                     break;
+                case 400:
                 default:
                     alert(response.status);
                     break;
@@ -56,6 +57,7 @@ class Profile extends React.Component {
                         });
                     });
                     break;
+                case 400:
                 default:
                     alert(response.status);
                     break;

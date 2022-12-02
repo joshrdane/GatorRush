@@ -51,6 +51,7 @@ class App extends React.Component {
                         this.setState({ token: response })});
                     this.handlePageChange(e, "play");
                     break;
+                case 400:
                 default:
                     // TODO: Handle errors
                     alert(`HTTP Status Code: ${response.status}`);

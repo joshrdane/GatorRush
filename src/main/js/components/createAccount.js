@@ -69,6 +69,7 @@ function CreateAccount(props){
                     alert("Account created successfully, you are now logged in.");
                     props.handlePageChange(e, "play");
                     break;
+                case 400:
                 default:
                     // TODO: handle errors, response body should include the reason for the backend error
                     break;

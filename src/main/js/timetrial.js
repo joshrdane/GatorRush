@@ -126,6 +126,7 @@ class TimeTrial extends React.Component {
                 switch (response.status) {
                     case 200:
                         break;
+                    case 400:
                     default:
                         console.log(`Failed uploading score with response code ${response.status}.`);
                 }
