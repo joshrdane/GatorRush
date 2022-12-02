@@ -211,37 +211,37 @@ class Casual extends React.Component {
         } else {
             return (
                 <div className="background">
-                    <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
-                    <div className="container">
-                        <div className="container-column">
-                            <div className="score">
+                    <img className="alligator-casual" alt={"alligator"} src={"/images/Gator_TransparentBG.png"}/>
+                    <div className={"container"}>
+                        <div className={"container-column"}>
+                            <div className={"score"}>
                                 <p>{this.state.level.name}</p>
                             </div>
-                            <div className="progress">
-                                <div id="levelProgress" className="progress_bar"/>
+                            <div className={"progress"}>
+                                <div id={"levelProgress"} className={"progress_bar"}/>
                             </div>
                         </div>
                     </div>
-                    <div className="container"/>
-                    <div className="equation-container">
-                        <div className="equation-content">
+                    <div className={"container"}/>
+                    <div className={"equation-container"}>
+                        <div className={"equation-content"}>
                             <div>{this.state.problem.leftOperand} {this.state.problem.operator} {this.state.problem.rightOperand} = ?</div>
                         </div>
-                        <ImmediateFeedback trigger = {this.state.triggerFeedback} isCorrect = {this.state.isCorrect} />
-                        <QuestionReview handleTriggerReview = {this.handleTriggerReview} trigger = {this.state.triggerReview} levelIncorrect = {this.state.levelIncorrect} />
+                        <ImmediateFeedback trigger = {this.state.triggerFeedback} isCorrect={this.state.isCorrect}/>
+                        <QuestionReview handleTriggerReview = {this.handleTriggerReview} trigger={this.state.triggerReview} levelIncorrect={this.state.levelIncorrect}/>
                     </div>
-                    <div className="container"/>
-                    <div className="container">
+                    <div className={"container"}/>
+                    <div className={"container"}>
                         {
                             this.state.problem.options.map((option, index) => {
                                 return (
                                     <button
                                         key={`${this.state.level.id}-${this.state.problem.id}-${index}-${option}-${this.state.history.length}`}
-                                        className="btn-answer"
+                                        className={"btn-answer"}
                                         onClick={this.handleSelect}>
                                         {this.state.problem.options.at(index)}
                                     </button>
-                                )
+                                );
                             })
                         }
                     </div>
