@@ -110,6 +110,7 @@ class TimeTrial extends React.Component {
     timeOverAlert() {
         this.setState({gameOverFeedback: "Time is up!"});
         this.setState({triggerGameOver: true});
+        this.uploadScore();
     }
 
     uploadScore() {
