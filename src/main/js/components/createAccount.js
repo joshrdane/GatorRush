@@ -76,7 +76,7 @@ function CreateAccount(props){
         });
     };
 
-    const handleCancel = (e) => {
+    const handleCancel = () => {
         props.handleTrigger();
     };
 
