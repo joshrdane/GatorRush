@@ -22,6 +22,7 @@ public class Application {
     private final LevelRepository levelRepository;
 
     private static final SecureRandom random = new SecureRandom();
+    private static final HashMap<Character, Integer> LevelInfo = new HashMap<>();
 
     public Application(
             UserRepository userRepository,
@@ -31,6 +32,13 @@ public class Application {
         this.userRepository = userRepository;
         this.problemRepository = problemRepository;
         this.levelRepository = levelRepository;
+
+        if (LevelInfo.size() == 0) {
+            LevelInfo.put('+', 1);
+            LevelInfo.put('-', LevelInfo.get('+') + 5);
+            LevelInfo.put('x', LevelInfo.get('-') + 5);
+            LevelInfo.put('/', LevelInfo.get('x') + 5);
+        }
 
         preload();
     }
@@ -45,16 +53,17 @@ public class Application {
             userRepository.save(new User("Tamitha", "tamitha@domain.com", hash));
             userRepository.save(new User("Bolinder", "bolinder@domain.com", hash));
         } catch (Exception ignored) {
-            System.out.println("Unable to create one or all temporary users.");
+            //
         }
+        generateLevels((HashMap<Character, List<Problem>>) generateProblems());
+        userRepository.save(userRepository.findByUsernameIgnoreCase("tamitha").orElseThrow().setLevel(levelRepository.findByName(1).orElseThrow()));
+        userRepository.save(userRepository.findByUsernameIgnoreCase("bolinder").orElseThrow().setLevel(levelRepository.findByName(1).orElseThrow()));
+        userRepository.save(userRepository.findByUsernameIgnoreCase("jimothy").orElseThrow().setLevel(levelRepository.findByName(1).orElseThrow()));
+    }
 
+    public Map<Character, List<Problem>> generateProblems() {
         HashMap<Character, List<Problem>> pool = new HashMap<>();
-        Arrays.stream(new Character[] {'+', '-', 'x', '/'}).forEach(character -> pool.put(character, new ArrayList<>()));
-        // Define parameters for generation
-        int addition = 1;
-        int subtraction = addition + 5;
-        int multiplication = subtraction + 5;
-        int division = multiplication + 5;
+        LevelInfo.keySet().forEach(character -> pool.put(character, new ArrayList<>()));
         // Generate pool of problems
         for (int left = 0; left < 100; left++) {
             for (int right = 0; right < 100; right++) {
@@ -72,22 +81,16 @@ public class Application {
                 }
             }
         }
+        return pool;
+    }
+
+    private void generateLevels(HashMap<Character, List<Problem>> pool) {
         Integer levels = 30;
         Level current = new Level(1);
         for (int i = 1; i <= levels; i++) {
             List<Character> operators = new ArrayList<>();
-            if (current.getName() >= addition) {
-                operators.add('+');
-            }
-            if (current.getName() >= subtraction) {
-                operators.add('-');
-            }
-            if (current.getName() >= multiplication) {
-                operators.add('x');
-            }
-            if (current.getName() >= division) {
-                operators.add('/');
-            }
+            Level finalCurrent = current;
+            LevelInfo.keySet().stream().filter(key -> finalCurrent.getName() >= LevelInfo.get(key)).forEach(operators::add);
             while (current.getProblems().size() < 20) {
                 Character operator = operators.get(random.nextInt(0, operators.size()));
                 current.getProblems().add(pool.get(operator).get(random.nextInt(0, pool.get(operator).size())));
