@@ -70,7 +70,7 @@ function CreateAccount(props){
                     break;
                 case 400:
                 default:
-                    // TODO: handle errors, response body should include the reason for the backend error
+                    alert(`An error has occurred (${response.status}).`)
                     break;
             }
         });
