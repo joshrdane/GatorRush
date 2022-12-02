@@ -103,7 +103,7 @@ class App extends React.Component {
                 }
                 {
                     page === "timetrial" &&
-                    <TimeTrial token={token} />
+                    <TimeTrial handlePageChange={this.handlePageChange} token={token} />
                 }
                 {
                     page === "profile" &&
