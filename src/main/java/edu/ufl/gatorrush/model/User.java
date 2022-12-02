@@ -87,7 +87,7 @@ public class User implements UserDetails {
      * Current level
      */
     @ManyToOne
-    private transient Level level;
+    private Level level;
 
     /**
      * List of attempted problems

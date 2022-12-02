@@ -118,18 +118,14 @@ class Casual extends React.Component {
                             });
                         });
                         break;
-                    case 400:
-                    case 404:
-                        alert("Oops! Something went wrong. Try refreshing the page.");
-                        break;
                     case 418:
                         alert("Congrats, you have completed all levels!");
                         break;
                     default:
-                        alert(response.status);
+                        alert(`Oops! Something went wrong. Try refreshing the page. ${response.status}`);
                         break;
                 }
-            })
+            });
         } else {
             this.setState({
                 problem: this.state.level.problems.at(0),
@@ -155,22 +151,33 @@ class Casual extends React.Component {
         fetch('http://localhost:8080/level', {
             method: 'get',
             headers: header
-        }).then(response => response.json())
-            .then(response => {
-                this.setState({
-                    level: response
-                });
-                this.setState({
-                    loading: false,
-                    problem: this.state.level.problems.at(0),
-                    level: {
-                        // The next two lines are required to not nullify the existing values
-                        id: this.state.level.id,
-                        name: this.state.level.name,
-                        problems: this.state.level.problems.slice(1)
-                    }
-                });
-            });
+        }).then(response => {
+            switch (response.status) {
+                case 200:
+                    response.json().then(response => {
+                        this.setState({
+                            level: response
+                        });
+                        this.setState({
+                            loading: false,
+                            problem: this.state.level.problems.at(0),
+                            level: {
+                                // The next two lines are required to not nullify the existing values
+                                id: this.state.level.id,
+                                name: this.state.level.name,
+                                problems: this.state.level.problems.slice(1)
+                            }
+                        });
+                    });
+                    break;
+                case 418:
+                    alert("Congrats, you have completed all levels!");
+                    break;
+                default:
+                    alert(`Oops! Something went wrong. Try refreshing the page. ${response.status}`);
+                    break;
+            }
+        });
     }
 
     updateProgressBar(value) {
@@ -204,37 +211,37 @@ class Casual extends React.Component {
         } else {
             return (
                 <div className="background">
-                    <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
-                    <div className="container">
-                        <div className="container-column">
-                            <div className="score">
+                    <img className="alligator-casual" alt={"alligator"} src={"/images/Gator_TransparentBG.png"}/>
+                    <div className={"container"}>
+                        <div className={"container-column"}>
+                            <div className={"score"}>
                                 <p>{this.state.level.name}</p>
                             </div>
-                            <div className="progress">
-                                <div id="levelProgress" className="progress_bar"/>
+                            <div className={"progress"}>
+                                <div id={"levelProgress"} className={"progress_bar"}/>
                             </div>
                         </div>
                     </div>
-                    <div className="container"/>
-                    <div className="equation-container">
-                        <div className="equation-content">
+                    <div className={"container"}/>
+                    <div className={"equation-container"}>
+                        <div className={"equation-content"}>
                             <div>{this.state.problem.leftOperand} {this.state.problem.operator} {this.state.problem.rightOperand} = ?</div>
                         </div>
-                        <ImmediateFeedback trigger = {this.state.triggerFeedback} isCorrect = {this.state.isCorrect} />
-                        <QuestionReview handleTriggerReview = {this.handleTriggerReview} trigger = {this.state.triggerReview} levelIncorrect = {this.state.levelIncorrect} />
+                        <ImmediateFeedback trigger = {this.state.triggerFeedback} isCorrect={this.state.isCorrect}/>
+                        <QuestionReview handleTriggerReview = {this.handleTriggerReview} trigger={this.state.triggerReview} levelIncorrect={this.state.levelIncorrect}/>
                     </div>
-                    <div className="container"/>
-                    <div className="container">
+                    <div className={"container"}/>
+                    <div className={"container"}>
                         {
                             this.state.problem.options.map((option, index) => {
                                 return (
                                     <button
                                         key={`${this.state.level.id}-${this.state.problem.id}-${index}-${option}-${this.state.history.length}`}
-                                        className="btn-answer"
+                                        className={"btn-answer"}
                                         onClick={this.handleSelect}>
                                         {this.state.problem.options.at(index)}
                                     </button>
-                                )
+                                );
                             })
                         }
                     </div>

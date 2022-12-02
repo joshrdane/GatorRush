@@ -4,12 +4,11 @@ function ImmediateFeedback(props){
     let setTrigger = props.trigger;
     let isCorrect = props.isCorrect;
 
-    let bgColor = '';
-    let color = '';
-
-    let feedback = []
-
     let feedbackIndex = Math.floor(Math.random() * 4);
+
+    let bgColor;
+    let color;
+    let feedback;
 
     // will change the style and feedback message depending if the user selected the correct answer or not
     if(isCorrect){
@@ -47,7 +46,7 @@ function ImmediateFeedback(props){
         borderRadius: '2rem'
     }
 
-    return(setTrigger) ? (
+    return (setTrigger) ? (
         <div style={popupStyle}>
             <div style={popupInner}>
                 <h3>{feedback[feedbackIndex]}</h3>
