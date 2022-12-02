@@ -14,7 +14,7 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        if (document.cookie == "") {
+        if (document.cookie === "") {
             this.state = {
                 token: null,
                 page: "home"
