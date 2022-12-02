@@ -4,11 +4,12 @@ function ImmediateFeedback(props){
     let setTrigger = props.trigger;
     let isCorrect = props.isCorrect;
 
-    let feedbackIndex = Math.floor(Math.random() * 4);
+    let bgColor = '';
+    let color = '';
 
-    let bgColor;
-    let color;
-    let feedback;
+    let feedback = []
+
+    let feedbackIndex = Math.floor(Math.random() * 4);
 
     // will change the style and feedback message depending if the user selected the correct answer or not
     if(isCorrect){
