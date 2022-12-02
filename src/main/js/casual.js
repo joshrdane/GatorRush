@@ -118,18 +118,14 @@ class Casual extends React.Component {
                             });
                         });
                         break;
-                    case 400:
-                    case 404:
-                        alert("Oops! Something went wrong. Try refreshing the page.");
-                        break;
                     case 418:
                         alert("Congrats, you have completed all levels!");
                         break;
                     default:
-                        alert(response.status);
+                        alert(`Oops! Something went wrong. Try refreshing the page. ${response.status}`);
                         break;
                 }
-            })
+            });
         } else {
             this.setState({
                 problem: this.state.level.problems.at(0),
@@ -155,22 +151,33 @@ class Casual extends React.Component {
         fetch('http://localhost:8080/level', {
             method: 'get',
             headers: header
-        }).then(response => response.json())
-            .then(response => {
-                this.setState({
-                    level: response
-                });
-                this.setState({
-                    loading: false,
-                    problem: this.state.level.problems.at(0),
-                    level: {
-                        // The next two lines are required to not nullify the existing values
-                        id: this.state.level.id,
-                        name: this.state.level.name,
-                        problems: this.state.level.problems.slice(1)
-                    }
-                });
-            });
+        }).then(response => {
+            switch (response.status) {
+                case 200:
+                    response.json().then(response => {
+                        this.setState({
+                            level: response
+                        });
+                        this.setState({
+                            loading: false,
+                            problem: this.state.level.problems.at(0),
+                            level: {
+                                // The next two lines are required to not nullify the existing values
+                                id: this.state.level.id,
+                                name: this.state.level.name,
+                                problems: this.state.level.problems.slice(1)
+                            }
+                        });
+                    });
+                    break;
+                case 418:
+                    alert("Congrats, you have completed all levels!");
+                    break;
+                default:
+                    alert(`Oops! Something went wrong. Try refreshing the page. ${response.status}`);
+                    break;
+            }
+        });
     }
 
     updateProgressBar(value) {
