@@ -100,7 +100,7 @@ class UserTests {
     @Test
     void testEmailsValid() throws Exception {
         String[] validEmails = new String[]{
-                "example@sub.domain.tld",
+                "example@sub.domain.com",
                 };
         for (String validEmail : validEmails) {
             user.setEmail(validEmail);
