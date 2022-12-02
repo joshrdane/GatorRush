@@ -9,6 +9,7 @@ import edu.ufl.gatorrush.repository.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 @SpringBootApplication(exclude = {
@@ -19,6 +20,8 @@ public class Application {
     private UserRepository userRepository;
     private final ProblemRepository problemRepository;
     private final LevelRepository levelRepository;
+
+    private static final SecureRandom random = new SecureRandom();
 
     public Application(
             UserRepository userRepository,
@@ -45,7 +48,6 @@ public class Application {
             System.out.println("Unable to create one or all temporary users.");
         }
 
-        Random random = new Random();
         HashMap<Character, List<Problem>> pool = new HashMap<>();
         Arrays.stream(new Character[] {'+', '-', 'x', '/'}).forEach(character -> pool.put(character, new ArrayList<>()));
         // Define parameters for generation
