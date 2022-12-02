@@ -84,7 +84,7 @@ public class GatorRush {
                 level = userRepository.findById(authService.validate(token.get())).orElseThrow().getLevel();
             } else if (levelId.isPresent()) {
                 level = levelRepository.findById(levelId.get()).orElseThrow(() -> new NotFoundException(Level.class, levelId.get()));
-            } else if (token.isEmpty() && levelId.isEmpty()) {
+            } else {
                 level = levelRepository.findByName(1).orElseThrow();
             }
             if (level == null) {
@@ -119,7 +119,7 @@ public class GatorRush {
 
     @ResponseBody
     @GetMapping("problem")
-    public ResponseEntity<?> getProblem() {
+    public ResponseEntity<Object> getProblem() {
         Long id;
         do {
             id = random.nextLong(15000);
@@ -129,7 +129,7 @@ public class GatorRush {
 
     @ResponseBody
     @PostMapping("auth")
-    public ResponseEntity<?> authenticate(@RequestHeader("username") String username, @RequestHeader("password") String password) {
+    public ResponseEntity<Object> authenticate(@RequestHeader("username") String username, @RequestHeader("password") String password) {
         Long userId = authService.authenticate(username, password);
         if (userId == -1) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -151,10 +151,10 @@ public class GatorRush {
 
     @ResponseBody
     @PostMapping("account/create")
-    public ResponseEntity<?> createAccount(@RequestHeader("username") String username, @RequestHeader("email") String email, @RequestHeader("password") String password) {
-        if (userRepository.existsByEmail(email)) {
+    public ResponseEntity<Object> createAccount(@RequestHeader("username") String username, @RequestHeader("email") String email, @RequestHeader("password") String password) {
+        if (userRepository.existsByEmail(email).booleanValue()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email address already associated with another user.");
-        } else if (userRepository.existsByUsername(username)) {
+        } else if (userRepository.existsByUsername(username).booleanValue()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already associated with another user.");
         } else {
             try {
@@ -173,7 +173,7 @@ public class GatorRush {
      */
     @ResponseBody
     @GetMapping("account")
-    public ResponseEntity<?> getAccount(@RequestHeader(value = "token") String token) {
+    public ResponseEntity<Object> getAccount(@RequestHeader(value = "token") String token) {
         Long userId = authService.validate(token);
         if (userId != -1) {
             try {
@@ -195,7 +195,7 @@ public class GatorRush {
      */
     @ResponseBody
     @PatchMapping("account/password")
-    public ResponseEntity<?> updatePassword(@RequestHeader(value = "token") String token, @RequestHeader("old_password") String oldPassword, @RequestHeader("new_password") String newPassword) {
+    public ResponseEntity<Object> updatePassword(@RequestHeader(value = "token") String token, @RequestHeader("old_password") String oldPassword, @RequestHeader("new_password") String newPassword) {
         // Get userId from token
         Long userId = authService.validate(token);
         // Ensure a valid userId was obtained
