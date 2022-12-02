@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-public class ProblemTests {
+class ProblemTests {
 
     @Test
     void testGetResult() {
@@ -25,7 +25,7 @@ public class ProblemTests {
     void testSetInvalidOperator() {
         Problem problem = new Problem(1, '+', 1);
         problem.setOperator('?');
-        Assertions.assertEquals(problem.getOperator(), '+');
+        Assertions.assertEquals('+',problem.getOperator());
     }
 
     @Test

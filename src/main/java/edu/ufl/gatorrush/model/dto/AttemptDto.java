@@ -5,7 +5,13 @@ import edu.ufl.gatorrush.model.Attempt;
 
 import java.util.Date;
 
+/**
+ * Data Transfer Object wrapper for Attempt
+ */
 public class AttemptDto {
+    /**
+     * Wrapped attempt
+     */
     private Attempt attempt;
 
     public AttemptDto(Attempt attempt) {

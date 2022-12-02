@@ -102,7 +102,7 @@ class Casual extends React.Component {
             }).then(response => {
                 switch (response.status) {
                     case 200:
-                        response = response.json().then(response => {
+                        response.json().then(response => {
                             this.setState({
                                 level: response
                             });
@@ -116,7 +116,6 @@ class Casual extends React.Component {
                                     problems: this.state.level.problems.slice(1)
                                 }
                             });
-                            // TODO: Show history? note: use newHistory
                         });
                         break;
                     case 400:
@@ -128,6 +127,7 @@ class Casual extends React.Component {
                         break;
                     default:
                         alert(response.status);
+                        break;
                 }
             })
         } else {
@@ -146,11 +146,11 @@ class Casual extends React.Component {
     }
 
     componentDidMount() {
-        let header = {}
+        let header = {};
         if (this.state.token != null) {
             header = {
                 token: this.state.token
-            }
+            };
         }
         fetch('http://localhost:8080/level', {
             method: 'get',
@@ -198,7 +198,9 @@ class Casual extends React.Component {
     
     render() {
         if (this.state.loading) {
-            return <div>Loading!</div>
+            return (
+                <div>Loading!</div>
+            );
         } else {
             return (
                 <div className="background">

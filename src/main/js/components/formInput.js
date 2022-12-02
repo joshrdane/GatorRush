@@ -1,21 +1,13 @@
-import React from 'react'
-import {useState} from "react";
+import React, {useState} from 'react'
 
 const FormInput = (props) => {
-
-    let errorDisplay = 'none'
-
-
-
     const formStyle = {
         display: 'flex',
         flexDirection: 'column',
         marginTop: '40px'
+    };
 
-
-    }
-
-// CSS for the input box
+    // CSS for the input box
     const inputStyle = {
         padding: '10px',
         margin: '5px 0px',
@@ -30,8 +22,7 @@ const FormInput = (props) => {
 
     }
 
-
-// CSS for input label
+    // CSS for input label
     const labelStyle = {
         fontSize: '17px',
         textAlign: 'center',
@@ -40,25 +31,15 @@ const FormInput = (props) => {
 
     }
 
-
-// CSS for the error message
-    const spanStyle = {
-        fontSize: '10px',
-        // padding: '1.5px',
-        color: '#fe6c6c',
-        display: errorDisplay
-
-    }
-
-    const{errorMessage, label, onChange, id, ...inputProps} = props;
+    const{ errorMessage, label, onChange, id, ...inputProps } = props;
 
     const[focused, setFocused] = useState(false);
 
-    const handleFocus = (e) => {
+    const handleFocus = () => {
         setFocused(true);
-    }
+    };
 
-    return(
+    return (
         <div style={formStyle}>
             <label style={labelStyle}>{label}</label>
             <input style={inputStyle} {...inputProps} onChange={onChange} onBlur={handleFocus}  focused={focused.toString()} />

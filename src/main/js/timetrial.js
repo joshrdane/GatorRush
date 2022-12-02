@@ -1,5 +1,4 @@
 'use strict';
-import ImmediateFeedback from './components/ImmediateFeedback';
 import TimerBar from './components/timerBar';
 import GameOver from './components/gameOver';
 
@@ -34,8 +33,6 @@ class TimeTrial extends React.Component {
     handleSelect(e) {
         let current = this.state.problem;
         current.response = parseInt(e.target.innerHTML);
-        // Create a 'new' history instance
-        let newHistory = this.state.history.concat(current);
         /* Post to attempts */
         if (this.state.token != null) {
             // Saves attempt to database
@@ -91,7 +88,7 @@ class TimeTrial extends React.Component {
             lowerOperand = this.state.problem.rightOperand;
         }
 
-        let incrementAmount = 0;
+        let incrementAmount;
 
         if (lowerOperand < 2) {
             incrementAmount = 1;
@@ -107,14 +104,15 @@ class TimeTrial extends React.Component {
             ++incrementAmount;
         }
         
-        this.setState({score: this.state.score + incrementAmount})
+        this.setState({
+            score: this.state.score + incrementAmount
+        });
     }
 
     timeOverAlert() {
-        // alert("Time is up!");
-        this.setState({gameOverFeedback: "Time is up!"})
-        this.setState({triggerGameOver: true})
-
+        this.setState({gameOverFeedback: "Time is up!"});
+        this.setState({triggerGameOver: true});
+        this.uploadScore();
     }
 
     uploadScore() {
@@ -126,6 +124,7 @@ class TimeTrial extends React.Component {
                 switch (response.status) {
                     case 200:
                         break;
+                    case 400:
                     default:
                         console.log(`Failed uploading score with response code ${response.status}.`);
                 }
@@ -137,30 +136,30 @@ class TimeTrial extends React.Component {
             return <div>Loading!</div>
         } else {
             return (
-                <div className="background">
-                    <img className="alligator-casual" src="/images/Gator_TransparentBG.png"/>
-                    <div className="container">
-                        <div className="container-column">
-                        <div className="score">{this.state.score}</div>
+                <div className={"background"}>
+                    <img className={"alligator-casual"} alt={"alligator"} src={"/images/Gator_TransparentBG.png"}/>
+                    <div className={"container"}>
+                        <div className={"container-column"}>
+                        <div className={"score"}>{this.state.score}</div>
                         <TimerBar timeOverAlert={() => this.timeOverAlert()} />
                         </div>
                     </div>
                     
-                    <div className="container"/>
-                    <div className="equation-container">
-                        <div className="equation-content">
+                    <div className={"container"}/>
+                    <div className={"equation-container"}>
+                        <div className={"equation-content"}>
                             <div>{this.state.problem.leftOperand} {this.state.problem.operator} {this.state.problem.rightOperand} = ?</div>
                         </div>
                         <GameOver  incorrectQuestion = {this.state.incorrectQuestion} feedback = {this.state.gameOverFeedback} trigger = {this.state.triggerGameOver}  handlePageChange={this.handlePageChange} score = {this.state.score} />
                     </div>
-                    <div className="container"/>
-                    <div className="container">
+                    <div className={"container"}/>
+                    <div className={"container"}>
                         {
                             this.state.problem.options.map((option, index) => {
                                 return (
                                     <button
                                         key={`${this.state.problem.id}-${index}-${option}-${this.state.history.length}`}
-                                        className="btn-answer"
+                                        className={"btn-answer"}
                                         onClick={this.handleSelect}>
                                         {this.state.problem.options.at(index)}
                                     </button>

@@ -17,12 +17,12 @@ public class AuthService {
     private static final HashMap<String, Session> tokenMap = new HashMap<>();
 
     private static final char[] validCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/".toCharArray();
-    private static UserRepository userRepository;
+    private UserRepository userRepository;
 
-    private final int tokenLength = 64;
+    private static final int TOKEN_LENGTH = 64;
 
     public AuthService(UserRepository userRepository) {
-        AuthService.userRepository = userRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -47,7 +47,7 @@ public class AuthService {
         StringBuilder builder;
         do {
             builder = new StringBuilder();
-            for (int i = 0; i < tokenLength; i++) {
+            for (int i = 0; i < TOKEN_LENGTH; i++) {
                 builder.append(validCharacters[random.nextInt(0, validCharacters.length)]);
             }
         } while (tokenMap.containsKey(builder.toString()));
@@ -66,7 +66,9 @@ public class AuthService {
             if (User.PASSWORD_ENCODER.matches(password, user.getPassword())) {
                 return user.getId();
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+            // Do nothing
+        }
         return (long) -1;
     }
 
@@ -109,5 +111,9 @@ class Session {
 
     public Long getUserId() {
         return userId;
+    }
+
+    public Boolean isExpired() {
+        return Calendar.getInstance().after(expiration);
     }
 }

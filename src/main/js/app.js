@@ -14,7 +14,7 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        if (document.cookie == "") {
+        if (document.cookie === "") {
             this.state = {
                 token: null,
                 page: "home"
@@ -51,8 +51,8 @@ class App extends React.Component {
                         this.setState({ token: response })});
                     this.handlePageChange(e, "play");
                     break;
+                case 400:
                 default:
-                    // TODO: Handle errors
                     alert(`HTTP Status Code: ${response.status}`);
                     break;
             }
@@ -66,7 +66,7 @@ class App extends React.Component {
             headers: {
                 'userToken': this.state.token
             }
-        }).then(
+        }).then(() =>
             this.setState({
                 token: null
             })
