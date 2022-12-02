@@ -65,7 +65,6 @@ function CreateAccount(props){
             switch (response.status) {
                 case 200:
                     props.handleLogin(e, values.username, values.password);
-                    // TODO: maybe create some sort of visual to notify the user of success and get rid of alert
                     alert("Account created successfully, you are now logged in.");
                     props.handlePageChange(e, "play");
                     break;
