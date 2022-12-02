@@ -14,16 +14,24 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            token: null,
-            page: "home"
-        };
+        if (document.cookie == "") {
+            this.state = {
+                token: null,
+                page: "home"
+            }
+        } else {
+            this.state = {
+                token: document.cookie.substring(5,69),
+                page: "play"
+            }
+        }
+
         this.handlePageChange = this.handlePageChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-    handleLogin(e, username, password) {
+    handleLogin(e, username, password, rememberMe) {
         fetch('http://localhost:8080/auth', {
             method: 'post',
             headers: {
@@ -33,7 +41,14 @@ class App extends React.Component {
         }).then(response => {
             switch (response.status) {
                 case 200:
-                    response.text().then(response => this.setState({ token: response }));
+                    response.text().then(response => {
+                        if (rememberMe) {
+                            let date = new Date();
+                            date.setMonth( date.getMonth() + 1 );
+                            document.cookie = "name=" + response + "expires=" + date.toUTCString() + ";"
+                        }
+
+                        this.setState({ token: response })});
                     this.handlePageChange(e, "play");
                     break;
                 default:
@@ -41,7 +56,7 @@ class App extends React.Component {
                     alert(`HTTP Status Code: ${response.status}`);
                     break;
             }
-        });
+        })
     }
 
     handleLogout(e) {
@@ -51,18 +66,21 @@ class App extends React.Component {
             headers: {
                 'userToken': this.state.token
             }
-        }).then(() =>
+        }).then(
             this.setState({
                 token: null
             })
         );
+        let date = new Date();
+        date.setMonth( date.getMonth() - 1 );
+        document.cookie = "name=; " + "expires=" + date.toUTCString() + ";"
         this.handlePageChange(e, "home");
     }
 
     handlePageChange(e, page) {
         this.setState({
             page: page === null ? e.target.dataset.page : page
-        });
+        })
     }
 
     render() {
@@ -85,7 +103,7 @@ class App extends React.Component {
                 }
                 {
                     page === "timetrial" &&
-                    <TimeTrial token={token} />
+                    <TimeTrial handlePageChange={this.handlePageChange} token={token} />
                 }
                 {
                     page === "profile" &&

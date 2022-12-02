@@ -4,15 +4,15 @@ import edu.ufl.gatorrush.model.User;
 import edu.ufl.gatorrush.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Random;
 
 @Service
 public class AuthService {
 
-    private static final Random random = new Random();
+    private static final SecureRandom random = new SecureRandom();
 
     private static final HashMap<String, Session> tokenMap = new HashMap<>();
 

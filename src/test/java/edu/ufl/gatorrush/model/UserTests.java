@@ -4,14 +4,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class UserTests {
     User user;
 
+    SecureRandom random = new SecureRandom();
+
     String generateRandomUsername() {
         int minUsernameLength = 8;
-        Random random = new Random();
         StringBuilder builder = new StringBuilder();
         while (builder.length() < minUsernameLength) {
             builder.append((char) ('a' + ('z' - 'a') * random.nextDouble()));

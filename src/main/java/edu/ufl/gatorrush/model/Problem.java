@@ -1,6 +1,7 @@
 package edu.ufl.gatorrush.model;
 
 import javax.persistence.*;
+import java.security.SecureRandom;
 import java.util.*;
 
 /**
@@ -8,6 +9,8 @@ import java.util.*;
  */
 @Entity
 public class Problem {
+
+    private static final SecureRandom random = new SecureRandom();
 
     /**
      * Unique Identifier
@@ -84,7 +87,6 @@ public class Problem {
     }
 
     public Integer[] getOptions() {
-        Random random = new Random();
         boolean flipFlop = random.nextBoolean();
         List<Integer> potentialOptions = new ArrayList<>();
         Integer result = getResult();
