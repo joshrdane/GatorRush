@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 
 const FormInput = (props) => {
-    let errorDisplay = 'none';
-
     const formStyle = {
         display: 'flex',
         flexDirection: 'column',
@@ -30,15 +28,6 @@ const FormInput = (props) => {
         textAlign: 'center',
         textShadow: '1px 1px black',
         marginTop: '-20px'
-
-    }
-
-    // CSS for the error message
-    const spanStyle = {
-        fontSize: '10px',
-        // padding: '1.5px',
-        color: '#fe6c6c',
-        display: errorDisplay
 
     }
 
