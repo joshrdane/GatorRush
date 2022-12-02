@@ -1,6 +1,7 @@
 'use strict';
 import ImmediateFeedback from './components/ImmediateFeedback';
 import TimerBar from './components/timerBar';
+import GameOver from './components/gameOver';
 
 
 const React = require('react');
@@ -21,9 +22,13 @@ class TimeTrial extends React.Component {
                 rightOperand: 0,
                 options: []
             },
-            history: []
+            history: [],
+            triggerGameOver: false,
+            gameOverFeedback: "",
+            incorrectQuestion: []
         }
         this.handleSelect = this.handleSelect.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
     }
 
     handleSelect(e) {
@@ -48,6 +53,11 @@ class TimeTrial extends React.Component {
             this.setState({feedback: "Great job!"})
         }
         else{
+            this.setState({triggerGameOver: true})
+            let question = this.state.problem.leftOperand + " " + this.state.problem.operator + " " + this.state.problem.rightOperand
+            let questionReview = {question: question, response: current.response, answer: current.result}
+            this.state.incorrectQuestion = this.state.incorrectQuestion.concat(questionReview);
+
             this.setState({feedback: "Not quite. Try again."})
         }
 
@@ -67,6 +77,10 @@ class TimeTrial extends React.Component {
 
     componentDidMount() {
         this.loadNewProblem();
+    }
+
+    handlePageChange(e, page) {
+        this.props.handlePageChange(e, page);
     }
 
     incrementScore() {
@@ -97,7 +111,10 @@ class TimeTrial extends React.Component {
     }
 
     timeOverAlert() {
-        alert("Time is up!");
+        // alert("Time is up!");
+        this.setState({gameOverFeedback: "Time is up!"})
+        this.setState({triggerGameOver: true})
+
     }
 
     uploadScore() {
@@ -134,6 +151,7 @@ class TimeTrial extends React.Component {
                         <div className="equation-content">
                             <div>{this.state.problem.leftOperand} {this.state.problem.operator} {this.state.problem.rightOperand} = ?</div>
                         </div>
+                        <GameOver  incorrectQuestion = {this.state.incorrectQuestion} feedback = {this.state.gameOverFeedback} trigger = {this.state.triggerGameOver}  handlePageChange={this.handlePageChange} score = {this.state.score} />
                     </div>
                     <div className="container"/>
                     <div className="container">
