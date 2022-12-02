@@ -53,7 +53,6 @@ class App extends React.Component {
                     break;
                 case 400:
                 default:
-                    // TODO: Handle errors
                     alert(`HTTP Status Code: ${response.status}`);
                     break;
             }

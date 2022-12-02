@@ -116,7 +116,6 @@ class Casual extends React.Component {
                                     problems: this.state.level.problems.slice(1)
                                 }
                             });
-                            // TODO: Show history? note: use newHistory
                         });
                         break;
                     case 400:

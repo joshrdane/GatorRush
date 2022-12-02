@@ -34,8 +34,6 @@ class TimeTrial extends React.Component {
     handleSelect(e) {
         let current = this.state.problem;
         current.response = parseInt(e.target.innerHTML);
-        // Create a 'new' history instance
-        let newHistory = this.state.history.concat(current);
         /* Post to attempts */
         if (this.state.token != null) {
             // Saves attempt to database
@@ -111,7 +109,6 @@ class TimeTrial extends React.Component {
     }
 
     timeOverAlert() {
-        // alert("Time is up!");
         this.setState({gameOverFeedback: "Time is up!"})
         this.setState({triggerGameOver: true})
 
