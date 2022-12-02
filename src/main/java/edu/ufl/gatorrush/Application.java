@@ -10,7 +10,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SpringBootApplication(exclude = {
         org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class}
@@ -20,7 +23,6 @@ public class Application {
     private UserRepository userRepository;
     private final ProblemRepository problemRepository;
     private final LevelRepository levelRepository;
-
     private static final SecureRandom random = new SecureRandom();
     private static final HashMap<Character, Integer> LevelInfo = new HashMap<>();
 

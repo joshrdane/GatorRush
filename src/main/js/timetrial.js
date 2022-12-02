@@ -1,5 +1,4 @@
 'use strict';
-import ImmediateFeedback from './components/ImmediateFeedback';
 import TimerBar from './components/timerBar';
 import GameOver from './components/gameOver';
 

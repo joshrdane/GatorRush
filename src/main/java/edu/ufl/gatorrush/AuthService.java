@@ -66,7 +66,9 @@ public class AuthService {
             if (User.PASSWORD_ENCODER.matches(password, user.getPassword())) {
                 return user.getId();
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+            // Do nothing
+        }
         return (long) -1;
     }
 
