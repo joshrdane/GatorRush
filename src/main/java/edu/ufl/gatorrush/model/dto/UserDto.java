@@ -2,6 +2,9 @@ package edu.ufl.gatorrush.model.dto;
 
 import edu.ufl.gatorrush.model.User;
 
+/**
+ * Data Transfer Object wrapper for User
+ */
 public class UserDto {
     private final User user;
 
