@@ -173,7 +173,13 @@ class Profile extends React.Component {
                             {
                                 attempts.map((attempt, index) => {
                                     return (
-                                        <div className="review-questions-content" key={attempt.timestamp}>{attempt.problem} = {attempt.response}</div>
+                                        <div className="review-questions-content" key={attempt.timestamp}>
+                                            {attempt.problem} = {attempt.response === attempt.answer ? (
+                                                <span style={{color: "green"}}>{attempt.response}</span>
+                                        ) : (
+                                            <span><span style={{color: "red"}}>{attempt.response}</span> (<span style={{color: "green"}}>{attempt.answer}</span>)</span>)
+                                        }
+                                        </div>
                                     )
                                 })
                             }
