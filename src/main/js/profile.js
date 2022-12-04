@@ -171,7 +171,7 @@ class Profile extends React.Component {
                             </div>
                             <div id="review-scroll">
                             {
-                                attempts.map((attempt, index) => {
+                                attempts.map((attempt) => {
                                     return (
                                         <div className="review-questions-content" key={attempt.timestamp}>
                                             {attempt.problem} = {attempt.response === attempt.answer ? (
