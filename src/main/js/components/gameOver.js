@@ -24,7 +24,7 @@ function GameOver(props){
 
     const popupInner = {
         position: 'relative',
-        padding: '32px',
+        // padding: '32px',
         width: '100%',
         maxWidth: '440px',
         overflow: 'auto',
@@ -32,8 +32,8 @@ function GameOver(props){
         backgroundColor: 'transparent',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundSize: '440px 540px',
-        maxHeight: '440px',
+        backgroundSize: '480px 540px',
+        maxHeight: '480px',
         borderRadius: '2rem'
     }
 
@@ -51,7 +51,8 @@ function GameOver(props){
     const headerStyle = {
         marginBottom: '2rem',
         color: '#ab6304',
-        fontSize: '3rem'
+        fontSize: '3rem',
+        marginTop: '1rem'
     }
 
     const scoreStyle = {
