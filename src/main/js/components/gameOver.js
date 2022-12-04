@@ -24,17 +24,15 @@ function GameOver(props){
 
     const popupInner = {
         position: 'relative',
-        //padding: '32px',
-        width: '100%',
-        maxWidth: '440px',
         overflow: 'auto',
         backgroundImage: 'url(/images/Wood_paper.png)',
         backgroundColor: 'transparent',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundSize: '480px 540px',
-        maxHeight: '480px',
-        borderRadius: '2rem'
+        backgroundSize: '480px 575px',
+        width: '480px',
+        height: '550px',
+
     }
 
     const nextBtnStyle = {
