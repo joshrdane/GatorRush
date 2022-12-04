@@ -101,9 +101,9 @@ class Profile extends React.Component {
 
     handleChange(e) {
         const target = e.target;
-        const { id, value } = target;
+        const { name, value } = target;
         this.setState({
-            [id]: value
+            [name]: value
         });
     }
 
@@ -115,7 +115,7 @@ class Profile extends React.Component {
                     <div className="title-profile"><p>My Profile</p></div>
                 </div>
                 <div className="container">
-                    <div className="change-password-container">
+                    <form className="change-password-container" onSubmit={this.handleSubmit}>
                         <div className="container-column">
                             <div className="change-password-content-title">
                                 <p>Change Password</p>
@@ -124,26 +124,26 @@ class Profile extends React.Component {
                                 <p>Current Password</p>
                                 <div/>
                                 <div className="currentPassword-input">
-                                    <input type="password" className="password-container" id="currentPassword-input" name="currentPassword-input" onChange={this.handleChange}/>
+                                    <input type="password" className="password-container" id="currentPassword-input" name="old_password" onChange={this.handleChange}/>
                                 </div>
                                 <div/><div/>
                                 <p>New Password</p>
                                 <div/>
                                 <div className="newPassword-input">
-                                    <input type="password" className="password-container" id="newPassword-input" name="newPassword-input" onChange={this.handleChange}/>
+                                    <input type="password" className="password-container" id="newPassword-input" name="new_password" onChange={this.handleChange}/>
                                 </div>
                                 <div/><div/>
                                 <p>Reenter New Password</p>
                                 <div/>
                                 <div className="reenteredPassword-input">
-                                    <input type="password" className="password-container" id="reenteredPassword-input" name="reenteredPassword-input" onChange={this.handleChange}/>
+                                    <input type="password" className="password-container" id="reenteredPassword-input" name="reenter_new_password" onChange={this.handleChange}/>
                                 </div>
                                 <div/><div/>
                             </div>
                             <div/><div/><div/><div/>
                             <button className="btn-ok" type={"submit"}></button>
                         </div>
-                    </div>
+                    </form>
                     <div className="container-column">
                         <div className="greeting-container">
                             <div className="greeting-content">
