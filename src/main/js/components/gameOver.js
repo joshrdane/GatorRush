@@ -24,7 +24,7 @@ function GameOver(props){
 
     const popupInner = {
         position: 'relative',
-        // padding: '32px',
+        //padding: '32px',
         width: '100%',
         maxWidth: '440px',
         overflow: 'auto',
