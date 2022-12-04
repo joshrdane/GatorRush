@@ -153,8 +153,8 @@ class Profile extends React.Component {
                         </div>
                         <div/><div/><div/>
                         <div className="stats-container">
-                            <img className="star-icon" src="/images/Star_Icon.png"/>
-                            <img className="lightning-icon" src="/images/Lightning_Icon.png"/>
+                            <img className="star-icon" alt={"star icon"} src={"/images/Star_Icon.png"}/>
+                            <img className="lightning-icon" alt={"lightning icon"} src={"/images/Lightning_Icon.png"}/>
                             <div className="stats-content-currentLevel">
                                 <p>Current Level: {level}/30</p>
                             </div>
