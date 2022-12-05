@@ -11,9 +11,6 @@ function QuestionReview(props){
         perfectScore = true;
     }
 
-
-
-
     const handleCancel = (e) => {
         props.handleTriggerReview();
     }
@@ -31,28 +28,24 @@ function QuestionReview(props){
         alignItems: 'center',
         color: 'black',
         textAlign: 'center',
-
     }
 
     const popupInner = {
         position: 'relative',
         padding: '32px',
-        width: '100%',
-        maxWidth: '440px',
         overflow: 'auto',
         backgroundImage: 'url(/images/Wood_paper.png)',
         backgroundColor: 'transparent',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundSize: '440px 540px',
-        maxHeight: '440px'
+        backgroundSize: '480px 575px',
+        width: '480px',
+        height: '550px',
     }
 
     const nextBtnStyle = {
-
         cursor: 'pointer',
         marginTop: '15px',
-
     }
 
     return(setTrigger) ? (
@@ -60,10 +53,7 @@ function QuestionReview(props){
             <div style={popupInner}>
                 <QuestionReviewContent levelIncorrect={props.levelIncorrect} perfectScore = {perfectScore} />
                 <button className="btn-create-account" style={nextBtnStyle} onClick={handleCancel} >Next Level</button>
-
             </div>
-
-
         </div>
     ) : "";
 }

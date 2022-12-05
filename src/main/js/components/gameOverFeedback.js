@@ -1,22 +1,11 @@
 import React from 'react'
 
-const headerStyle = {
-    color: '#f88f1b',
-    marginBottom: '1rem'
-}
-
 const questionStyle = {
-    color: '#494e97',
+    color: 'white',
     marginTop: '2rem',
-    fontSize: '2rem'
-}
-
-const responseStyle = {
-    color: '#a34242'
-}
-
-const answerStyle = {
-    color: '#49b049'
+    marginBottom: '3rem',
+    fontSize: '2rem',
+    textShadow: '1px 1px black',
 }
 
 const feedbackStyle = {
@@ -27,14 +16,11 @@ function GameOverFeedback(props){
     let incorrectQuestion = props.incorrectQuestion[0];
     return(props.incorrectQuestion.length > 0) ? (
         <div key={incorrectQuestion.question}>
-            <h1 style={headerStyle}>Review</h1>
-            <h3 style={questionStyle}>{incorrectQuestion.question}</h3>
-            <p style={responseStyle}> response: {incorrectQuestion.response}</p>
-            <p style={answerStyle}>answer: {incorrectQuestion.answer}</p>
-
+            <h3 style={questionStyle}>{incorrectQuestion.question} = 
+                <span><span style={{color: "red"}}>{incorrectQuestion.response}</span></span>
+                (<span><span style={{color: "green"}}>{incorrectQuestion.answer}</span></span>)
+            </h3>
         </div>
-
-
     ) : <p style={feedbackStyle}>{props.feedback}</p>;
 }
 
