@@ -4,9 +4,6 @@ import GameOverFeedback from "./gameOverFeedback";
 function GameOver(props){
     let setTrigger = props.trigger;
 
-
-
-
     const popupStyle = {
         position: 'fixed',
         top: 0,
@@ -47,20 +44,19 @@ function GameOver(props){
     }
 
     const headerStyle = {
-        marginBottom: '2rem',
-        color: '#ab6304',
+        marginBottom: '3rem',
+        color: 'white',
         fontSize: '3rem',
-        marginTop: '1rem'
+        marginTop: '5rem',
+        textShadow: '1px 1px black',
     }
 
     const scoreStyle = {
         marginTop: '2rem',
-        marginBottom: '2rem',
+        marginBottom: '3rem',
         fontSize: '2rem',
-        color: '#5b5bc0'
+        color: '#388EDD'
     }
-
-
 
     return(setTrigger) ? (
         <div style={popupStyle}>
@@ -69,10 +65,7 @@ function GameOver(props){
                 <GameOverFeedback feedback={props.feedback} incorrectQuestion={props.incorrectQuestion}/>
                 <h3 style={scoreStyle}>Final Score: {props.score}</h3>
                 <button className="btn-create-account" style={nextBtnStyle} data-page={"play"} onClick={handlePlayAgain} >Play Again</button>
-
             </div>
-
-
         </div>
     ) : "";
 }
