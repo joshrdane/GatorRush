@@ -50,6 +50,7 @@ class TimeTrial extends React.Component {
             this.setState({feedback: "Great job!"})
         }
         else{
+            this.uploadScore();
             this.setState({triggerGameOver: true})
             let question = this.state.problem.leftOperand + " " + this.state.problem.operator + " " + this.state.problem.rightOperand
             let questionReview = {question: question, response: current.response, answer: current.result}
