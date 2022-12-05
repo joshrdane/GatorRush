@@ -1,14 +1,19 @@
 import React from 'react'
 
 const headerStyle = {
-    color: '#f88f1b',
-    marginBottom: '1rem'
+    marginBottom: '3rem',
+    color: 'white',
+    fontSize: '3rem',
+    marginTop: '5rem',
+    textShadow: '1px 1px black',
 }
 
 const questionStyle = {
-    color: '#494e97',
+    color: 'white',
     marginTop: '2rem',
-    fontSize: '2rem'
+    marginBottom: '3rem',
+    fontSize: '2rem',
+    textShadow: '1px 1px black',
 }
 
 const responseStyle = {
@@ -23,14 +28,13 @@ function QuestionReviewContent(props){
     let questions = props.levelIncorrect;
     return(!props.perfectScore) ? (
         <div>
-            <h1 style={headerStyle}>Review</h1>
-
+            <h1 style={headerStyle}>Review Questions</h1>
             {questions.map(question => (
                 <div key={question.question}>
-                    <h3 style={questionStyle}>{question.question}</h3>
-                    <p style={responseStyle}> response: {question.response}</p>
-                    <p style={answerStyle}>answer: {question.answer}</p>
-
+                    <h3 style={questionStyle}>{question.question} =
+                    <span><span style={{color: "red"}}>{question.response}</span></span>
+                    (<span><span style={{color: "green"}}>{question.answer}</span></span>)
+                    </h3>
                 </div>
 
             ))}
