@@ -117,7 +117,7 @@ function CreateAccount(props){
         textDecoration: 'underline white',
         textShadow: '1.5px 1.5px black',
         marginBottom: '2rem',
-        marginTop: '1rem'
+        marginTop: '2rem'
     };
 
     const submitBtnStyle = {

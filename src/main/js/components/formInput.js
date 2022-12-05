@@ -9,7 +9,7 @@ const FormInput = (props) => {
 
     // CSS for the input box
     const inputStyle = {
-        padding: '10px',
+        padding: '5px',
         margin: '5px 0px',
         backgroundColor: 'rgb(239 151 74)',
         background: 'url(images/Wood2.png) center center / 28rem 4rem no-repeat',
@@ -17,9 +17,8 @@ const FormInput = (props) => {
         width: '100%',
         border: '0',
         textAlign: 'center',
-        color: 'orange',
+        color: 'white',
         outline: 'none'
-
     }
 
     // CSS for input label
@@ -28,7 +27,6 @@ const FormInput = (props) => {
         textAlign: 'center',
         textShadow: '1px 1px black',
         marginTop: '-20px'
-
     }
 
     const{ errorMessage, label, onChange, id, ...inputProps } = props;
